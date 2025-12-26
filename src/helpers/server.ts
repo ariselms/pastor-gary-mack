@@ -27,8 +27,8 @@ export const sendEmail = async (
 		port: 587,
 		secure: false, // true for 465, false for other ports
 		auth: {
-			user: process.env.EMAIL_VENTAS, // generated ethereal user
-			pass: process.env.EMAIL_VENTAS_PASS // generated ethereal password
+			user: process.env.EMAIL_INFO, // generated ethereal user
+			pass: process.env.EMAIL_INFO_PASS // generated ethereal password
 		},
 		tls: {
 			rejectUnauthorized: false
@@ -36,7 +36,7 @@ export const sendEmail = async (
 	});
 
 	let info = await transporter.sendMail({
-		from: "Pastor Gary Mack <ventas@pastorgarymack.com>",
+		from: "Pastor Gary Mack <info@pastorgarymack.com>",
 		to: mail,
 		subject,
 		text: "Job Application / Solicitud de empleo",
