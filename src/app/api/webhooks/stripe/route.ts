@@ -26,6 +26,8 @@ export async function POST(req: Request) {
 		);
 	}
 
+  console.log(event);
+
 	// Handle successful checkout
 	if (event.type === "checkout.session.completed") {
 		// 1. This session object is "light" (missing line_items)
