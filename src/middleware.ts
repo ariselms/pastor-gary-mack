@@ -1,4 +1,15 @@
 // middleware.ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export function middleware(request: NextRequest) {
+	// 👇 1. Allow Stripe Webhooks to pass through immediately
+	if (request.nextUrl.pathname.startsWith("/api/webhooks")) {
+		return NextResponse.next();
+	}
+
+	// ... rest of your authentication logic (e.g. checking cookies)
+}
 
 export const config = {
 	matcher: [
