@@ -32,15 +32,21 @@ export const userRoles = Object.freeze({
 let baseUrl;
 
 if(process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
+
   baseUrl = "http://localhost:3000";
+
 }
 
 if(process.env.NEXT_PUBLIC_VERCEL_ENV === "preview") {
+
   baseUrl = "https://pastorgarymack-dev.vercel.app";
+
 }
 
 if(process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
+
   baseUrl = "https://pastorgarymack.com";
+
 }
 
 export const serverBaseUrl = baseUrl;
