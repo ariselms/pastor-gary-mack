@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@source "../../.flowbite-react/class-list.json";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* set cursor pointers */
+.group span, .dark .group span, .group span svg, .dark .group span svg, button[data-testid="dark-theme-toggle"] {
+  cursor: pointer;
+}
+
+/* styles/globals.css */
+@font-face {
+  font-family: 'Anton-Regular';
+  src: url('/fonts/Anton-Regular.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps prevent invisible text while loading */
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Anton-Regular', sans-serif;
+  font-weight: 400;
+}
+
+p, ul, li, ol, blockquote {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+p {
+  line-height: 1.5 !important;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl font-extrabold mb-4; /* ~36px */
+  }
+  h2 {
+    @apply text-3xl font-bold mb-3; /* ~30px */
+  }
+  h3 {
+    @apply text-2xl font-bold mb-3; /* ~24px */
+  }
+  h4 {
+    @apply text-xl font-semibold mb-2; /* ~20px */
+  }
+  h5 {
+    @apply text-lg font-semibold mb-2; /* ~18px */
+  }
+  h6 {
+    @apply text-base font-semibold mb-2; /* ~16px */
+  }
+}
+
+/* Add cursor-pointer to links and buttons */
+a, button {
+  cursor: pointer !important;
+}
