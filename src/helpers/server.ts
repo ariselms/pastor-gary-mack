@@ -36,7 +36,7 @@ export const sendEmail = async (
 	});
 
 	let info = await transporter.sendMail({
-		from: "Pastor Gary Mack <info@pastorgarymack.com>",
+		from: "Pastor Gary Mack <ventas@pastorgarymack.com>",
 		to: mail,
 		subject,
 		text: "Job Application / Solicitud de empleo",
