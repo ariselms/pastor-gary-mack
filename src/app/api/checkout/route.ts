@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 			},
 			mode: "payment",
 			success_url: `${serverBaseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${serverBaseUrl}/cancel`
+			cancel_url: `${serverBaseUrl}/books`
 		});
 
 		return NextResponse.json({ url: session.url });
