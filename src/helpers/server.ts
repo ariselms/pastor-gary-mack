@@ -27,8 +27,8 @@ export const sendEmail = async (
 		port: 587,
 		secure: false, // true for 465, false for other ports
 		auth: {
-			user: process.env.EMAIL_INFO, // generated ethereal user
-			pass: process.env.EMAIL_INFO_PASS // generated ethereal password
+			user: process.env.EMAIL_NOREPLY, // generated ethereal user
+			pass: process.env.EMAIL_NOREPLY_PASS // generated ethereal password
 		},
 		tls: {
 			rejectUnauthorized: false
