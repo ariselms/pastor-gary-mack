@@ -8,8 +8,8 @@ import Link from "next/link";
 import { useLanguageContext } from "@/context/languageContext";
 import { useAuthContext } from "@/context/authContext";
 import { useEffect, useState } from "react";
-import { userRoles } from "@/static";
 import Spinner from "@/components/Spinner";
+import { UserOrders } from "@/components/books/UserOrders";
 
 export default function ProfilePage() {
   const { language } = useLanguageContext();
@@ -69,7 +69,9 @@ export default function ProfilePage() {
 											? "Orders"
 											: "Órdenes"
 									}>
-									<h1>Tus Órdenes Aparecerán Aquí</h1>
+									<UserOrders
+                    user={user}
+                  />
 								</TabItem>
 							</Tabs>
 						</Container7xl>

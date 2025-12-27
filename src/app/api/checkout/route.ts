@@ -1,3 +1,4 @@
+// TODO: Add language to the metadata to identify what book needs to be open to read
 // app/api/checkout/route.ts
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -37,6 +38,9 @@ export async function POST(req: Request) {
 			success_url: `${serverBaseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
 			cancel_url: `${serverBaseUrl}/books`
 		});
+
+    console.log("Checkout Session: " ,session)
+
 
 		return NextResponse.json({ url: session.url });
 

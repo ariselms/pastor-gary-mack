@@ -12,75 +12,70 @@ import { useAuthContext } from "@/context/authContext";
 
 export function Book() {
 	const { language } = useLanguageContext();
-  const { user } = useAuthContext();
+	const { user } = useAuthContext();
+
 	const [loading, setLoading] = useState(true);
 	const [book, setBook] = useState<StripeProduct | null>(null);
-  const [userOwned, setUserOwned] = useState(false);
+	const [userOwned, setUserOwned] = useState(false);
 
 	useEffect(() => {
-		if (language) {
-			const fetchDigitalBook = async () => {
-				try {
-					const requestBook = await fetch(
-						`/api/books/${
-							language === languageOptions.english
-								? process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_EN
-								: process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_ES
-						}`
-					);
+		let isMounted = true; // 1. Prevents updates if user leaves page quickly
 
-					const responseBook = await requestBook.json();
+		const initPageData = async () => {
+			setLoading(true);
+			setUserOwned(false); // Reset to ensure no stale state
 
-					if (responseBook.success) {
-						setBook(responseBook.data);
+			try {
+				// --- STEP 1: Fetch the Book ---
+				const bookId =
+					language === languageOptions.english
+						? process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_EN
+						: process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_ES;
 
-						setLoading(false);
-					}
-				} catch (error) {
-					console.error(error);
+				if (!bookId) return;
+
+				const bookReq = await fetch(`/api/books/${bookId}`);
+				const bookRes = await bookReq.json();
+
+				if (!bookRes.success || !bookRes.data) {
+					throw new Error("Failed to load book");
 				}
-			};
 
-			fetchDigitalBook();
+				const currentBook = bookRes.data;
+				if (isMounted) setBook(currentBook);
+
+				// --- STEP 2: Check Ownership (Only if User is Logged In) ---
+				// We do this BEFORE setting loading to false
+				if (user && currentBook.id) {
+					const ordersReq = await fetch(
+						`/api/user/orders/books/${currentBook.id}?userId=${user.id}`
+					);
+					const ordersRes = await ordersReq.json();
+
+					if (ordersRes.success && isMounted) {
+						// If the API returns any orders, the user owns it
+						if (ordersRes.data.length > 0) {
+							console.log("Ownership confirmed for:", currentBook.id);
+							setUserOwned(true);
+						}
+					}
+				}
+			} catch (error) {
+				console.error("Error initializing book page:", error);
+			} finally {
+				// --- STEP 3: Finally Reveal the UI ---
+				if (isMounted) setLoading(false);
+			}
+		};
+
+		if (language) {
+			initPageData();
 		}
 
-		// cleanup
 		return () => {
-			setBook(null);
+			isMounted = false;
 		};
-	}, [language]);
-
-  useEffect(() => {
-
-    if(user && book){
-
-      const checkIfUserOwnsBook = async () => {
-        try{
-          const requestUserOrders = await fetch(`/api/user/orders?userId=${user.id}&productId=${book?.id}`)
-
-          const responseUserOrders = await requestUserOrders.json()
-
-          if(responseUserOrders.success){
-
-            const userOrders = responseUserOrders.data
-
-            if(userOrders.length > 0 && book){
-              // check if there is an order with the session_id
-              const isPurchased = userOrders.filter((order:any) => order.stripe_product_id === book.id)
-
-              if(isPurchased.length > 0){
-                setUserOwned(true)
-              }
-            }
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
-      checkIfUserOwnsBook();
-    }
-  },[user, book])
+	}, [language, user]); // Re-runs if language switches or user logs in
 
 	return (
 		<>
@@ -103,11 +98,7 @@ export function Book() {
 			) : (
 				<Container7xl>
 					<ul className="text-slate-200 py-32">
-						{book && (
-							<>
-								<BookInfoCard book={book} isUserOwned={userOwned} />
-							</>
-						)}
+						{book && <BookInfoCard book={book} isUserOwned={userOwned} />}
 					</ul>
 				</Container7xl>
 			)}

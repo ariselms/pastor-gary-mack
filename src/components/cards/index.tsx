@@ -33,6 +33,7 @@ export function BookInfoCard({
 	book: StripeProduct;
 	isUserOwned: boolean;
 }) {
+
 	const { user } = useAuthContext();
 
 	const router = useRouter();
@@ -97,23 +98,24 @@ export function BookInfoCard({
 	};
 
 	return (
-		<div className="flex-1 p-4 border border-slate-700 rounded-lg bg-slate-800/50 backdrop-blur-lg flex gap-4">
+		<div className="flex-1 p-4 border border-slate-700 rounded-lg bg-slate-800/50 backdrop-blur-lg flex-col gap-4 md:flex md:flex-row">
 			{/* 1. Image on the Left */}
 			{/* Added w-32 (fixed width) and object-cover so it doesn't distort */}
 			<img
 				src={book.images[0]}
 				alt={book.name}
-				className="w-48 h-74 object-cover rounded-md flex-shrink-0"
+				className="w-48 h-74 object-cover rounded-md flex-shrink-0 mb-4 md:mb-0"
 			/>
 
 			{/* 2. Text and Button on the Right */}
 			{/* flex-1 ensures it takes remaining width. flex-col stacks content vertically. */}
 			<div className="flex flex-col flex-1 justify-between">
 				<div>
-          {isUserOwned && language === languageOptions.english
-            ? "(You own this)"
-            : "(Ya tienes este libro)"}
-					<h2 className="mb-2 text-lg font-bold text-white block">
+					{isUserOwned &&
+						(language === languageOptions.english
+							? "(You own this)"
+							: "(Ya tienes este libro)")}
+					<h2 className="mb-2 text-2xl font-bold text-white block">
 						{book.name}
 					</h2>
 					<MaxTextWidth>
@@ -126,14 +128,14 @@ export function BookInfoCard({
 				{isUserOwned ? (
 					<Link
 						href={`/profile/orders/books/read/${book.id}`}
-						className="relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-slate-700 text-white hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 w-fit cursor-pointer">
+						className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-700 text-white hover:bg-yellow-800 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
 						{language === languageOptions.english ? "Read Now" : "Leer Ahora"}
 					</Link>
 				) : (
 					<button
 						onClick={handleCheckout}
 						disabled={loading}
-						className="relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-slate-700 text-white hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 w-fit cursor-pointer">
+						className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-700 text-white hover:bg-yellow-800 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
 						{language === languageOptions.english
 							? `Buy Now ${formatBookPrice()}`
 							: `Comprar Ahora ${formatBookPrice()}`}

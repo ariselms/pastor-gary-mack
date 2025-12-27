@@ -1,4 +1,3 @@
-// TODO: Consider adding the purchased book language to the order table
 "use client";
 
 import { useEffect, useState } from "react";
@@ -7,104 +6,98 @@ import { languageOptions } from "@/static";
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { JumbotronShared } from "@/components/jumbotron";
+import Spinner from "@/components/Spinner";
 
 export function EbookReader({ productId }: { productId: string }) {
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
-	const [loading, setLoading] = useState(true);
 	const router = useRouter();
+
+	const [loading, setLoading] = useState(true);
 	const [book, setBook] = useState<any | null>(null);
-	const [userOwned, setUserOwned] = useState(false);
 
 	useEffect(() => {
-		if (language) {
-			const fetchDigitalBook = async () => {
-				try {
-					const requestBook = await fetch(
-						`/api/books/${
-							language === languageOptions.english
-								? process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_EN
-								: process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_ES
-						}`
-					);
+		let isMounted = true;
 
-					const responseBook = await requestBook.json();
+		const initPageData = async () => {
+			setLoading(true);
 
-					if (responseBook.success) {
-						setBook(responseBook.data);
+			try {
+				// 1. Check if we have the required ID
+				if (!productId) return;
 
-						setLoading(false);
-					}
-				} catch (error) {
-					console.error(error);
-				}
-			};
+				// --- STEP 1: Fetch the Book Metadata ---
+				// FIX: Use 'productId' prop, not 'book.id'
+				const bookReq = await fetch(`/api/books/${productId}`);
+				const bookRes = await bookReq.json();
 
-			fetchDigitalBook();
-		}
+				if (bookRes.success) {
+					const currentBook = bookRes.data;
 
-		// cleanup
-		return () => {
-			setBook(null);
-		};
-	}, [language]);
+					if (isMounted) setBook(currentBook);
 
-	useEffect(() => {
+					// --- STEP 2: Check Ownership ---
+					if (user) {
+						const ordersReq = await fetch(
+							// FIX: Ensure you are passing the correct IDs
+							`/api/user/orders/books/${productId}?userId=${user.id}`
+						);
+						const ordersRes = await ordersReq.json();
 
-		if (user && book) {
-			const checkIfUserOwnsBook = async () => {
-				try {
-					const requestUserOrders = await fetch(
-						`/api/user/orders?userId=${user.id}&productId=${book?.id}`
-					);
-
-					const responseUserOrders = await requestUserOrders.json();
-
-					if (responseUserOrders.success) {
-
-						const userOrders = responseUserOrders.data;
-
-						if (userOrders.length > 0 && book) {
-							// check if there is an order with the session_id
-							const isPurchased = userOrders.filter(
-								(order: any) => order.stripe_product_id === book.id
-							);
-
-							if (isPurchased.length > 0) {
-								setUserOwned(true);
-							} else {
-								router.push("/books");
-							}
+						// If check fails or user hasn't bought it, redirect
+						if (!ordersRes.success) {
+							console.warn("User does not own this book");
+							router.push("/books");
 						}
-					} else {
-
-            router.push("/books");
-
-          }
-				} catch (error) {
-					console.error(error);
+					}
+				} else {
+					// If book doesn't exist, redirect
+					router.push("/books");
 				}
-			};
+			} catch (error) {
+				console.error("Error initializing book page:", error);
+			} finally {
+				if (isMounted) setLoading(false);
+			}
+		};
 
-			checkIfUserOwnsBook();
-		}
-	}, [user]);
+		// Run the function
+		initPageData();
+
+		return () => {
+			isMounted = false;
+		};
+		// FIX: Remove 'book' from dependencies to avoid infinite loops
+	}, [productId, user, router]);
 
 	return (
 		<>
-			<JumbotronShared
-				topSmTitle="Pastor Gary Mack"
-				mainTitle={book?.name}
-				mainText={book?.description}
-			/>
-			<iframe
-				style={{
-					height: "100vh"
-				}}
-				src="https://designrr.page/?id=598561&token=1449435590&h=2154"
-				height={"100vh"}
-				width={"100%"}
-			/>
+			{loading ? (
+				<Spinner />
+			) : (
+				<>
+					<JumbotronShared
+						topSmTitle={
+							language === languageOptions.english
+								? "You are reading your book"
+								: "Estás leyendo tu libro"
+						}
+						mainTitle={book?.name || ""}
+						mainText={book?.description || ""}
+					/>
+					<iframe
+						style={{ height: "100vh" }}
+						// TODO: Eventually, this URL should come from your 'book' object database
+						src={
+							book?.ebook_url ||
+							"https://designrr.page/?id=598561&token=1449435590&h=2154"
+						}
+						height={"100vh"}
+						width={"100%"}
+						className="w-full border-none"
+					/>
+				</>
+			)}
 		</>
 	);
 }

@@ -8,14 +8,10 @@ export async function GET(req:Request){
 
     const {searchParams} = new URL(req.url)
     const userId = searchParams.get('userId')
-    const productId = searchParams.get('productId');
-
-    if(!userId || !productId) return;
 
     const { rows: userOrders } = await sql`
       SELECT * FROM digital_books_orders
         WHERE by_user_id = ${userId}
-        AND stripe_product_id = ${productId}
     `;
 
     if(userOrders.length > 0){

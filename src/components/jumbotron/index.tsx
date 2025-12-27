@@ -96,7 +96,7 @@ export function JumbotronShared({
 	mainText: string;
 }) {
 	return (
-		<div className="px-6 py-18 sm:py-32 lg:px-8 bg-gradient-to-tr from-black via-slate-900 to-blue-900 pointer-events-none">
+		<div className="px-6 py-18 sm:py-24 lg:px-8 bg-gradient-to-tr from-black via-slate-900 to-blue-900 pointer-events-none">
 			<div className="mx-auto max-w-2xl text-center">
 				<p className="text-base/7 font-semibold text-yellow-300">
 					{topSmTitle}
