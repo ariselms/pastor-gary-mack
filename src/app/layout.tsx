@@ -32,7 +32,10 @@ export default function RootLayout({
 
 	return (
 		<>
-			<html className="scroll-smooth dark:bg-black" suppressHydrationWarning lang="es">
+			<html
+				className="scroll-smooth dark:bg-black"
+				suppressHydrationWarning
+				lang="es">
 				<head>
 					<ThemeModeScript />
 					<link rel="icon" href="/favicon.ico" />
@@ -53,27 +56,28 @@ export default function RootLayout({
 						sizes="16x16"
 						href="/favicon-16x16.png"
 					/>
+					<link rel="icon" type="image/png" href="/images/gary-mack-logo.png" />
 					<link rel="manifest" href="/manifest.json" />
 				</head>
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 					<ToastContainer />
 					<AuthContextProvider>
-								<LanguageContextProvider>
-									{isAdminPage ? (
-										// If it's an admin page, just render the children (your React Admin page)
-										// without the main navigation and footer
-										children
-									) : (
-										// Otherwise, render the main navigation, children, and footer
-										<>
-											<MainNavigation />
-											{/* It's good practice to wrap your main content */}
-											{children}
-											<Footer />
-										</>
-									)}
-								</LanguageContextProvider>
+						<LanguageContextProvider>
+							{isAdminPage ? (
+								// If it's an admin page, just render the children (your React Admin page)
+								// without the main navigation and footer
+								children
+							) : (
+								// Otherwise, render the main navigation, children, and footer
+								<>
+									<MainNavigation />
+									{/* It's good practice to wrap your main content */}
+									{children}
+									<Footer />
+								</>
+							)}
+						</LanguageContextProvider>
 					</AuthContextProvider>
 					<script src="/js/flowbite.js"></script>
 				</body>
