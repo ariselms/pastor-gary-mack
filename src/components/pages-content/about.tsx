@@ -7,7 +7,9 @@ import { Container7xl } from "@/components/containers";
 import { CoreValuesCard } from "@/components/cards";
 
 export function AboutPageContent() {
+
 	const { language } = useLanguageContext();
+
 	const isEnglish = language === languageOptions.english;
 
 	const values = [

@@ -16,10 +16,7 @@ export async function generateMetadata(): Promise<any> {
   const language = (await cookies()).get("language")?.value;
 
   // 2. Define logic
-  const isEnglish =
-    language === languageOptions.english
-      ? languageOptions.english
-      : languageOptions.spanish;
+  const isEnglish = language === languageOptions.english
 
   // 3. Return the metadata object dynamically
   return {

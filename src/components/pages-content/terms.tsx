@@ -186,7 +186,20 @@ const EnglishTerms = () => {
 
 					<div>
 						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
-							11. Contact Us
+							11. Refund Policy
+						</h2>
+						<p className="text-base text-slate-200 dark:text-white">
+							All digital orders, donations, and purchases made through the Site
+							are final. Since our products are digital and instantly
+							accessible, we do not offer refunds, returns, or exchanges once a
+							purchase or donation has been processed. Please review your order
+							carefully before completing the transaction.
+						</p>
+					</div>
+
+					<div>
+						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+							12. Contact Us
 						</h2>
 						<p className="text-base text-slate-200 dark:text-white">
 							Pastor Gary Mack welcomes your questions or comments regarding the
@@ -204,7 +217,6 @@ const SpanishTerms = () => {
 	return (
 		<>
 			<div className="p-6 sm:p-8 lg:p-10">
-
 				<div className="mb-8">
 					<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
 						Términos y Condiciones
@@ -371,7 +383,21 @@ const SpanishTerms = () => {
 
 					<div>
 						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
-							11. Contáctenos
+							11. Política de Reembolso
+						</h2>
+						<p className="text-base text-slate-200 dark:text-white">
+							Todas las órdenes digitales, donaciones y compras realizadas a
+							través del Sitio son definitivas. Dado que nuestros productos son
+							digitales y accesibles al instante, no ofrecemos reembolsos,
+							devoluciones ni cambios una vez que se ha procesado una compra o
+							donación. Por favor, revise su pedido cuidadosamente antes de
+							completar la transacción.
+						</p>
+					</div>
+
+					<div>
+						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+							12. Contáctenos
 						</h2>
 						<p className="text-base text-slate-200 dark:text-white">
 							Pastor Gary Mack agradece sus preguntas o comentarios sobre los
