@@ -20,6 +20,12 @@ export async function POST(req: Request) {
 
 		// 2. Create the Stripe Session
 		const session = await stripe.checkout.sessions.create({
+      tax_id_collection: {
+        enabled: true,
+      },
+      automatic_tax: {
+        enabled: true,
+      },
 			customer_creation: "always",
 			client_reference_id: user.id,
 			customer_email: user.contact_email,

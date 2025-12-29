@@ -76,8 +76,8 @@ export const donationOptions = [
 			es: "Donar Una Vez"
 		},
 		description: {
-			en: "Sow a seed into this ministry to help us continue spreading the Gospel. As the scripture says, 'God loves a cheerful giver' (2 Corinthians 9:7). Your support makes a tangible difference in reaching lives for Christ. You can view your complete donation history at any time in your dashboard under the Donations tab.",
-			es: "Siembre una semilla en este ministerio para ayudarnos a continuar esparciendo el Evangelio. Como dicen las escrituras, 'Dios ama al dador alegre' (2 Corintios 9:7). Su apoyo hace una diferencia tangible para alcanzar vidas para Cristo. Puede ver su historial completo de donaciones en cualquier momento en su panel bajo la pestaña de Donaciones."
+			en: "Sow a seed into this ministry to help us continue spreading the Gospel. As the scripture says, 'God loves a cheerful giver' (2 Corinthians 9:7). Your support makes a tangible difference in reaching lives for Christ. You will receive an email with your donation information for your personal records.",
+			es: "Siembre una semilla en este ministerio para ayudarnos a continuar esparciendo el Evangelio. Como dicen las escrituras, 'Dios ama al dador alegre' (2 Corintios 9:7). Su apoyo hace una diferencia tangible para alcanzar vidas para Cristo. Usted recibirá un correo electrónico con su información de donación para su registro personal."
 		},
 		imageUrl: "/images/give-heart.png",
 		stripeLink: {

@@ -68,12 +68,12 @@ export default function ProfilePage() {
 									}>
 									<UserOrders user={user} />
 								</TabItem>
-								<TabItem
+								{/* <TabItem
 									title={
 										language === languageOptions.english ? "Donations" : "Donaciones"
 									}>
 									<UserDonationsTab userEmail={user?.contact_email} language={language} languageOptions={languageOptions} />
-								</TabItem>
+								</TabItem> */}
 							</Tabs>
 						</Container7xl>
 					</div>
