@@ -20,7 +20,7 @@ export function HomePageContent() {
 						: "Mentalidad de Mangosta"}
 				</Link>
 				<Link
-					href="/books"
+					href="/give"
 					className="font-['Montserrat',sans-serif] font-bold text-white px-10 md:px-12 lg:px-16 py-4 md:py-6 lg:py-10 border-2 border-white/20 uppercase tracking-widest relative z-10 hover:bg-white hover:text-black transition-colors duration-300 text-[clamp(0.875rem,2vw,1.5rem)] text-center cursor-pointer bg-slate-100/10 bg-clip-padding backdrop-filter backdrop-blur-sm">
 					{language === languageOptions.english
 						? "Support Our Ministry"

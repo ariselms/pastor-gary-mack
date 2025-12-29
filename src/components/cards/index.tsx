@@ -164,8 +164,8 @@ export function GiveOrDonateCard({ item }: { item: any }) {
 				<div>
 					<h2 className="mb-2 text-2xl font-bold text-white block">
 						{language === languageOptions.english
-							? item.title.en
-							: item.title.es}
+							? item.title.en + " (any amount)"
+							: item.title.es + " (cualquier cantidad)"}
 					</h2>
 					<MaxTextWidth>
 						<p className="text-sm text-slate-300">
