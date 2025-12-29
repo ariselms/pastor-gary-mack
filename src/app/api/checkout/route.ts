@@ -20,6 +20,7 @@ export async function POST(req: Request) {
 
 		// 2. Create the Stripe Session
 		const session = await stripe.checkout.sessions.create({
+			customer_creation: "always",
 			client_reference_id: user.id,
 			customer_email: user.contact_email,
 			line_items: [
@@ -32,7 +33,7 @@ export async function POST(req: Request) {
 			metadata: {
 				bookId: book.id, // Useful for webhooks/fulfillment later
 				bookName: book.name,
-        bookImage: book.images[0]
+				bookImage: book.images[0]
 			},
 			mode: "payment",
 			success_url: `${serverBaseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
