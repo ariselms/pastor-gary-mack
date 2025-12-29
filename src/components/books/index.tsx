@@ -10,7 +10,7 @@ import { JumbotronShared } from "@/components/jumbotron/";
 import Spinner from "@/components/Spinner";
 import { useAuthContext } from "@/context/authContext";
 
-export function Book() {
+export function BookPageContent() {
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
 

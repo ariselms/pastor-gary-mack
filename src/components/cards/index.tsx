@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { StripeProduct } from "@/types/bookTypes";
 import { MaxTextWidth } from "@/components/containers";
@@ -8,6 +9,7 @@ import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import Image from "next/image";
 
 export function CoreValuesCard({ item }: { item: any }) {
 	return (
@@ -33,7 +35,6 @@ export function BookInfoCard({
 	book: StripeProduct;
 	isUserOwned: boolean;
 }) {
-
 	const { user } = useAuthContext();
 
 	const router = useRouter();
@@ -141,6 +142,51 @@ export function BookInfoCard({
 							: `Comprar Ahora ${formatBookPrice()}`}
 					</button>
 				)}
+			</div>
+		</div>
+	);
+}
+
+export function GiveOrDonateCard({ item }: { item: any }) {
+
+	const { language } = useLanguageContext();
+
+	return (
+		<div className="flex-1 p-4 border border-slate-700 rounded-lg bg-slate-800/50 backdrop-blur-lg flex-col gap-4 mb-8">
+			<Image
+				width={200}
+				height={200}
+				src={item.imageUrl}
+				alt="donate or giving"
+				className="w-auto h-30 rounded-md flex-shrink-0 mb-4"
+			/>
+			<div className="flex flex-col flex-1 justify-between">
+				<div>
+					<h2 className="mb-2 text-2xl font-bold text-white block">
+						{language === languageOptions.english
+							? item.title.en
+							: item.title.es}
+					</h2>
+					<MaxTextWidth>
+						<p className="text-sm text-slate-300">
+							{language === languageOptions.english
+								? item.description.en
+								: item.description.es}
+						</p>
+					</MaxTextWidth>
+				</div>
+
+				<Link
+					href={
+						language === languageOptions.english
+							? item.stripeLink.en.link
+							: item.stripeLink.es.link
+					}
+					className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-700 text-white hover:bg-yellow-800 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 w-fit cursor-pointer inline-block mt-4 transition-all">
+					{language === languageOptions.english
+						? item.stripeLink.en.text
+						: item.stripeLink.es.text}
+				</Link>
 			</div>
 		</div>
 	);

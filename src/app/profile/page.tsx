@@ -2,14 +2,15 @@
 
 import {Container7xl} from "@/components/containers";
 import { languageOptions } from "@/static";
-import { Badge, TabItem, Tabs } from "flowbite-react";
+import { TabItem, Tabs } from "flowbite-react";
 import UserProfileForm from "@/components/forms/UserProfile";
 import Link from "next/link";
 import { useLanguageContext } from "@/context/languageContext";
 import { useAuthContext } from "@/context/authContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Spinner from "@/components/Spinner";
 import { UserOrders } from "@/components/books/UserOrders";
+import { UserDonationsTab } from "@/components/donations/UserDonations";
 
 export default function ProfilePage() {
   const { language } = useLanguageContext();
@@ -59,19 +60,19 @@ export default function ProfilePage() {
 											? "Edit Profile"
 											: "Editar Perfil"
 									}>
-									<UserProfileForm
-                    user={user}
-                    update={true} />
+									<UserProfileForm user={user} update={true} />
 								</TabItem>
 								<TabItem
 									title={
-										language === languageOptions.english
-											? "Orders"
-											: "Órdenes"
+										language === languageOptions.english ? "Orders" : "Órdenes"
 									}>
-									<UserOrders
-                    user={user}
-                  />
+									<UserOrders user={user} />
+								</TabItem>
+								<TabItem
+									title={
+										language === languageOptions.english ? "Donations" : "Donaciones"
+									}>
+									<UserDonationsTab userEmail={user?.contact_email} language={language} languageOptions={languageOptions} />
 								</TabItem>
 							</Tabs>
 						</Container7xl>

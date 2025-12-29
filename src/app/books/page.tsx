@@ -1,4 +1,4 @@
-import { Book } from "@/components/books";
+import { BookPageContent } from "@/components/books";
 import { languageOptions } from "@/static";
 import { cookies } from "next/headers";
 
@@ -6,7 +6,7 @@ export default async function BooksPage() {
 
 	return (
 		<main role="main">
-			<Book />
+			<BookPageContent />
 		</main>
 	);
 }

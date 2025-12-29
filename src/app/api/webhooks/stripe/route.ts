@@ -40,9 +40,6 @@ export async function POST(req: Request) {
 			// Now we can safely access line_items
 			const productInfo = session.line_items?.data[0];
 
-      console.log("Webhook Session: ", session)
-      console.log("Webhook Product Info: ", productInfo)
-
 			// Prepare data for DB
 			const order = {
 				stripe_session_id: session.id,
@@ -52,10 +49,19 @@ export async function POST(req: Request) {
 				stripe_price_id: productInfo?.price?.id,
 				stripe_unit_amount: productInfo?.price?.unit_amount,
 				created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
-        image_url: session.metadata?.bookImage || ""
+				image_url: session.metadata?.bookImage || ""
 			};
 
-      console.log("Order to create: ", order);
+			if (!order.by_user_id) {
+				return NextResponse.json(
+					{
+						success: true,
+						message: "This is not a digital book order.",
+						data: null
+					},
+					{ status: 200 }
+				);
+			}
 
 			// 3. Insert into Neon DB (Fixed table name to match your previous schema)
 			// Note: Added missing comma before created_at in VALUES
@@ -82,7 +88,7 @@ export async function POST(req: Request) {
         ) RETURNING *`;
 
 			if (newOrderCreated) {
-        console.log("New Order Created: ", newOrderCreated);
+				console.log("New Order Created: ", newOrderCreated);
 			}
 		} catch (error) {
 			console.error("Failed to process order:", error);

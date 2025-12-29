@@ -3,13 +3,11 @@
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
 import { useEffect, useState } from "react";
-import { DarkThemeToggle } from "flowbite-react";
 import { MenuIcon } from "@/components/svg/Icons";
 import Link from "next/link";
 import LanguageHandler from "@/components/forms/LanguageHandler";
 import { useAuthContext } from "@/context/authContext";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { GaryMackLogo } from "@/components/logo";
 
 export default function MainNavigation() {
@@ -91,7 +89,7 @@ export default function MainNavigation() {
 				{showMenu && (
 					<ul
 						id="menu"
-						className="flex flex-col md:flex-row md:items-center absolute md:static right-0 top-23 z-20 gap-x-8 order-2 bg-slate-200 dark:bg-slate-800 md:dark:bg-transparent md:bg-transparent w-full md:w-auto gap-y-4">
+						className="flex flex-col md:flex-row md:items-center absolute md:static right-0 top-23 z-20 gap-x-4 order-2 bg-slate-200 dark:bg-slate-800 md:dark:bg-transparent md:bg-transparent w-full md:w-auto gap-y-4">
 						<li className="pt-4 pb-1 md:p-0 text-center hover:bg-transparent trastition-all">
 							<Link
 								onClick={() => {
@@ -120,6 +118,16 @@ export default function MainNavigation() {
 								className={`${isActiveLink("/books") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
 								href="/books">
 								{language === languageOptions.spanish ? "Libros" : "Books"}
+							</Link>
+						</li>
+						<li className="pt-2 pb-1 md:p-0 text-center hover:bg-transparent trastition-all">
+							<Link
+								onClick={() => {
+									isMobile && setShowMenu(false);
+								}}
+								className={`${isActiveLink("/give") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
+								href="/give">
+								{language === languageOptions.spanish ? "Donar" : "Donate"}
 							</Link>
 						</li>
 						{user ? (
