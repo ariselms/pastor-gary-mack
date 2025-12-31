@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useRef } from "react";
+import gsap from "gsap"; // Import gsap default
 import { useGSAP } from "@gsap/react";
 
 export function JumbotronWithCenteredLetters({
@@ -14,78 +14,98 @@ export function JumbotronWithCenteredLetters({
 	personTitleSubText: string;
 	htmlContainer: React.ReactNode;
 }) {
-	// Refs for GSAP targeting
-	const containerRef = useRef(null);
-	const bgTextRef = useRef(null);
-	const titleTextRef = useRef(null);
-	const subTextRef = useRef(null);
-	const contentRef = useRef(null);
+	const containerRef = useRef<HTMLElement>(null);
+	const bgTextRef = useRef<HTMLHeadingElement>(null);
+	const titleTextRef = useRef<HTMLHeadingElement>(null);
+	const subTextRef = useRef<HTMLSpanElement>(null);
+	const contentRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		// Use gsap.context for proper cleanup
-		const ctx = gsap.context(() => {
+	useGSAP(
+		() => {
+			// 1. PRE-SET: Ensure the background text is centered by GSAP immediately
+			// We moved the translation logic here to avoid conflict with the scale animation
+			gsap.set(bgTextRef.current, {
+				xPercent: -50,
+				yPercent: -50,
+				opacity: 0 // Ensure it's hidden initially (double safety)
+			});
+
 			const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-			// 1. Background Text: Starts bigger (scale 1.5) and shrinks to natural size (scale 1)
-			tl.from(bgTextRef.current, {
-				scale: 1.5,
-				opacity: 0,
-				duration: 1.8,
-				transformOrigin: "center center"
-			})
-				// 2. Person Title: Fades in and moves up
-				.from(
+			// 2. Animation Sequence
+			// We use autoAlpha instead of opacity. autoAlpha sets visibility:hidden when opacity is 0,
+			// which prevents screen readers or clicks from registering it too early.
+			tl.fromTo(
+				bgTextRef.current,
+				{ scale: 1.5, autoAlpha: 0 },
+				{
+					scale: 1,
+					autoAlpha: 1,
+					duration: 1.8,
+					transformOrigin: "center center"
+				}
+			)
+				.fromTo(
 					titleTextRef.current,
-					{
-						y: 100,
-						opacity: 0,
-						duration: 1
-					},
+					{ y: 100, autoAlpha: 0 },
+					{ y: 0, autoAlpha: 1, duration: 1 },
 					"-=1.2"
 				)
-				// 3. Sub Title: Fades in and moves up
-				.from(
+				.fromTo(
 					subTextRef.current,
-					{
-						y: 50,
-						opacity: 0,
-						duration: 1
-					},
+					{ y: 50, autoAlpha: 0 },
+					{ y: 0, autoAlpha: 1, duration: 1 },
 					"-=0.8"
 				)
-				// 4. HTML Container: Fades in and moves up
-				.from(
+				.fromTo(
 					contentRef.current,
-					{
-						y: 30,
-						opacity: 0,
-						duration: 0.8
-					},
+					{ y: 30, autoAlpha: 0 },
+					{ y: 0, autoAlpha: 1, duration: 0.8 },
 					"-=0.6"
 				);
-		}, containerRef);
+		},
+		{ scope: containerRef }
+	); // Scope ensures proper cleanup
 
-		return () => ctx.revert();
-	}, []);
 	return (
-		<section className="h-[calc(100vh-88px)] w-full snap-start flex flex-col justify-center items-center relative bg-slate-900 p-4 overflow-hidden">
+		<section
+			ref={containerRef}
+			className="h-[calc(100vh-88px)] w-full snap-start flex flex-col justify-center items-center relative bg-slate-900 p-4 overflow-hidden">
 			<div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-slate-900 to-black pointer-events-none"></div>
 
-			{/* Giant Faded Background Text */}
-			<h1 ref={bgTextRef} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[20vw] font-black text-white/5 whitespace-nowrap select-none pointer-events-none font-['Montserrat',sans-serif]">
+			{/* CHANGES HERE:
+         1. Removed 'transform -translate-x-1/2 -translate-y-1/2' (GSAP handles this now).
+         2. Added 'invisible'. CSS hides it first, GSAP's autoAlpha reveals it.
+      */}
+			<h1
+				ref={bgTextRef}
+				className="absolute top-1/2 left-1/2 text-[20vw] font-black text-white/5 whitespace-nowrap select-none pointer-events-none font-['Montserrat',sans-serif] invisible">
 				{fadedBackgroundText.toUpperCase()}
 			</h1>
 
-			<h1 ref={titleTextRef} className="font-['Montserrat',sans-serif] font-black text-[clamp(5rem,15vw,16rem)] leading-[0.85] uppercase text-center text-white relative z-10">
+			{/* Added 'invisible' to prevent flash */}
+			<h1
+				ref={titleTextRef}
+				className="font-['Montserrat',sans-serif] font-black text-[clamp(5rem,15vw,16rem)] leading-[0.85] uppercase text-center text-white relative z-10 invisible">
 				{personTitleText}
 				<br />
-				<span ref={subTextRef} className="text-yellow-300">{personTitleSubText}</span>
+				{/* Added 'invisible' and block to ensure it can animate Y independently */}
+				<span
+					ref={subTextRef}
+					className="text-yellow-300 invisible inline-block">
+					{personTitleSubText}
+				</span>
 			</h1>
-			<div ref={contentRef} className="mt-10">{htmlContainer}</div>
+
+			{/* Added 'invisible' */}
+			<div ref={contentRef} className="mt-10 invisible">
+				{htmlContainer}
+			</div>
 		</section>
 	);
 }
 
+// ... JumbotronShared remains the same ...
 export function JumbotronShared({
 	topSmTitle,
 	mainTitle,
