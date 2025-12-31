@@ -15,7 +15,7 @@ export function CoreValuesCard({ item }: { item: any }) {
 	return (
 		<div className="flex-1 p-4 border border-slate-700 rounded-lg bg-slate-800/50 backdrop-blur-lg">
 			<p className="text-slate-200 font-semibold mb-2">
-				<span className="text-amber-400">{item.coreValue}</span>
+				<span className="text-yellow-300">{item.coreValue}</span>
 			</p>
 			<p className="text-slate-200 text-sm leading-relaxed mb-4 opacity-90">
 				{item.belief}
@@ -129,14 +129,14 @@ export function BookInfoCard({
 				{isUserOwned ? (
 					<Link
 						href={`/profile/orders/books/read/${book.id}`}
-						className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-700 text-white hover:bg-yellow-800 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
+						className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
 						{language === languageOptions.english ? "Read Now" : "Leer Ahora"}
 					</Link>
 				) : (
 					<button
 						onClick={handleCheckout}
 						disabled={loading}
-						className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-700 text-white hover:bg-yellow-800 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
+						className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
 						{language === languageOptions.english
 							? `Buy Now ${formatBookPrice()}`
 							: `Comprar Ahora ${formatBookPrice()}`}
@@ -182,7 +182,7 @@ export function GiveOrDonateCard({ item }: { item: any }) {
 							? item.stripeLink.en.link
 							: item.stripeLink.es.link
 					}
-					className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-700 text-white hover:bg-yellow-800 focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800 w-fit cursor-pointer inline-block mt-4 transition-all">
+					className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 w-fit cursor-pointer inline-block mt-4 transition-all">
 					{language === languageOptions.english
 						? item.stripeLink.en.text
 						: item.stripeLink.es.text}

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
 import { Label, TextInput } from "flowbite-react";
-import { Button, Spinner } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 import { UserType } from "@/types/userTypes";
 import { toast } from "react-toastify";
 
@@ -298,8 +298,8 @@ export default function UserProfileForm({
 					</div>
 				</div>
 				{update ? (
-					<Button
-						className="mt-8 relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-slate-700 text-white hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
+					<button
+						className="mt-8 relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300"
 						type="submit">
 						{loading ? (
 							<>
@@ -313,11 +313,11 @@ export default function UserProfileForm({
 						) : (
 							"Actualizar"
 						)}
-					</Button>
+					</button>
 				) : (
-					<Button
+					<button
 						// onClick={handleApplicationSubmit}
-						className="mt-8 relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-slate-700 text-white hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
+						className="mt-8 relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300"
 						type="button">
 						{loading ? (
 							<>
@@ -331,7 +331,7 @@ export default function UserProfileForm({
 						) : (
 							"Applicar"
 						)}
-					</Button>
+					</button>
 				)}
 			</form>
 		</div>

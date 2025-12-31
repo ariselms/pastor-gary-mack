@@ -10,7 +10,7 @@ export function GaryMackLogo() {
 				src="/images/gary-mack-logo.png"
 				alt="2xl avatar"
 			/>
-			<span className="font-extrabold text-2xl cursor-pointer text-stone-100 hover:border-b-2 hover:border-stone-200 transition-all">
+			<span className="font-extrabold text-2xl cursor-pointer text-stone-100 hover:border-b-2 hover:border-yellow-300 transition-all">
 				Gary Mack
 			</span>
 		</span>

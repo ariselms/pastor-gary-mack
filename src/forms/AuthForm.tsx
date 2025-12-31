@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useLanguageContext } from "@/context/languageContext";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import { languageOptions } from "@/static";
 import { Spinner } from "flowbite-react";
 
@@ -39,8 +39,8 @@ const AuthForm = ({
 					onChange={onEmailChange}
 				/>
 			</div>
-			<Button
-				className="relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-slate-700 text-white hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800"
+			<button
+				className="relative flex items-center justify-center rounded-lg text-center font-medium focus:outline-none focus:ring-4 h-10 px-5 text-sm bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300"
 				type="submit">
 				{loading ? (
 					<>
@@ -54,7 +54,7 @@ const AuthForm = ({
 				) : (
 					"Enviar"
 				)}
-			</Button>
+			</button>
 		</form>
 	);
 };

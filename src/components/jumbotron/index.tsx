@@ -105,7 +105,6 @@ export function JumbotronWithCenteredLetters({
 	);
 }
 
-// ... JumbotronShared remains the same ...
 export function JumbotronShared({
 	topSmTitle,
 	mainTitle,
@@ -115,16 +114,52 @@ export function JumbotronShared({
 	mainTitle: string;
 	mainText: string;
 }) {
+	const containerRef = useRef<HTMLDivElement>(null);
+	const topTextRef = useRef<HTMLParagraphElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const mainTextRef = useRef<HTMLParagraphElement>(null);
+
+	useGSAP(
+		() => {
+			const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+			// Animate all three refs in a staggered sequence
+			// autoAlpha: 0 ensures they are hidden (opacity: 0 + visibility: hidden) start
+			// autoAlpha: 1 turns them on
+			tl.fromTo(
+				[topTextRef.current, titleRef.current, mainTextRef.current],
+				{ autoAlpha: 0 },
+				{
+					autoAlpha: 1,
+					duration: 1.2,
+					stagger: 0.1 // Delay between each element starting
+				}
+			);
+		},
+		{ scope: containerRef }
+	);
+
 	return (
-		<div className="px-6 py-18 sm:py-24 lg:px-8 bg-gradient-to-tr from-black via-slate-900 to-blue-900 pointer-events-none">
+		<div
+			ref={containerRef}
+			className="px-6 py-18 sm:py-24 lg:px-8 bg-gradient-to-tr from-black via-slate-900 to-blue-900 pointer-events-none">
 			<div className="mx-auto max-w-2xl text-center">
-				<p className="text-base/7 font-semibold text-yellow-300">
+				{/* Added 'invisible' to prevent FOUC */}
+				<p
+					ref={topTextRef}
+					className="text-base/7 font-semibold text-yellow-300 invisible">
 					{topSmTitle}
 				</p>
-				<h2 className="mt-2 text-5xl font-semibold tracking-tight text-slate-100 sm:text-7xl">
+				{/* Added 'invisible' */}
+				<h2
+					ref={titleRef}
+					className="mt-2 text-5xl font-semibold tracking-tight text-slate-100 sm:text-7xl invisible">
 					{mainTitle}
 				</h2>
-				<p className="mt-8 text-pretty text-lg font-medium text-slate-300 sm:text-xl/8">
+				{/* Added 'invisible' */}
+				<p
+					ref={mainTextRef}
+					className="mt-8 text-pretty text-lg font-medium text-slate-300 sm:text-xl/8 invisible">
 					{mainText}
 				</p>
 			</div>

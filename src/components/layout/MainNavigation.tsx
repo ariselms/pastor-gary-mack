@@ -38,6 +38,7 @@ export default function MainNavigation() {
 
 			if (isDesktop) {
 				setShowMenu(true);
+				// Clean up GSAP inline styles so CSS classes take over on desktop
 				if (menuRef.current) {
 					gsap.set(menuRef.current, { clearProps: "all" });
 					const items = menuRef.current.querySelectorAll("li");
@@ -53,18 +54,18 @@ export default function MainNavigation() {
 		return () => window?.removeEventListener("resize", handleResize);
 	}, [languageContext]);
 
+	// --- GSAP ANIMATION LOGIC ---
 	useGSAP(() => {
 		if (!isMobile || !menuRef.current) return;
 
 		const items = menuRef.current.querySelectorAll("li");
 
+		// 1. First Render Safety: Ensure GSAP knows the starting state matches CSS
 		if (isFirstRender.current) {
 			if (!showMenu) {
+				// We sync GSAP with our CSS 'invisible' state
 				gsap.set(menuRef.current, {
 					height: 0,
-					paddingTop: 0,
-					paddingBottom: 0,
-					borderTopWidth: 0,
 					opacity: 0,
 					visibility: "hidden"
 				});
@@ -75,20 +76,20 @@ export default function MainNavigation() {
 		}
 
 		if (showMenu) {
-			// --- OPEN SEQUENCE ---
 			const tl = gsap.timeline();
 
-			// Step A: Setup
+			// Step A: Ensure Items are hidden & shifted UP before container opens
 			tl.set(items, { opacity: 0, y: -20, immediateRender: true });
 
-			// Step B: Open Background (Duration 0.2s)
+			// Step B: Open Background
+			// GSAP inline styles (height: auto) will override the CSS class (h-0)
 			tl.to(menuRef.current, {
 				height: "auto",
 				paddingTop: "2rem",
 				paddingBottom: "2rem",
 				borderTopWidth: "1px",
 				opacity: 1,
-				visibility: "visible",
+				visibility: "visible", // Overrides CSS invisible
 				duration: 0.2,
 				ease: "none"
 			});
@@ -107,9 +108,7 @@ export default function MainNavigation() {
 					}
 				},
 				"-=0.40"
-			); // <--- THIS is the change.
-			// It means: "Start this 0.15s BEFORE the previous step ends."
-			// Since the previous step is 0.2s, the links start almost immediately (0.05s in).
+			);
 		} else {
 			// --- CLOSE SEQUENCE ---
 			gsap.to(menuRef.current, {
@@ -121,6 +120,7 @@ export default function MainNavigation() {
 				duration: 0.1,
 				ease: "none",
 				onComplete: () => {
+					// Reset to match the hidden CSS state
 					gsap.set(menuRef.current, { visibility: "hidden" });
 					gsap.set(items, { opacity: 0, y: -20 });
 				}
@@ -171,47 +171,48 @@ export default function MainNavigation() {
             bg-black md:dark:bg-transparent md:bg-transparent
             w-full md:w-auto gap-y-4 gap-x-4
             border-slate-900 overflow-hidden
-
+            h-0 opacity-0 invisible
             md:h-auto md:p-0 md:opacity-100 md:border-t-0 md:visible
           `}>
-					<li className="md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
-							className={`${isActiveLink("/") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all md:m-0 inline-block`}
+							// Added: inline-block, leading-none, pb-1. Removed: hover:border-offset-
+							className={`${isActiveLink("/") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1 md:m-0`}
 							href="/">
 							{language === languageOptions.spanish ? "Inicio" : "Home"}
 						</Link>
 					</li>
-					<li className="md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
-							className={`${isActiveLink("/about") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
+							className={`${isActiveLink("/about") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
 							href="/about">
 							{language === languageOptions.spanish ? "Sobre Mi" : "About Me"}
 						</Link>
 					</li>
-					<li className="md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
-							className={`${isActiveLink("/books") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
+							className={`${isActiveLink("/books") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
 							href="/books">
 							{language === languageOptions.spanish ? "Libros" : "Books"}
 						</Link>
 					</li>
-					<li className="md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
-							className={`${isActiveLink("/give") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
+							className={`${isActiveLink("/give") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
 							href="/give">
 							{language === languageOptions.spanish ? "Donar" : "Donate"}
 						</Link>
 					</li>
 					{user ? (
-						<ul className="flex flex-col md:inline-flex md:flex-row md:items-center md:gap-x-2 rounded-xl border border-slate-800">
+						<ul className="opacity-0 md:opacity-100 flex flex-col md:inline-flex md:flex-row md:items-center md:gap-x-2 rounded-xl border border-slate-800">
 							<li className="md:pl-4 md:pr-2 md:py-1 border-r border-slate-400 md:p-0 text-center hover:bg-transparent transition-all">
 								<Link
 									onClick={() => isMobile && setShowMenu(false)}
-									className={`${isActiveLink("/profile") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
+									className={`${isActiveLink("/profile") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
 									href="/profile">
 									{language === languageOptions.spanish ? "Perfil" : "Profile"}
 								</Link>
@@ -222,17 +223,18 @@ export default function MainNavigation() {
 										isMobile && setShowMenu(false);
 										signOutUser();
 									}}
-									className={`${isActiveLink("/login") && "border-b-2 border-slate-200"} text-slate-400 hover:border-b-2 hover:border-slate-200 transition-all mt-4 mb-6 md:m-0 inline-block`}
+									// Kept margin classes for Logout
+									className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-400 hover:border-b-2 hover:border-yellow-300 transition-all mt-4 mb-6 inline-block leading-none pb-1`}
 									href="/login">
 									{language === languageOptions.spanish ? "Salir" : "Logout"}
 								</Link>
 							</li>
 						</ul>
 					) : (
-						<li className="md:p-0 text-center hover:bg-transparent transition-all">
+						<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
 							<Link
 								onClick={() => isMobile && setShowMenu(false)}
-								className={`${isActiveLink("/login") && "border-b-2 border-slate-200"} text-slate-100 hover:border-b-2 hover:border-slate-200 transition-all`}
+								className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
 								href="/login">
 								{language === languageOptions.spanish
 									? "Iniciar Sesión"
