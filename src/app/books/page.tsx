@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 export default async function BooksPage() {
 
 	return (
-		<main role="main">
+		<main className="bg-black" role="main">
 			<BookPageContent />
 		</main>
 	);

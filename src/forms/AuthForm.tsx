@@ -49,7 +49,7 @@ const AuthForm = ({
 							? "Processing..."
 							: "Procesando..."}
 					</>
-				) : languageOptions.english ? (
+				) : language === languageOptions.english ? (
 					"Send"
 				) : (
 					"Enviar"

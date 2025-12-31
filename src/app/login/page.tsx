@@ -149,7 +149,7 @@ const LoginFlow = () => {
 // 2. Your main page component now simply wraps the logic component in <Suspense>.
 const LoginPage = () => {
 	return (
-		<main role="main">
+		<main className="bg-black" role="main">
       <div className="bg-black">
 			<Suspense fallback={<div>Loading...</div>}>
 				<LoginFlow />

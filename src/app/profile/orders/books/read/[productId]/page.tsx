@@ -9,7 +9,7 @@ export default async function DigitalBookReaderPage({
   const { productId } = await params;
 
 	return (
-		<main role="main">
+		<main className="bg-black" role="main">
 			<EbookReader productId={productId} />
 		</main>
 	);

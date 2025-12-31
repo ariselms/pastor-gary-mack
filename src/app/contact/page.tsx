@@ -4,7 +4,7 @@ import { ContactPageContent } from "@/components/pages-content/contact";
 
 export default function ContactPage() {
 	return (
-		<main role="main">
+		<main className="bg-black" role="main">
 			<ContactPageContent />
 		</main>
 	);

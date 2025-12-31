@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 export default function PrivacyPage() {
 	return (
-		<main role="main">
+		<main className="bg-black" role="main">
 			<PrivacyPageContent />
 		</main>
 	);

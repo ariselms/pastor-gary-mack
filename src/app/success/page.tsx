@@ -6,7 +6,7 @@ export default async function StripeSuccessPage() {
 
 	return (
 		<Suspense fallback={<Spinner/>}>
-			<main role="main">
+			<main className="bg-black" role="main">
 				<StripeSuccessPageContent />
 			</main>
 		</Suspense>

@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 export default function HomePage() {
 	return (
-		<main role="main">
+		<main className="bg-black" role="main">
 			<HomePageContent />
 		</main>
 	);

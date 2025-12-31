@@ -389,7 +389,7 @@ export const MenuIcon: React.FC<ClickProps> = ({ onClick }) => {
 	return (
 		<svg
 			onClick={onClick}
-			className="w-10 h-10 md:hidden cursor-pointer dark:fill-white"
+			className="w-10 h-10 md:hidden cursor-pointer fill-white"
 			clipRule="evenodd"
 			fillRule="evenodd"
 			strokeLinejoin="round"
