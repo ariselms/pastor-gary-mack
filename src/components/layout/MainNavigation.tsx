@@ -168,16 +168,15 @@ export default function MainNavigation() {
 					className={`
             flex flex-col md:flex-row md:items-center
             absolute md:static right-0 top-23 z-20 order-2
-            bg-black md:dark:bg-transparent md:bg-transparent
+            backdrop-blur-sm bg-black/80 md:dark:bg-transparent md:bg-transparent
             w-full md:w-auto gap-y-4 gap-x-4
-            border-slate-900 overflow-hidden
+            border-b border-slate-800 overflow-hidden
             h-0 opacity-0 invisible
-            md:h-auto md:p-0 md:opacity-100 md:border-t-0 md:visible
+            md:h-auto md:p-0 md:opacity-100 md:border-t-0 md:border-b-0 md:visible
           `}>
 					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
-							// Added: inline-block, leading-none, pb-1. Removed: hover:border-offset-
 							className={`${isActiveLink("/") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1 md:m-0`}
 							href="/">
 							{language === languageOptions.spanish ? "Inicio" : "Home"}
@@ -208,8 +207,10 @@ export default function MainNavigation() {
 						</Link>
 					</li>
 					{user ? (
-						<ul className="opacity-0 md:opacity-100 flex flex-col md:inline-flex md:flex-row md:items-center md:gap-x-2 rounded-xl border border-slate-800">
-							<li className="md:pl-4 md:pr-2 md:py-1 border-r border-slate-400 md:p-0 text-center hover:bg-transparent transition-all">
+						/* FIX: Removed 'opacity-0' from this UL container so it doesn't hide the children */
+						<ul className="flex flex-col md:inline-flex md:flex-row md:items-center md:gap-x-0">
+							{/* FIX: Added 'opacity-0 md:opacity-100' to the LIs so they stagger in correctly */}
+							<li className="opacity-0 md:opacity-100 md:pl-4 md:pr-2 md:py-1 border-r border-slate-400 md:p-0 text-center hover:bg-transparent transition-all">
 								<Link
 									onClick={() => isMobile && setShowMenu(false)}
 									className={`${isActiveLink("/profile") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
@@ -217,14 +218,14 @@ export default function MainNavigation() {
 									{language === languageOptions.spanish ? "Perfil" : "Profile"}
 								</Link>
 							</li>
-							<li className="md:p-0 md:pl-2 md:pr-4 md:py-1 text-center hover:bg-transparent transition-all">
+							{/* FIX: Added 'opacity-0 md:opacity-100' */}
+							<li className="opacity-0 md:opacity-100 md:p-0 md:pl-2 md:pr-4 md:py-1 text-center hover:bg-transparent transition-all">
 								<Link
 									onClick={() => {
 										isMobile && setShowMenu(false);
 										signOutUser();
 									}}
-									// Kept margin classes for Logout
-									className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-400 hover:border-b-2 hover:border-yellow-300 transition-all mt-4 mb-6 inline-block leading-none pb-1`}
+									className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-400 hover:border-b-2 hover:border-yellow-300 transition-all mt-4 mb-6 md:mt-0 md:mb-0 inline-block leading-none pb-1`}
 									href="/login">
 									{language === languageOptions.spanish ? "Salir" : "Logout"}
 								</Link>
