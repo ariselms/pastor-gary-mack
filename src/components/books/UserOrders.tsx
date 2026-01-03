@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import { UserType } from "@/types/userTypes";
 import Link from "next/link";
+import { useLanguageContext } from "@/context/languageContext";
+import { languageOptions } from "@/static/";
 
 export function UserOrders({ user }: { user: UserType }) {
+  const { language } = useLanguageContext();
+
 	const [userOrders, setUserOrders] = useState<any[] | null>(null);
 
 	useEffect(() => {
@@ -47,8 +51,11 @@ export function UserOrders({ user }: { user: UserType }) {
 		<section>
 			{userOrders == null && (
 				<div className="py-8 text-slate-100 text-center w-full">
-					Aún no has completado una compra, visita la <Link className="text-slate-100 underline" href="/books">página de libros</Link> para
-					comprar uno.
+					Aún no has completado una compra, visita la{" "}
+					<Link className="text-slate-100 underline" href="/books">
+						página de libros
+					</Link>{" "}
+					para comprar uno.
 				</div>
 			)}
 			<div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
@@ -76,13 +83,14 @@ export function UserOrders({ user }: { user: UserType }) {
 							<div className="pt-6 text-center">
 								<div className="mb-4 flex items-center justify-between">
 									<span className="rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300 text-center mx-auto">
-										Por Pastor Gary Mack
+										{language === languageOptions.english ? "By " : "Por "} Pastor Gary Mack
 									</span>
 								</div>
 								<Link
 									href={`/profile/orders/books/read/${order.stripe_product_id}`}
 									className="text-2xl font-semibold leading-tight text-gray-900 hover:underline dark:text-white underline">
-									Leer {order?.stripe_product_name}
+									{language === languageOptions.english ? "Read " : "Leer "}{" "}
+									{order?.stripe_product_name}
 								</Link>
 							</div>
 						</div>

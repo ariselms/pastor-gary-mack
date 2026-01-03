@@ -62,9 +62,7 @@ export function StripeSuccessPageContent() {
 						</h1>
 						<p>
 							<strong>
-								{language === languageOptions.english
-                  ? "By: "
-                  : "Por: "}
+								{language === languageOptions.english ? "By: " : "Por: "}
 							</strong>{" "}
 							{user?.name}
 						</p>
@@ -99,7 +97,7 @@ export function StripeSuccessPageContent() {
 								</div>
 								{/* 3. Link now pushes to the bottom of the 12rem (h-48) container */}
 								<Link
-									className="block relative rounded-lg text-center font-medium focus:outline-none focus:ring-4 px-5 py-3 text-sm bg-slate-700 text-white hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 w-fit"
+									className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all"
 									// use the product id
 									href={`/profile/orders/books/read/${order.products[0].id}`}>
 									Leer Ahora &rarr;

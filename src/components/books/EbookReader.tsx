@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useLanguageContext } from "@/context/languageContext";
-import { languageOptions } from "@/static";
+import { languageOptions, availableBooks } from "@/static";
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { JumbotronShared } from "@/components/jumbotron";
 import Spinner from "@/components/Spinner";
+
 
 export function EbookReader({ productId }: { productId: string }) {
 	const { language } = useLanguageContext();
@@ -85,17 +86,24 @@ export function EbookReader({ productId }: { productId: string }) {
 						mainTitle={book?.name || ""}
 						mainText={book?.description || ""}
 					/>
-					<iframe
-						style={{ height: "100vh" }}
-						// TODO: Eventually, this URL should come from your 'book' object database
-						src={
-							book?.ebook_url ||
-							"https://designrr.page/?id=598561&token=1449435590&h=2154"
-						}
-						height={"100vh"}
-						width={"100%"}
-						className="w-full border-none"
-					/>
+
+					{book.name === availableBooks.GaryMack.Spanish.Book && (
+						<iframe
+							style={{ height: "100vh" }}
+							allowFullScreen={true}
+							src="https://designrr.page/?id=476859&token=1040907110&type=FP&h=9917"
+							height="600"
+							width="100%"></iframe>
+					)}
+
+					{book.name === availableBooks.GaryMack.English.Book && (
+						<iframe
+							style={{ height: "100vh" }}
+							allowFullScreen={true}
+							src="https://designrr.page/?id=476860&token=2494106008&type=FP&h=5453"
+							height="600"
+							width="100%"></iframe>
+					)}
 				</>
 			)}
 		</>

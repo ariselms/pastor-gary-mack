@@ -92,29 +92,6 @@ export const donationOptions = [
 		},
 		isRecurring: false
 	}
-	// {
-	// 	id: 2,
-	// 	title: {
-	// 		en: "Recurrent Donation",
-	// 		es: "Donación Recurrente"
-	// 	},
-	// 	description: {
-	// 		en: "Become a pillar of this ministry with a recurring monthly contribution. Your consistent support helps us plan and expand our reach, knowing that 'It is more blessed to give than to receive' (Acts 20:35). Together, we can build a lasting legacy of faith. You have full control to view your history or cancel your subscription anytime from your dashboard under the Donations tab.",
-	// 		es: "Conviértase en un pilar de este ministerio con una contribución mensual recurrente. Su apoyo constante nos ayuda a planificar y expandir nuestro alcance, sabiendo que 'Más bienaventurado es dar que recibir' (Hechos 20:35). Juntos podemos construir un legado de fe duradero. Tiene control total para ver su historial o cancelar su suscripción en cualquier momento desde su panel bajo la pestaña de Donaciones."
-	// 	},
-	// 	imageUrl: "/images/give-heart-both-hands.png",
-	// 	stripeLink: {
-	// 		en: {
-	// 			link: "/",
-	// 			text: "Subscribe Now"
-	// 		},
-	// 		es: {
-	// 			link: "/",
-	// 			text: "Suscribirme Ahora"
-	// 		}
-	// 	},
-	// 	isRecurring: true
-	// }
 ];
 
 // libro mentalidad de mangosta values
@@ -181,6 +158,17 @@ export const values = (isEnglish: boolean) => [
 			: "Pero pida con fe, no dudando nada... (Santiago 1:6)"
 	}
 ];
+
+export const availableBooks = Object.freeze({
+  GaryMack: {
+    English: {
+      Book: "Mongoose Mentality"
+    },
+    Spanish: {
+      Book: "Mentalidad de Mangosta"
+    }
+  }
+})
 
 export const serverBaseUrl = baseUrl;
 
