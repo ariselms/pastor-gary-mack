@@ -14,11 +14,11 @@ export default function ContactBlock() {
           : "Correo electrónico: "}
 				info@pastorgarymack.com
 			</p>
-			<p className=" text-sm rounded py-1">
+			{/* <p className=" text-sm rounded py-1">
         {language === languageOptions.english
           ? "Phone: "
           : "Teléfono: "}
-        (202) 993-9903</p>
+        (202) 993-9903</p> */}
 		</div>
 	);
 }

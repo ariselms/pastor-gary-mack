@@ -45,7 +45,7 @@ export async function generateMetadata(): Promise<any> {
 			description: isEnglish
 				? "Pastor Gary Mack welcomes you to the page. We appreciate your support."
 				: "Pastor Gary Mack - Ministerio Los Rescatados Rescatando te da la bienvenida a mi página. Agradecemos tu apoyo a nuestro ministerio.",
-			url: "https://frutodelespiritu.com/lecturas",
+			url: "https://pastorgarymack.com/books",
 			siteName: "Pastor Gary Mack",
 			type: "website",
 			locale: isEnglish ? "en_US" : "es_US",

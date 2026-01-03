@@ -15,7 +15,6 @@ export function ContactPageContent() {
 				<h1 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-2">
 					{language === languageOptions.english ? "Contact us" : "Contáctanos"}
 				</h1>
-
 				<ContactBlock />
 			</Container7xl>
 		</div>
