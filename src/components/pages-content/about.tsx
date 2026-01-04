@@ -3,7 +3,7 @@
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
 import { JumbotronShared } from "@/components/jumbotron/";
-import { Container7xl, MaxTextWidth } from "@/components/containers";
+import { Container3xl, MaxTextWidth } from "@/components/containers";
 
 export function AboutPageContent() {
   const { language } = useLanguageContext();
@@ -37,7 +37,7 @@ export function AboutPageContent() {
         mainTitle={aboutContent.mainTitle}
         mainText={aboutContent.mainText}
       />
-      <Container7xl>
+      <Container3xl>
         <article className="py-24 text-slate-200">
           <MaxTextWidth>
             <h1>{aboutContent.bioTitle}</h1>
@@ -46,7 +46,7 @@ export function AboutPageContent() {
             <p className="mb-3">{aboutContent.bioP3}</p>
           </MaxTextWidth>
         </article>
-      </Container7xl>
+      </Container3xl>
     </>
   );
 }

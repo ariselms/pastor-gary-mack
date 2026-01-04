@@ -95,7 +95,7 @@ export function BookPageContent() {
 				mainText={
 					language === languageOptions.english
 						? "Choose from the following books, just click Buy Now. Once you purchase a book, you will be able to see them in your dashboard under orders. From there you can read the book online. More books to come soon. Thanks for your support!"
-						: "Elija de los siguientes libros, solo haga clic en Comprar Ahora. Una vez compras el libro, podrás accesarlo desde tu panel de administración para leerlo en línea. Tendremos más libros disponibles pronto. Gracias por su apoyo!"
+						: "Elija de los siguientes libros, solo haga clic en Comprar Ahora. Una vez compras el libro, podrás accesarlo desde tu panel de administración para leerlo en línea. Gracias por su apoyo!"
 				}
 			/>
 
