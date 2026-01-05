@@ -10,8 +10,8 @@ export const CarouselTheme = createTheme({
 	},
 	indicators: {
 		active: {
-			off: "bg-stone-100/50 hover:bg-stone-300 cursor-pointer",
-			on: "bg-stone-100 cursor-pointer"
+			off: "bg-slate-100/50 hover:bg-slate-300 cursor-pointer",
+			on: "bg-slate-100 cursor-pointer"
 		},
 		base: "h-3 w-3 rounded-full",
 		wrapper: "absolute bottom-5 left-1/2 flex -translate-x-1/2 space-x-3 pb-2"
@@ -24,8 +24,8 @@ export const CarouselTheme = createTheme({
 		}
 	},
 	control: {
-		base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white sm:h-10 sm:w-10 dark:bg-stone-800/30 dark:group-hover:bg-stone-800/60 dark:group-focus:ring-stone-800/70",
-		icon: "h-5 w-5 text-white sm:h-6 sm:w-6 dark:text-stone-800"
+		base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white sm:h-10 sm:w-10 dark:bg-slate-800/30 dark:group-hover:bg-slate-800/60 dark:group-focus:ring-slate-800/70",
+		icon: "h-5 w-5 text-white sm:h-6 sm:w-6 dark:text-slate-800"
 	},
 	scrollContainer: {
 		base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-hidden scroll-smooth rounded-lg",

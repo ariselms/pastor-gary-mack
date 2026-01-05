@@ -75,8 +75,8 @@ export function BookInfoCard({
 		setLoading(true);
 
 		try {
-			// 1. Call our API to create the session
-			const response = await fetch("/api/checkout", {
+			// 1. Call the API to create the Stripe session
+			const response = await fetch("/api/checkout/book", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ book, user })
@@ -86,15 +86,21 @@ export function BookInfoCard({
 
 			if (!response.ok) throw new Error(data.error);
 
-			// 2. Redirect user to the Stripe URL returned by our API
+			// 2. Redirect user to the Stripe URL returned by the API
 			if (data.url) {
-				window.location.href = data.url;
+				router.push(data.url);
 			}
+
 		} catch (error) {
+
 			console.error("Checkout Failed:", error);
-			alert("Checkout failed. Check console for details.");
+
+      alert("Checkout failed. Check console for details.");
+
 		} finally {
+
 			setLoading(false);
+
 		}
 	};
 

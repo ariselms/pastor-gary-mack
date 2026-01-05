@@ -25,7 +25,7 @@ export default function SectionHeader({
               ? spTitle
               : enTitle}
           </h2>
-          <p className="text-lg font-normal text-stone-700 lg:text-xl sm:px-16 lg:px-48 dark:text-stone-300 text-center max-w-[80ch] mx-auto">
+          <p className="text-lg font-normal text-slate-700 lg:text-xl sm:px-16 lg:px-48 dark:text-slate-300 text-center max-w-[80ch] mx-auto">
             {language === languageOptions.english
               ? enDescription
               : spDescription}

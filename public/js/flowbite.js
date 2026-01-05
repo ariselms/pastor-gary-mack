@@ -125,8 +125,8 @@
 
 	var Default = {
 		alwaysOpen: false,
-		activeClasses: "bg-stone-100 dark:bg-stone-800 text-stone-900 dark:text-white",
-		inactiveClasses: "text-stone-500 dark:text-stone-400",
+		activeClasses: "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white",
+		inactiveClasses: "text-slate-500 dark:text-slate-400",
 		onOpen: function onOpen() {},
 		onClose: function onClose() {},
 		onToggle: function onToggle() {}
@@ -640,9 +640,9 @@
 		defaultPosition: 0,
 		indicators: {
 			items: [],
-			activeClasses: "bg-white dark:bg-stone-800",
+			activeClasses: "bg-white dark:bg-slate-800",
 			inactiveClasses:
-				"bg-white/50 dark:bg-stone-800/50 hover:bg-white dark:hover:bg-stone-800"
+				"bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800"
 		},
 		interval: 3000,
 		onNext: function onNext() {},
@@ -3751,7 +3751,7 @@ reference element's position.
 	var modal_Default = {
 		placement: "center",
 		backdropClasses:
-			"bg-stone-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
+			"bg-slate-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
 		onHide: function onHide() {},
 		onShow: function onShow() {},
 		onToggle: function onToggle() {}
@@ -4105,7 +4105,7 @@ reference element's position.
 		edge: false,
 		edgeOffset: "bottom-[60px]",
 		backdropClasses:
-			"bg-stone-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-30",
+			"bg-slate-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-30",
 		onShow: function onShow() {},
 		onHide: function onHide() {},
 		onToggle: function onToggle() {}
@@ -4589,7 +4589,7 @@ reference element's position.
 		activeClasses:
 			"text-orange-600 hover:text-orange-600 dark:text-orange-500 dark:hover:text-orange-500 border-orange-600 dark:border-orange-500",
 		inactiveClasses:
-			"dark:border-transparent text-stone-500 hover:text-stone-600 dark:text-stone-400 border-stone-100 hover:border-stone-300 dark:border-stone-700 dark:hover:text-stone-300",
+			"dark:border-transparent text-slate-500 hover:text-slate-600 dark:text-slate-400 border-slate-100 hover:border-slate-300 dark:border-slate-700 dark:hover:text-slate-300",
 		onShow: function onShow() {}
 	};
 

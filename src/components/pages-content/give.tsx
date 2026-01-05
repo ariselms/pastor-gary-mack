@@ -3,12 +3,22 @@ import { Container7xl } from "@/components/containers";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
 import { JumbotronShared } from "@/components/jumbotron/";
-import { GiveOrDonateCard } from "@/components/cards";
-import { donationOptions } from "@/static";
+import { DonationProductData } from "@/types/donationTypes";
+import { useState } from "react";
 
 export function GivePageContent() {
 
 	const { language } = useLanguageContext();
+
+  const [donationProductData, setDonationProductData] = useState<DonationProductData>({
+    id: null,
+    language: "",
+    name: "",
+    description: "",
+    amount: null,
+	  frequency: "",
+	  images: []
+  });
 
 	return (
 		<>
@@ -31,9 +41,7 @@ export function GivePageContent() {
 			/>
 			<Container7xl>
 				<section className="py-24">
-					{donationOptions.map((option, index) => (
-						<GiveOrDonateCard key={index} item={option} />
-					))}
+          <button></button>
 				</section>
 			</Container7xl>
 		</>

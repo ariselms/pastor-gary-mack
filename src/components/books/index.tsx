@@ -10,7 +10,7 @@ import { JumbotronShared } from "@/components/jumbotron/";
 import Spinner from "@/components/Spinner";
 import { useAuthContext } from "@/context/authContext";
 import { CoreValuesCard } from "@/components/cards";
-import { values } from "@/static";
+import { mentalidadDeMangostaValues } from "@/static";
 
 export function BookPageContent() {
 	const { language } = useLanguageContext();
@@ -22,7 +22,7 @@ export function BookPageContent() {
 
 	const isEnglish = language === languageOptions.english;
 
-	const bookValues = values(isEnglish)
+	const bookValues = mentalidadDeMangostaValues(isEnglish)
 
 	useEffect(() => {
 		let isMounted = true; // 1. Prevents updates if user leaves page quickly
@@ -103,7 +103,7 @@ export function BookPageContent() {
 				<Spinner />
 			) : (
 				<Container7xl>
-					<ul className="text-slate-200">
+					<ul className="text-slate-200 pt-16">
 						{book && <BookInfoCard book={book} isUserOwned={userOwned} />}
 					</ul>
 

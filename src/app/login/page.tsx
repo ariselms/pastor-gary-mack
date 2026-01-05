@@ -111,7 +111,7 @@ const LoginFlow = () => {
 								? "Sign in to your account"
 								: "Inicia sesión en tu cuenta"}
 						</h3>
-						<p className="leading-7 font-normal text-slate-300 dark:text-stone-400 mb-8">
+						<p className="leading-7 font-normal text-slate-300 dark:text-slate-400 mb-8">
 							{language === languageOptions.english
 								? "Submit your email and we will send you a code to be able to access your account."
 								: "Ingresa tu correo y te enviaremos un codigo para poder acceder a tu cuenta."}
@@ -129,7 +129,7 @@ const LoginFlow = () => {
 								? "Verify your email"
 								: "Verifica tu correo electrónico"}
 						</h3>
-						<p className="leading-7 font-normal text-slate-300 dark:text-stone-400 mb-8">
+						<p className="leading-7 font-normal text-slate-300 dark:text-slate-400 mb-8">
 							{language === languageOptions.english
 								? "We have sent you an email with a code to verify your account and login."
 								: "Te hemos enviado un correo con un codigo para verificar tu cuenta e iniciar sesión."}

@@ -78,13 +78,13 @@ export default function Footer() {
 							<a
 								key={item.name}
 								href={item.href}
-								className="text-stone-100 hover:text-stone-300">
+								className="text-slate-100 hover:text-slate-300">
 								<span className="sr-only">{item.name}</span>
 								<item.icon aria-hidden="true" className="size-6" />
 							</a>
 						))}
 					</div>
-					<p className="mt-8 text-sm/6 text-stone-100 md:order-1 md:mt-0">
+					<p className="mt-8 text-sm/6 text-slate-100 md:order-1 md:mt-0">
 						&copy; {new Date().getFullYear()} Pastor Gary Mack,
 						{language === languageOptions.spanish
 							? " Todos los derechos reservados."

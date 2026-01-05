@@ -10,7 +10,7 @@ import { useAuthContext } from "@/context/authContext";
 import { useState } from "react";
 import Spinner from "@/components/Spinner";
 import { UserOrders } from "@/components/books/UserOrders";
-import { UserDonationsTab } from "@/components/donations/UserDonations";
+import { userRoles } from "@/static";
 
 export default function ProfilePage() {
   const { language } = useLanguageContext();
@@ -24,15 +24,15 @@ export default function ProfilePage() {
 				<Spinner />
 			) : (
 				<>
-					<nav className="bg-white dark:bg-stone-950 py-16">
+					<nav className="bg-slate-950 py-8">
 						<Container7xl>
-							<h3 className="text-3xl dark:text-white flex items-center">
+							<h3 className="text-3xl text-slate-100 flex items-center">
 								{language === languageOptions?.english ? "Profile" : "Perfil"}
 							</h3>
-							{user?.role === "admin" && (
+							{user?.role === userRoles.admin && (
 								<Link
 									href="/profile/admin"
-									className="text-sm text-cyan-500 dark:text-cyan-400 hover:underline">
+									className="text-sm text-cyan-400 hover:underline">
 									{language === languageOptions?.english ? (
 										<>
 											Go to Admin Dashboard
@@ -47,14 +47,14 @@ export default function ProfilePage() {
 							)}
 						</Container7xl>
 					</nav>
-					<div className="bg-stone-200 dark:bg-black">
+					<div className="bg-black text-white">
 						<Container7xl>
 							<Tabs
 								aria-label="Default tabs"
 								variant="underline"
-								className="text-black dark:text-white">
+								className="text-white">
 								<TabItem
-									className="text-black dark:text-white"
+									className="text-white"
 									title={
 										language === languageOptions.english
 											? "Edit Profile"

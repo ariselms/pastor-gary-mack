@@ -3,27 +3,6 @@ export const languageOptions = Object.freeze({
 	spanish: "es"
 });
 
-export const generalLanguage = Object.freeze({
-	esWebsiteName: "Pastor Gary Mack",
-	enWebsiteName: "Pastor Gary Mack",
-	esAccessibilityMenu: "Open main menu",
-	enAccessibilityMenu: "Abrir menu principal",
-	esAccessibilityCloseMenu: "Close menu",
-	enAccessibilityCloseMenu: "Cerrar menú",
-	esMenuSpecialties: "Especialidades",
-	enMenuSpecialties: "Specialties",
-	esMenuCompany: "Empresa",
-	enMenuCompany: "Company",
-	esMenuSupport: "Soporte",
-	enMenuSupport: "Support",
-	esMenuLogin: "Sesión",
-	enMenuLogin: "Login",
-	enProfile: "Profile",
-	esProfile: "Perfil",
-	enLogout: "Logout",
-	esLogout: "Cerrar sesión"
-});
-
 export const userRoles = Object.freeze({
 	admin: "admin",
 	user: "user"
@@ -43,6 +22,8 @@ if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
 	baseUrl = "https://pastorgarymack.com";
 }
 
+// -- Stripe Related -- //
+// Stripe Links //
 let stripeLinkOneTimeDonationSpanish: string = "";
 let stripeLinkOneTimeDonationEnglish: string = "";
 let stripeCustomerPortalLink: string = "";
@@ -68,34 +49,36 @@ if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
 		"https://billing.stripe.com/p/login/4gM5kD8v2g2e7wz2HR5Vu00";
 }
 
-export const donationOptions = [
-	{
-		id: 1,
-		title: {
-			en: "One-Time Donation",
-			es: "Donar Una Vez"
-		},
-		description: {
-			en: "Sow a seed into this ministry to help us continue spreading the Gospel. As the scripture says, 'God loves a cheerful giver' (2 Corinthians 9:7). Your support makes a tangible difference in reaching lives for Christ. You will receive an email with your donation information for your personal records.",
-			es: "Siembre una semilla en este ministerio para ayudarnos a continuar esparciendo el Evangelio. Como dicen las escrituras, 'Dios ama al dador alegre' (2 Corintios 9:7). Su apoyo hace una diferencia tangible para alcanzar vidas para Cristo. Usted recibirá un correo electrónico con su información de donación para su registro personal."
-		},
-		imageUrl: "/images/give-heart.png",
-		stripeLink: {
-			en: {
-				link: stripeLinkOneTimeDonationEnglish,
-				text: "Donate Now"
-			},
-			es: {
-				link: stripeLinkOneTimeDonationSpanish,
-				text: "Donar Ahora"
-			}
-		},
-		isRecurring: false
-	}
-];
+// Stripe Donation Amounts
+export const donationAmounts = [10, 25, 50, 75, 100];
 
-// libro mentalidad de mangosta values
-export const values = (isEnglish: boolean) => [
+// Stripe Donation Frequency
+export const donationFrequencyOptions = {
+	subscription: {
+    text: {
+      english: "Monthly Donation",
+      spanish: "Donación Mensual"
+    },
+    value: "subscription"
+  },
+	payment: {
+    text: {
+      english: "One-time Donation",
+      spanish: "Donar Una Vez"
+    },
+    value: "payment"
+  }
+};
+
+// Stripe Checkout Modes
+export const checkoutModes = {
+	subscription: "subscription",
+	payment: "payment"
+};
+
+// -- Books related -- //
+// Book mentalidad de mangosta values
+export const mentalidadDeMangostaValues = (isEnglish: boolean) => [
 	{
 		title: isEnglish
 			? "Audacity and Spiritual Aggressiveness"
@@ -160,15 +143,15 @@ export const values = (isEnglish: boolean) => [
 ];
 
 export const availableBooks = Object.freeze({
-  GaryMack: {
-    English: {
-      Book: "Mongoose Mentality"
-    },
-    Spanish: {
-      Book: "Mentalidad de Mangosta"
-    }
-  }
-})
+	GaryMack: {
+		English: {
+			MongooseMentality: "Mongoose Mentality"
+		},
+		Spanish: {
+			MentalidadDeMangosta: "Mentalidad de Mangosta"
+		}
+	}
+});
 
 export const serverBaseUrl = baseUrl;
 

@@ -99,53 +99,16 @@ export default function UserProfileForm({
 		}
 	};
 
-	// const handleApplicationSubmit = async () => {
-
-	// 	try {
-	// 		setLoading(true);
-
-	// 		const applicationRequest = await fetch("/api/jobs/applications", {
-	// 			method: "POST",
-	// 			headers: {
-	// 				"Content-Type": "application/json"
-	// 			},
-	// 			body: JSON.stringify({
-	// 				user: candidate,
-	// 				job: job,
-	// 				language
-	// 			})
-	// 		});
-
-	// 		const applicationResponse = await applicationRequest.json();
-
-	// 		if (!applicationResponse.success) {
-	// 			return toast.warning(applicationResponse.message);
-	// 		}
-
-	// 		toast.success(applicationResponse.message);
-	// 	} catch (error) {
-	// 		console.error(error);
-
-	// 		toast.error(
-	// 			language === languageOptions.english
-	// 				? "An error occurred, please try again"
-	// 				: "Ocurrio un error, por favor intente nuevamente"
-	// 		);
-	// 	} finally {
-	// 		setLoading(false);
-	// 	}
-	// };
-
 	return (
 		<div
 			id="application-form"
-			className="border-stone-900/10 dark:border-stone-700 pb-16">
-			<h2 className="text-base font-semibold leading-7 text-stone-900 dark:text-stone-100">
+			className="border-slate-700 pb-16">
+			<h2 className="text-base font-semibold leading-7 text-slate-100">
 				{language === languageOptions.english
 					? "User Information"
 					: "Información de usuario"}
 			</h2>
-			<p className="mt-1 text-sm leading-6 text-stone-600 dark:text-stone-200">
+			<p className="mt-1 text-sm leading-6 text-slate-200">
 				{language === languageOptions.english
 					? "Verify and update your profile information."
 					: "Verifica y actualiza la información de tu perfil."}
@@ -157,7 +120,7 @@ export default function UserProfileForm({
 				<div className="sm:col-span-3">
 					<Label
 						htmlFor="name"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english
 							? "Full name"
 							: "Nombre completo"}
@@ -167,7 +130,7 @@ export default function UserProfileForm({
 							id="name"
 							name="name"
 							type="text"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100 focus:ring-2 focus:ring-inset focus:ring-red -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100 focus:ring-2 focus:ring-inset focus:ring-red -600 sm:text-sm sm:leading-6"
 							value={candidate.name}
 							onChange={handleChange}
 						/>
@@ -177,7 +140,7 @@ export default function UserProfileForm({
 				<div className="sm:col-span-4">
 					<Label
 						htmlFor="contact_email"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english
 							? "Email address"
 							: "Correo electrónico"}
@@ -187,12 +150,12 @@ export default function UserProfileForm({
 							id="contact_email"
 							name="contact_email"
 							type="email"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
 							value={candidate.contact_email}
 							onChange={handleChange}
 							disabled
 						/>
-						<small className="p-1 text-stone-800 dark:text-stone-300">
+						<small className="p-1 text-slate-300 text-wrap">
 							{language === languageOptions.english
 								? "This field is not editable. Your email is your personal identification. Therefore, you cannot change it."
 								: "Este campo no es editable. Tu correo electrónico es tu identificación personal. Por lo tanto, no puedes cambiarlo."}
@@ -203,7 +166,7 @@ export default function UserProfileForm({
 				<div className="sm:col-span-4">
 					<Label
 						htmlFor="contact_phone"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english ? "Phone" : "Teléfono"}
 					</Label>
 					<div className="mt-2">
@@ -211,7 +174,7 @@ export default function UserProfileForm({
 							id="contact_phone"
 							name="contact_phone"
 							type="phone"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
 							value={candidate.contact_phone}
 							onChange={handleChange}
 						/>
@@ -221,7 +184,7 @@ export default function UserProfileForm({
 				<div className="col-span-full">
 					<Label
 						htmlFor="address_street"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english
 							? "Street address"
 							: "Dirección"}
@@ -231,7 +194,7 @@ export default function UserProfileForm({
 							id="address_street"
 							name="address_street"
 							type="text"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
 							value={candidate.address_street}
 							onChange={handleChange}
 						/>
@@ -241,7 +204,7 @@ export default function UserProfileForm({
 				<div className="sm:col-span-2 sm:col-start-1">
 					<Label
 						htmlFor="address_city"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english ? "City" : "Ciudad"}
 					</Label>
 					<div className="mt-2">
@@ -249,7 +212,7 @@ export default function UserProfileForm({
 							id="address_city"
 							name="address_city"
 							type="text"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
 							value={candidate.address_city}
 							onChange={handleChange}
 						/>
@@ -259,7 +222,7 @@ export default function UserProfileForm({
 				<div className="sm:col-span-2">
 					<Label
 						htmlFor="address_state"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english
 							? "State / Province"
 							: "Estado / Provincia"}
@@ -269,7 +232,7 @@ export default function UserProfileForm({
 							id="address_state"
 							name="address_state"
 							type="text"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
 							value={candidate.address_state}
 							onChange={handleChange}
 						/>
@@ -279,7 +242,7 @@ export default function UserProfileForm({
 				<div className="sm:col-span-2">
 					<Label
 						htmlFor="address_zip"
-						className="block text-sm font-medium leading-6 text-stone-900 dark:text-stone-100">
+						className="block text-sm font-medium leading-6 text-slate-100">
 						{language === languageOptions.english
 							? "ZIP / Postal code"
 							: "Código postal"}
@@ -290,7 +253,7 @@ export default function UserProfileForm({
 							name="address_zip"
 							type="text"
 							autoComplete="address_zip"
-							className="block w-full rounded-md border-0 text-stone-900 dark:text-stone-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
+							className="block w-full rounded-md border-0 text-slate-100  focus:ring-2 focus:ring-inset focus:ring-red  -600 sm:text-sm sm:leading-6"
 							maxLength={5}
 							value={candidate.address_zip}
 							onChange={handleChange}

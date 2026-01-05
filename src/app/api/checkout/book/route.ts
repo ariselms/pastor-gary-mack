@@ -1,5 +1,5 @@
-// TODO: Add language to the metadata to identify what book needs to be open to read
-// app/api/checkout/route.ts
+// TODO: Handle Creating and Looking up customers to avoid duplicated data
+
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { serverBaseUrl } from "@/static";
@@ -9,24 +9,24 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function POST(req: Request) {
 	try {
-		// 1. Receive the single book object directly
+		// 1. Receive the single book and user objects directly
 		const { book, user } = await req.json();
 
+		// 2. Get the current language to set Stripe checkout language
 		const cookieStore = cookies();
 		const languageCookie = (await cookieStore).get("language");
 		const currentLanguage: string | undefined = languageCookie?.value;
 
-		// console.log("languageCookie: ", currentLanguage);
-
-		if (!book) {
+		// 3. This route is for books, so if there is no book data present, return
+		if (!book || !user) {
 			return NextResponse.json(
-				{ error: "Book data or price missing" },
+				{ error: "Something is missing, please try again or read the docs..." },
 				{ status: 400 }
 			);
 		}
 
-		// 2. Create the Stripe Session
-		const session = await stripe.checkout.sessions.create({
+		// 4. Create the Stripe Session
+		const stripeSession = await stripe.checkout.sessions.create({
 			locale: currentLanguage === "en" ? "en" : "es",
 			tax_id_collection: {
 				enabled: true
@@ -50,15 +50,13 @@ export async function POST(req: Request) {
 				bookImage: book.images[0]
 			},
 			mode: "payment",
-			success_url: `${serverBaseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+			success_url: `${serverBaseUrl}/books/success?session_id={CHECKOUT_SESSION_ID}`,
 			cancel_url: `${serverBaseUrl}/books`
 		});
 
-		// console.log("Checkout Session: " ,session)
-
-		return NextResponse.json({ url: session.url });
+		return NextResponse.json({ url: stripeSession.url });
 	} catch (err: any) {
-		console.error("Error creating checkout session: ", err.message);
+		console.error("Error creating Stripe checkout session: ", err.message);
 
 		return NextResponse.json({ error: err.message }, { status: 500 });
 	}

@@ -87,7 +87,7 @@ export function EbookReader({ productId }: { productId: string }) {
 						mainText={book?.description || ""}
 					/>
 
-					{book.name === availableBooks.GaryMack.Spanish.Book && (
+					{book.name === availableBooks.GaryMack.Spanish.MentalidadDeMangosta && (
 						<iframe
 							style={{ height: "100vh" }}
 							allowFullScreen={true}
@@ -96,7 +96,7 @@ export function EbookReader({ productId }: { productId: string }) {
 							width="100%"></iframe>
 					)}
 
-					{book.name === availableBooks.GaryMack.English.Book && (
+					{book.name === availableBooks.GaryMack.English.MongooseMentality && (
 						<iframe
 							style={{ height: "100vh" }}
 							allowFullScreen={true}

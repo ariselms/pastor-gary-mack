@@ -8,7 +8,7 @@ const SubscribeForm = () => {
 		<form className="w-full">
 			<label
 				htmlFor="email"
-				className="text-small mb-1 font-bold text-stone-700 block">
+				className="text-small mb-1 font-bold text-slate-700 block">
 				{language === "en" ? "Email" : "Correo Electrónico"}
 			</label>
 			<input

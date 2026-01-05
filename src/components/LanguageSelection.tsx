@@ -14,7 +14,7 @@ export default function LanguageSelection({
 				<select
 					onChange={(e) => handleLanguageChange(e.target.value)}
 					value={languageContext.language}
-					className="w-fit rounded-lg text-base/7 font-semibold text-stone-900 cursor-pointer -ms-1">
+					className="w-fit rounded-lg text-base/7 font-semibold text-slate-900 cursor-pointer -ms-1">
 					<option className="flex items-center cursor-pointer" value="en">
 						English
 					</option>

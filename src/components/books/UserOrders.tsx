@@ -36,17 +36,6 @@ export function UserOrders({ user }: { user: UserType }) {
 		}
 	}, [user]);
 
-	console.log(userOrders);
-
-	// userOrders?.length === 0 && (
-	// 		<div className="py-8 text-slate-100 text-center w-full">
-	// 			Aún no has completado una compra, visita la página de libros para
-	// 			comprar uno.
-	// 		</div>
-	// 	)
-
-  console.log(userOrders)
-
 	return (
 		<section>
 			{userOrders == null && (
@@ -64,7 +53,7 @@ export function UserOrders({ user }: { user: UserType }) {
 					userOrders?.map((order) => (
 						<div
 							key={order.id}
-							className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+							className="border border-slate-700 rounded-lg bg-slate-800/50 backdrop-blur-lg p-6">
 							<div className="h-56 w-full">
 								<Link
 									href={`/profile/orders/books/read/${order.stripe_product_id}`}>
@@ -82,13 +71,14 @@ export function UserOrders({ user }: { user: UserType }) {
 							</div>
 							<div className="pt-6 text-center">
 								<div className="mb-4 flex items-center justify-between">
-									<span className="rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300 text-center mx-auto">
-										{language === languageOptions.english ? "By " : "Por "} Pastor Gary Mack
+									<span className="rounded bg-slate-300 px-2.5 py-0.5 text-xs font-medium text-slate-800 text-center mx-auto">
+										{language === languageOptions.english ? "By " : "Por "}{" "}
+										Pastor Gary Mack
 									</span>
 								</div>
 								<Link
 									href={`/profile/orders/books/read/${order.stripe_product_id}`}
-									className="text-2xl font-semibold leading-tight text-gray-900 hover:underline dark:text-white underline">
+									className="text-2xl font-semibold leading-tight text-slate-200 hover:underline underline">
 									{language === languageOptions.english ? "Read " : "Leer "}{" "}
 									{order?.stripe_product_name}
 								</Link>
