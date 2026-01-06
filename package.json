@@ -23,6 +23,7 @@
 		"flowbite-typography": "^1.0.5",
 		"framer-motion": "^11.15.0",
 		"gsap": "^3.14.2",
+		"lucide-react": "^0.562.0",
 		"next": "^15.3.1",
 		"nodemailer": "^7.0.12",
 		"ra-data-simple-rest": "^5.8.3",

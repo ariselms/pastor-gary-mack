@@ -7,6 +7,8 @@ import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { JumbotronShared } from "@/components/jumbotron";
 import Spinner from "@/components/Spinner";
+import MentalidadDeMangostaBook from "@/components/books/translations/MentalidadDeMangosta";
+import MongooseMentalityBook from "@/components/books/translations/MongooseMentality";
 
 
 export function EbookReader({ productId }: { productId: string }) {
@@ -88,21 +90,11 @@ export function EbookReader({ productId }: { productId: string }) {
 					/>
 
 					{book.name === availableBooks.GaryMack.Spanish.MentalidadDeMangosta && (
-						<iframe
-							style={{ height: "100vh" }}
-							allowFullScreen={true}
-							src="https://designrr.page/?id=476859&token=1040907110&type=FP&h=9917"
-							height="600"
-							width="100%"></iframe>
+						<MentalidadDeMangostaBook />
 					)}
 
 					{book.name === availableBooks.GaryMack.English.MongooseMentality && (
-						<iframe
-							style={{ height: "100vh" }}
-							allowFullScreen={true}
-							src="https://designrr.page/?id=476860&token=2494106008&type=FP&h=5453"
-							height="600"
-							width="100%"></iframe>
+            <MongooseMentalityBook />
 					)}
 				</>
 			)}
