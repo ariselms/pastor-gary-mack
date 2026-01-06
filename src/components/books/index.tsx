@@ -11,14 +11,19 @@ import Spinner from "@/components/Spinner";
 import { useAuthContext } from "@/context/authContext";
 import { CoreValuesCard } from "@/components/cards";
 import { mentalidadDeMangostaValues } from "@/static";
+import { ModalToPromptUserToLogin } from "@/components/modals";
+import { usePathname } from "next/navigation";
+import { serverBaseUrl } from "@/static";
 
 export function BookPageContent() {
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
+  const pathname = usePathname();
 
 	const [loading, setLoading] = useState(true);
 	const [book, setBook] = useState<StripeProduct | null>(null);
 	const [userOwned, setUserOwned] = useState(false);
+  const [isModalToPromptUserToLoginOpen, setIsModalToPromptUserToLoginOpen] = useState<boolean>(false);
 
 	const isEnglish = language === languageOptions.english;
 
@@ -104,7 +109,7 @@ export function BookPageContent() {
 			) : (
 				<Container7xl>
 					<ul className="text-slate-200 pt-16">
-						{book && <BookInfoCard book={book} isUserOwned={userOwned} />}
+						{book && <BookInfoCard book={book} isUserOwned={userOwned} setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}/>}
 					</ul>
 
 					<article>
@@ -148,6 +153,12 @@ export function BookPageContent() {
 					</article>
 				</Container7xl>
 			)}
+      <ModalToPromptUserToLogin
+        setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}
+        isModalToPromptUserToLoginOpen={isModalToPromptUserToLoginOpen}
+        serverBaseUrl={serverBaseUrl || ""}
+        pathname={pathname}
+      />
 		</>
 	);
 }

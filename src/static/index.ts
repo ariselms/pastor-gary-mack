@@ -8,7 +8,7 @@ export const userRoles = Object.freeze({
 	user: "user"
 });
 
-let baseUrl;
+let baseUrl: string | undefined;
 
 if (process.env.NEXT_PUBLIC_VERCEL_ENV === "development") {
 	baseUrl = "http://localhost:3000";
@@ -153,7 +153,7 @@ export const availableBooks = Object.freeze({
 	}
 });
 
-export const serverBaseUrl = baseUrl;
+export const serverBaseUrl: string | undefined = baseUrl;
 
 export { stripeLinkOneTimeDonationSpanish };
 export { stripeLinkOneTimeDonationEnglish };

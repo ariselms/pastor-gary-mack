@@ -1,16 +1,19 @@
 "use client";
 import { useState } from "react";
 import { useLanguageContext } from "@/context/languageContext";
-import { donationFrequencyOptions, languageOptions } from "@/static";
+import { donationFrequencyOptions, languageOptions, serverBaseUrl } from "@/static";
 import { JumbotronShared } from "@/components/jumbotron/";
 import { useAuthContext } from "@/context/authContext";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { ModalToPromptUserToLogin } from "@/components/modals"
+import { toast } from "react-toastify";
 
 export function GivePageContent() {
 	// hooks call
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
 	const router = useRouter();
+  const pathname = usePathname();
 
 	// state
 	const [amount, setAmount] = useState<number | "">(25); // Default selection
@@ -19,19 +22,32 @@ export function GivePageContent() {
 		"payment"
 	);
 	const [loading, setLoading] = useState(false);
+  const [isModalToPromptUserToLoginOpen, setIsModalToPromptUserToLoginOpen] = useState<boolean>(false)
 
 	// predifined donation amounts
 	const predefinedAmounts = [10, 25, 50, 100];
 
+  // handlers
 	const handleDonate = async () => {
+
 		try {
+
 			setLoading(true);
+
+      if(!user){
+          setIsModalToPromptUserToLoginOpen(true);
+          return;
+      }
 
 			// 1. Validate
 			if (!amount || Number(amount) <= 0) {
-				alert("Please enter a valid amount");
+
+				toast.warn("Please enter a valid amount");
+
 				setLoading(false);
+
 				return;
+
 			}
 
 			const donationData = {
@@ -57,7 +73,7 @@ export function GivePageContent() {
 			if (url) {
 				router.push(url);
 			} else if (!donationResponse.success){
-        alert(donationResponse.message);
+        toast.error(donationResponse.message);
         setLoading(false);
         return;
       }
@@ -172,7 +188,7 @@ export function GivePageContent() {
 					<button
 						onClick={handleDonate}
 						disabled={loading}
-						className="w-full bg-slate-100 hover:bg-white text-slate-900 font-bold py-4 rounded-lg text-lg transition-all active:scale-[0.98] disabled:opacity-70 shadow-lg shadow-slate-900/20">
+						className="w-full rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
 						{loading
 							? `${language === languageOptions.english ? "Processing" : "Procesando"}...`
 							: `${language === languageOptions.english ? "Donate" : "Donar"} $${amount || "0"} ${frequency === donationFrequencyOptions.subscription.value ? "/ mo" : ""}`}
@@ -185,6 +201,12 @@ export function GivePageContent() {
 					</p>
 				</div>
 			</section>
+      <ModalToPromptUserToLogin
+        setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}
+        isModalToPromptUserToLoginOpen={isModalToPromptUserToLoginOpen}
+        serverBaseUrl={serverBaseUrl || ""}
+        pathname={pathname}
+	    />
 		</>
 	);
 }

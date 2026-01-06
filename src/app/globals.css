@@ -36,26 +36,31 @@ p {
 
 @layer base {
   h1 {
-    @apply text-4xl font-extrabold mb-4; /* ~36px */
+    @apply text-4xl font-extrabold; /* ~36px */
   }
   h2 {
-    @apply text-3xl font-bold mb-3; /* ~30px */
+    @apply text-3xl font-bold; /* ~30px */
   }
   h3 {
-    @apply text-2xl font-bold mb-3; /* ~24px */
+    @apply text-2xl font-bold; /* ~24px */
   }
   h4 {
-    @apply text-xl font-semibold mb-2; /* ~20px */
+    @apply text-xl font-semibold; /* ~20px */
   }
   h5 {
-    @apply text-lg font-semibold mb-2; /* ~18px */
+    @apply text-lg font-semibold; /* ~18px */
   }
   h6 {
-    @apply text-base font-semibold mb-2; /* ~16px */
+    @apply text-base font-semibold; /* ~16px */
   }
 }
 
 /* Add cursor-pointer to links and buttons */
 a, button {
   cursor: pointer !important;
+}
+
+/* For Flowbite ModalToLoginUser */
+h3#_r_1_.text-xl.font-medium.text-gray-900.dark{
+  margin-bottom: 0 !important
 }

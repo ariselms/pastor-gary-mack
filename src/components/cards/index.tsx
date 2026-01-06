@@ -30,10 +30,14 @@ export function CoreValuesCard({ item }: { item: any }) {
 
 export function BookInfoCard({
 	book,
-	isUserOwned
+	isUserOwned,
+	setIsModalToPromptUserToLoginOpen
 }: {
 	book: StripeProduct;
 	isUserOwned: boolean;
+	setIsModalToPromptUserToLoginOpen: React.Dispatch<
+		React.SetStateAction<boolean>
+	>;
 }) {
 	const { user } = useAuthContext();
 
@@ -60,14 +64,8 @@ export function BookInfoCard({
 	const handleCheckout = async () => {
 		// check if there is user or not
 		if (!user) {
-			const toastMessage =
-				language === languageOptions.english
-					? "You must login to make a purchase"
-					: "Debe iniciar sesión para realizar una compra";
 
-			toast.warn(toastMessage);
-
-			router.push("/login");
+			setIsModalToPromptUserToLoginOpen(true);
 
 			return;
 		}
@@ -90,17 +88,12 @@ export function BookInfoCard({
 			if (data.url) {
 				router.push(data.url);
 			}
-
 		} catch (error) {
-
 			console.error("Checkout Failed:", error);
 
-      alert("Checkout failed. Check console for details.");
-
+			alert("Checkout failed. Check console for details.");
 		} finally {
-
 			setLoading(false);
-
 		}
 	};
 
@@ -154,7 +147,6 @@ export function BookInfoCard({
 }
 
 export function GiveOrDonateCard({ item }: { item: any }) {
-
 	const { language } = useLanguageContext();
 
 	return (

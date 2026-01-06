@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 			);
 		}
 
-		// -- FIND OR CREATE CUSTOMER -- //
+		// 4. Find or create Stripe Customer
 		let customerId: string;
 
 		const existingCustomers = await stripe.customers.list({
@@ -55,6 +55,10 @@ export async function POST(req: Request) {
 			locale: currentLanguage === "en" ? "en" : "es",
 			customer: customerId, // Use the ID we found above
 			client_reference_id: user.id,
+      mode: "payment",
+			success_url: `${serverBaseUrl}/books/success?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${serverBaseUrl}/books`,
+      payment_method_types: ["card"],
       invoice_creation: {
         enabled: true
       },
@@ -64,20 +68,19 @@ export async function POST(req: Request) {
 					quantity: 1
 				}
 			],
-			payment_method_types: ["card"],
 			metadata: {
 				itemId: book.id, // Useful for webhooks/fulfillment later
 				itemName: book.name,
 				itemImage: book.images[0],
 				itemCategory: saleCagegories.book
 			},
-			mode: "payment",
-			success_url: `${serverBaseUrl}/books/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${serverBaseUrl}/books`
 		});
 
+    // 5. if everything is ok, return the URL to start the checkout session
 		return NextResponse.json({ url: stripeSession.url });
+
 	} catch (err: any) {
+
 		console.error("Error creating Stripe checkout session: ", err.message);
 
 		return NextResponse.json({ error: err.message }, { status: 500 });

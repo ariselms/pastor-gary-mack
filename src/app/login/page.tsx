@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react"; // Import Suspense
-import {Container7xl} from "@/components/containers";
+import { Container7xl } from "@/components/containers";
 import AuthForm from "@/forms/AuthForm";
 import { useLanguageContext } from "@/context/languageContext";
 import { useAuthContext } from "@/context/authContext";
@@ -83,11 +83,14 @@ const LoginFlow = () => {
 				body: JSON.stringify({ email, code, language })
 			});
 			const response = await request.json();
-			const redirectUrl = searchParams.get("redirectUrl");
 
-			if (response.success) {
+			if (response.success && searchParams.get("redirectUrl")) {
+        const redirectUrl: string = String(searchParams.get("redirectUrl"));
 				toast.success(response.message);
-				router.push(redirectUrl || "/profile");
+				router.push(redirectUrl);
+			} else if (response.success) {
+				toast.success(response.message);
+				router.push("/profile");
 			} else {
 				throw new Error(response.message);
 			}
@@ -150,11 +153,11 @@ const LoginFlow = () => {
 const LoginPage = () => {
 	return (
 		<main className="bg-black" role="main">
-      <div className="bg-black">
-			<Suspense fallback={<div>Loading...</div>}>
-				<LoginFlow />
-			</Suspense>
-      </div>
+			<div className="bg-black">
+				<Suspense fallback={<div>Loading...</div>}>
+					<LoginFlow />
+				</Suspense>
+			</div>
 		</main>
 	);
 };
