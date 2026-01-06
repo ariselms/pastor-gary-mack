@@ -63,20 +63,20 @@ export default function MongooseMentalityBook() {
 	return (
 		<div className="min-h-screen bg-black text-slate-100 font-sans leading-relaxed selection:bg-yellow-900 selection:text-white">
 			{/* Sticky Header - Dark Theme */}
-			<header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md shadow-sm border-b border-yellow-500/20 transition-all duration-300">
+			<header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md shadow-sm border-b border-yellow-300/20 transition-all duration-300">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex justify-between items-center h-16">
 						{/* Title / Logo Area */}
 						<div
 							className="flex items-center space-x-3 cursor-pointer group"
 							onClick={scrollToTop}>
-							<div className="bg-yellow-500 p-1.5 rounded-lg text-black transition-transform group-hover:scale-105 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
+							<div className="bg-yellow-300 p-1.5 rounded-lg text-black transition-transform group-hover:scale-105 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
 								<BookOpen size={20} strokeWidth={2.5} />
 							</div>
-							<span className="font-bold text-lg tracking-tight text-yellow-500 hidden sm:block drop-shadow-sm">
+							<span className="font-bold text-lg tracking-tight text-yellow-300 hidden sm:block drop-shadow-sm">
 								Mongoose Mentality
 							</span>
-							<span className="font-bold text-lg tracking-tight text-yellow-500 sm:hidden">
+							<span className="font-bold text-lg tracking-tight text-yellow-300 sm:hidden">
 								MdM
 							</span>
 						</div>
@@ -84,15 +84,15 @@ export default function MongooseMentalityBook() {
 						{/* Desktop Navigation */}
 						<nav className="hidden md:flex space-x-1">
 							<div className="relative group">
-								<button className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-yellow-400 transition-colors">
+								<button className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-yellow-300 transition-colors">
 									<span>Table of Contents</span>
 									<ChevronRight
 										size={16}
-										className="rotate-90 group-hover:text-yellow-400"
+										className="rotate-90 group-hover:text-yellow-300"
 									/>
 								</button>
 								{/* Dropdown for Desktop */}
-								<div className="absolute right-0 w-64 mt-2 bg-neutral-900 rounded-xl shadow-2xl border border-yellow-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right overflow-hidden">
+								<div className="absolute right-0 w-64 mt-2 bg-neutral-900 rounded-xl shadow-2xl border border-yellow-300/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right overflow-hidden">
 									<div className="py-2">
 										{chapters.map((chapter) => (
 											<button
@@ -100,7 +100,7 @@ export default function MongooseMentalityBook() {
 												onClick={() => scrollToSection(chapter.id)}
 												className={`block w-full text-left px-4 py-2.5 text-sm transition-colors border-l-2 ${
 													activeSection === chapter.id
-														? "bg-yellow-500/10 text-yellow-400 border-yellow-500 font-medium"
+														? "bg-yellow-300/10 text-yellow-300 border-yellow-300 font-medium"
 														: "text-slate-400 border-transparent hover:bg-neutral-800 hover:text-yellow-200"
 												}`}>
 												{chapter.title}
@@ -114,7 +114,7 @@ export default function MongooseMentalityBook() {
 						{/* Mobile Menu Button */}
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
-							className="md:hidden p-2 rounded-md text-slate-300 hover:text-yellow-400 hover:bg-neutral-900 transition-colors focus:outline-none"
+							className="md:hidden p-2 rounded-md text-slate-300 hover:text-yellow-300 hover:bg-neutral-900 transition-colors focus:outline-none"
 							aria-label="Menu">
 							{isMenuOpen ? <X size={24} /> : <Menu size={24} />}
 						</button>
@@ -123,7 +123,7 @@ export default function MongooseMentalityBook() {
 
 				{/* Mobile Navigation Drawer */}
 				{isMenuOpen && (
-					<div className="md:hidden border-t border-yellow-500/20 bg-neutral-950 absolute w-full shadow-lg max-h-[80vh] overflow-y-auto">
+					<div className="md:hidden border-t border-yellow-300/20 bg-neutral-950 absolute w-full shadow-lg max-h-[80vh] overflow-y-auto">
 						<div className="py-2 px-2 space-y-1">
 							{chapters.map((chapter) => (
 								<button
@@ -131,7 +131,7 @@ export default function MongooseMentalityBook() {
 									onClick={() => scrollToSection(chapter.id)}
 									className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
 										activeSection === chapter.id
-											? "bg-yellow-500/10 text-yellow-400 border-l-4 border-yellow-500"
+											? "bg-yellow-300/10 text-yellow-300 border-l-4 border-yellow-300"
 											: "text-slate-400 hover:bg-neutral-900 hover:text-yellow-200"
 									}`}>
 									{chapter.title}
@@ -149,7 +149,7 @@ export default function MongooseMentalityBook() {
 					<section
 						id="acknowledgments"
 						className="scroll-mt-24 animate-fade-in">
-						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 mb-8 pb-2 border-b border-yellow-500/30 inline-block tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-8 pb-2 border-b border-yellow-300/30 inline-block tracking-tight">
 							ACKNOWLEDGMENTS
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -179,7 +179,7 @@ export default function MongooseMentalityBook() {
 
 					{/* Introduction */}
 					<section id="introduction" className="scroll-mt-24">
-						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 mb-8 pb-2 border-b border-yellow-500/30 inline-block tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-8 pb-2 border-b border-yellow-300/30 inline-block tracking-tight">
 							INTRODUCTION
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -268,7 +268,7 @@ export default function MongooseMentalityBook() {
 									transformed by the renewing of your mind."
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Romans 12:2
 								</strong>
 								). Although I had no control over what happened to me as a
@@ -290,8 +290,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 1 */}
 					<section
 						id="chapter-1"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 1: MONGOOSE MENTALITY: THE BEGINNING OF EVERYTHING
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -407,20 +407,20 @@ export default function MongooseMentalityBook() {
 								immediately, but He is there, and I was able to confirm it.
 							</p>
 
-							<div className="border-l-4 border-yellow-500 pl-6 py-4 my-8 bg-yellow-500/10 italic text-slate-300 rounded-r-lg">
+							<div className="border-l-4 border-yellow-300 pl-6 py-4 my-8 bg-yellow-300/10 italic text-slate-300 rounded-r-lg">
 								One day, when I was about 11 years old, while I was sleeping, I
 								dreamt that I was standing in front of a statue of Jesus Christ
 								and that I was asking him for help. When I looked up, I realized
 								that it wasn't a statue, but that He was there, smiling, and He
 								said to me:{" "}
-								<span className="font-semibold text-yellow-400">
+								<span className="font-semibold text-yellow-300">
 									"I am not a statue, do not fear, I am with you."
 								</span>
 							</div>
 
 							<p>
 								At that moment, I heard a loud voice calling me:{" "}
-								<span className="uppercase font-bold text-yellow-500">
+								<span className="uppercase font-bold text-yellow-300">
 									"GARY, WAKE UP!"
 								</span>
 								. When I opened my eyes, I saw a knife coming toward me. One of
@@ -500,8 +500,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 2 */}
 					<section
 						id="chapter-2"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 2: GOD'S HEART ALSO BEATS FOR THE LOST
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -520,7 +520,7 @@ export default function MongooseMentalityBook() {
 									"He makes his sun rise on the righteous and the unrighteous."
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Matthew 5:45
 								</strong>
 								). This means that his love and compassion are not limited to
@@ -531,7 +531,7 @@ export default function MongooseMentalityBook() {
 									"Leave the 99 sheep to go after the one that is lost."
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Luke 15:4—7
 								</strong>
 								).
@@ -572,7 +572,7 @@ export default function MongooseMentalityBook() {
 								Seeing this, I stopped in front of the second vehicle. I knew I
 								had no escape. At that moment, I heard a loud voice say to me:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Run!
 							</p>
 							<p>
@@ -611,7 +611,7 @@ export default function MongooseMentalityBook() {
 								know He was listening to me, because it wasn't even cloudy. So I
 								kept talking to Him and said:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—God, if you get me out of this, I will serve you with my life;
 								I will serve you full time.
 							</p>
@@ -620,7 +620,7 @@ export default function MongooseMentalityBook() {
 								time. Then, out of nowhere, a child of about two or three years
 								old approached, tugged at my pants, and said:
 							</p>
-							<p className="pl-4 font-bold text-yellow-400">
+							<p className="pl-4 font-bold text-yellow-300">
 								—Let's go with God.
 							</p>
 							<p>I looked at the child and said:</p>
@@ -632,11 +632,11 @@ export default function MongooseMentalityBook() {
 								I gently pushed him away from me, but the boy clung to my pants
 								and repeated:
 							</p>
-							<p className="pl-4 font-bold text-yellow-400">
+							<p className="pl-4 font-bold text-yellow-300">
 								—Let's go with God.
 							</p>
 							<p>I looked up at the sky again and said:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Lord, I haven't asked you for signs, but now I am going to ask
 								you for one: give me a sign and I will leave.
 							</p>
@@ -645,7 +645,7 @@ export default function MongooseMentalityBook() {
 								up the child and started walking. I heard footsteps behind me,
 								tried to turn my face, and the child held my face and said:
 							</p>
-							<p className="pl-4 font-bold text-yellow-400">
+							<p className="pl-4 font-bold text-yellow-300">
 								—Don't turn around, they're watching you, let's go with God.
 							</p>
 							<p>
@@ -664,13 +664,13 @@ export default function MongooseMentalityBook() {
 								front and confessed Christ. I remember kneeling at the altar to
 								pray and saying:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Lord, I have accepted you, but I have never seen a Christian
 								stealing or selling drugs. How am I going to support myself with
 								a wife?
 							</p>
 							<p>I heard a voice that told me:</p>
-							<p className="text-center font-bold text-2xl text-yellow-400 italic font-serif my-4">
+							<p className="text-center font-bold text-2xl text-yellow-300 italic font-serif my-4">
 								"Be faithful to me, take care of my things, and I will take care
 								of yours."
 							</p>
@@ -699,7 +699,7 @@ export default function MongooseMentalityBook() {
 							</p>
 							<p>
 								We see this clearly in{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Luke 18:13-14
 								</strong>
 								. In this passage, a tax collector acknowledges his sins and
@@ -738,8 +738,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 3 */}
 					<section
 						id="chapter-3"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 3: FORGED IN FIRE
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -787,7 +787,7 @@ export default function MongooseMentalityBook() {
 								When the pastor asked us to leave, I explained our situation. We
 								had nowhere to go. His response was direct:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—If you have nowhere to sleep, find another church where they
 								can help you, where they'll let you stay. Go and gather at that
 								place.
@@ -842,7 +842,7 @@ export default function MongooseMentalityBook() {
 									"as a son of the gods"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Daniel 3:25
 								</strong>
 								). That figure was Jesus himself, accompanying them in the midst
@@ -851,7 +851,7 @@ export default function MongooseMentalityBook() {
 							<p>
 								This detail is crucial. Sometimes, God will not deliver us from
 								difficulties, but will enter into them with us. In{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Isaiah 43:2
 								</strong>
 								, God promises us:{" "}
@@ -956,7 +956,7 @@ export default function MongooseMentalityBook() {
 								direction we needed.
 							</p>
 
-							<div className="bg-yellow-900/20 p-6 rounded-lg my-8 border border-yellow-500/30">
+							<div className="bg-yellow-900/20 p-6 rounded-lg my-8 border border-yellow-300/30">
 								<p className="italic font-medium text-yellow-100 mb-4 text-center">
 									"I waited patiently for the Lord; he turned to me and heard my
 									cry. He lifted me out of the slimy pit, out of the mud and
@@ -965,7 +965,7 @@ export default function MongooseMentalityBook() {
 									God. Many will see and fear the Lord and put their trust in
 									him."
 								</p>
-								<p className="text-right font-bold text-yellow-400">
+								<p className="text-right font-bold text-yellow-300">
 									—Psalm 40:1-3
 								</p>
 							</div>
@@ -982,8 +982,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 4 */}
 					<section
 						id="chapter-4"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 4: THE SECRET TO VICTORY
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -1084,7 +1084,7 @@ export default function MongooseMentalityBook() {
 								be lived with sincerity and authenticity. Prayer isn't
 								mechanical; it's a space where God reveals himself, speaks to
 								us, and transforms us. As he says{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Mark 11:24
 								</strong>
 								:{" "}
@@ -1119,7 +1119,7 @@ export default function MongooseMentalityBook() {
 									"Thy will be done, on earth as it is in heaven."
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Matthew 6:10
 								</strong>
 								). This is not just a simple phrase, but a declaration of trust
@@ -1130,7 +1130,7 @@ export default function MongooseMentalityBook() {
 								As children of God, we must learn to cling to His will,
 								understanding that His ways and thoughts are higher than our own
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Isaiah 55:8-9
 								</strong>
 								). Although we sometimes don't understand the reasons behind
@@ -1150,7 +1150,7 @@ export default function MongooseMentalityBook() {
 							</p>
 							<p>
 								When Jesus approaches John the Baptist in{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Matthew 3:13-17
 								</strong>
 								, John had already preached about Him, stating that after him
@@ -1181,11 +1181,11 @@ export default function MongooseMentalityBook() {
 								our opinion, are great, but God has even greater blessings
 								prepared for our lives.
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic my-6">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic my-6">
 								"Likewise the Spirit helps us in our weakness, for we do not
 								know how to pray as we ought, but the Spirit himself intercedes
 								for us with groanings too deep for words." (
-								<strong className="text-yellow-400 font-bold not-italic">
+								<strong className="text-yellow-300 font-bold not-italic">
 									Romans 8:26
 								</strong>
 								).
@@ -1205,7 +1205,7 @@ export default function MongooseMentalityBook() {
 								If you have been praying for years for something in particular
 								and suddenly discover that God's will is different, simply give
 								thanks and firmly follow the path He sets.{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Proverbs 14:12
 								</strong>{" "}
 								teaches us that{" "}
@@ -1230,8 +1230,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 5 */}
 					<section
 						id="chapter-5"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 5: WITHOUT FAITH THERE IS NO CONQUEST
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -1239,7 +1239,7 @@ export default function MongooseMentalityBook() {
 								The story of the fall of the walls of Jericho demonstrates how
 								unwavering faith is essential to achieving seemingly impossible
 								victories. In the book of{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Joshua 6:1-20
 								</strong>
 								, God gave an instruction that, humanly speaking, made no sense:
@@ -1284,21 +1284,21 @@ export default function MongooseMentalityBook() {
 								the second day, a mother approached me with her 11-year-old
 								daughter and said:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								"If you pray for her, she will heal. My daughter believes it."
 							</p>
 							<p>I replied:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—My dear, remember that it is not I who heals, but the one who
 								sent me, who is God. Do you believe that He will heal you?
 							</p>
 							<p>And the girl replied:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—My mother was sick, my father too, and when you prayed for him
 								yesterday, he was healed.
 							</p>
 							<p>The girl continued:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—I suffer from epilepsy; every day I wake up at 1:30 in the
 								morning with seizures. If you pray for me, I know God will heal
 								me.
@@ -1309,11 +1309,11 @@ export default function MongooseMentalityBook() {
 									—Do you believe God will heal you?
 								</span>{" "}
 								—and she answered me:{" "}
-								<span className="font-bold text-yellow-400">—Yes.</span>
+								<span className="font-bold text-yellow-300">—Yes.</span>
 							</p>
 							<p>
 								Then I said to her:{" "}
-								<span className="font-bold text-yellow-400">
+								<span className="font-bold text-yellow-300">
 									—Your faith has healed you.
 								</span>
 							</p>
@@ -1330,19 +1330,19 @@ export default function MongooseMentalityBook() {
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
 								Certainty in the invisible
 							</h3>
-							<div className="bg-yellow-900/20 p-6 rounded-lg my-6 border border-yellow-500/30">
+							<div className="bg-yellow-900/20 p-6 rounded-lg my-6 border border-yellow-300/30">
 								<p className="italic font-medium text-yellow-100 mb-4">
 									"But without faith it is impossible to please God, because
 									anyone who comes to him must believe that he exists and that
 									he rewards those who earnestly seek him."
 								</p>
-								<p className="text-right font-bold text-yellow-400">
+								<p className="text-right font-bold text-yellow-300">
 									—Hebrews 11:6
 								</p>
 							</div>
 							<p>
 								In{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Hebrews 11:1
 								</strong>
 								, The best and clearest definition of faith is given here. It
@@ -1393,7 +1393,7 @@ export default function MongooseMentalityBook() {
 									is dead."
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									James 2:17
 								</strong>
 								). A faith without works is sterile, empty.
@@ -1410,7 +1410,7 @@ export default function MongooseMentalityBook() {
 								<span className="italic text-yellow-200">
 									"Get up, take up your mat and walk."
 								</span>{" "}
-								(<strong className="text-yellow-400 font-bold">John 5:8</strong>
+								(<strong className="text-yellow-300 font-bold">John 5:8</strong>
 								). He was not only declaring health, but he was demanding a
 								response, an action.
 							</p>
@@ -1432,7 +1432,7 @@ export default function MongooseMentalityBook() {
 							</h3>
 							<p>
 								In{" "}
-								<strong className="text-yellow-400 font-bold">Luke 17:5</strong>
+								<strong className="text-yellow-300 font-bold">Luke 17:5</strong>
 								, We see a key moment in the lives of the disciples: "The
 								apostles said to the Lord: Increase our faith." This request
 								reveals a profound understanding of the heart of Jesus'
@@ -1458,7 +1458,7 @@ export default function MongooseMentalityBook() {
 									nothing will be impossible for you."
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Matthew 17:20
 								</strong>
 								). With faith, anything is possible: miracles, transformation,
@@ -1508,7 +1508,7 @@ export default function MongooseMentalityBook() {
 									<li
 										key={index}
 										className="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-neutral-900 border border-neutral-800 p-4 rounded-lg shadow-sm">
-										<span className="font-bold text-yellow-400 whitespace-nowrap">
+										<span className="font-bold text-yellow-300 whitespace-nowrap">
 											{verse.ref} —
 										</span>
 										<span className="text-slate-300 italic">{verse.text}</span>
@@ -1521,8 +1521,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 6 */}
 					<section
 						id="chapter-6"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 6: PRINCIPLES THAT EVERY WINNER MUST APPLY
 						</h2>
 						<div className="space-y-8 text-lg text-slate-200">
@@ -1659,7 +1659,7 @@ export default function MongooseMentalityBook() {
 										"loves a cheerful giver"
 									</span>{" "}
 									(
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										2 Corinthians 9:7
 									</strong>
 									). And we do not give with the purpose of receiving something
@@ -1749,7 +1749,7 @@ export default function MongooseMentalityBook() {
 									ability to wisely judge which advice is helpful and which is
 									not. The Bible calls us to be prudent and to ask for
 									discernment in order to make right decisions.{" "}
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										Proverbs 3:21
 									</strong>{" "}
 									tells us:{" "}
@@ -1780,7 +1780,7 @@ export default function MongooseMentalityBook() {
 								<p className="mb-4">
 									Here, discernment is vital: knowing when to listen and when to
 									follow the purpose God has placed in your heart. As it says{" "}
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										James 1:5
 									</strong>
 									: "If any of you lacks wisdom, you should ask God, who gives
@@ -1834,7 +1834,7 @@ export default function MongooseMentalityBook() {
 										"Love your neighbor as yourself"
 									</span>{" "}
 									(
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										Matthew 22:39
 									</strong>
 									). This commandment implies that in order to love others, we
@@ -1883,8 +1883,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 7 */}
 					<section
 						id="chapter-7"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CHAPTER 7: BEWARE OF JUDASES AND PETERS
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -2102,8 +2102,8 @@ export default function MongooseMentalityBook() {
 					{/* Chapter 8 */}
 					<section
 						id="chapter-8"
-						className="scroll-mt-24 p-6 md:p-8 bg-yellow-900/30 rounded-2xl shadow-lg border border-yellow-500/30">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 border-b border-yellow-500/30 pb-4 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-yellow-900/30 rounded-2xl shadow-lg border border-yellow-300/30">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 border-b border-yellow-300/30 pb-4 uppercase tracking-tight">
 							CHAPTER 8: THE GOLDEN CODE
 						</h2>
 						<div className="space-y-6 text-lg text-yellow-50">
@@ -2231,7 +2231,7 @@ export default function MongooseMentalityBook() {
 			{/* Back to top button */}
 			<button
 				onClick={scrollToTop}
-				className={`fixed bottom-8 right-8 p-3 bg-yellow-500 text-black rounded-full shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all duration-300 hover:bg-yellow-400 hover:scale-110 focus:outline-none z-40 ${
+				className={`fixed bottom-8 right-8 p-3 bg-yellow-300 text-black rounded-full shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all duration-300 hover:bg-yellow-300 hover:scale-110 focus:outline-none z-40 ${
 					showScrollTop
 						? "opacity-100 translate-y-0"
 						: "opacity-0 translate-y-10 pointer-events-none"
@@ -2240,7 +2240,7 @@ export default function MongooseMentalityBook() {
 				<ChevronUp size={24} strokeWidth={3} />
 			</button>
 
-			<footer className="bg-neutral-950 text-slate-500 py-12 text-center border-t border-yellow-500/10">
+			<footer className="bg-neutral-950 text-slate-500 py-12 text-center border-t border-yellow-300/10">
 				<p>© 2024 Mongoose Mentality. All rights reserved.</p>
 				<p className="text-sm mt-2">
 					Designed for the edification of the body of Christ.

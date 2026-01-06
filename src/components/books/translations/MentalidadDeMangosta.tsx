@@ -63,20 +63,20 @@ export default function MentalidadDeMangostaBook() {
 	return (
 		<div className="min-h-screen bg-black text-slate-100 font-sans leading-relaxed selection:bg-yellow-900 selection:text-white">
 			{/* Sticky Header - Dark Theme */}
-			<header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md shadow-sm border-b border-yellow-500/20 transition-all duration-300">
+			<header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md shadow-sm border-b border-yellow-300/20 transition-all duration-300">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex justify-between items-center h-16">
 						{/* Title / Logo Area */}
 						<div
 							className="flex items-center space-x-3 cursor-pointer group"
 							onClick={scrollToTop}>
-							<div className="bg-yellow-500 p-1.5 rounded-lg text-black transition-transform group-hover:scale-105 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
+							<div className="bg-yellow-300 p-1.5 rounded-lg text-black transition-transform group-hover:scale-105 shadow-[0_0_10px_rgba(234,179,8,0.3)]">
 								<BookOpen size={20} strokeWidth={2.5} />
 							</div>
-							<span className="font-bold text-lg tracking-tight text-yellow-500 hidden sm:block drop-shadow-sm">
+							<span className="font-bold text-lg tracking-tight text-yellow-300 hidden sm:block drop-shadow-sm">
 								Mentalidad de Mangosta
 							</span>
-							<span className="font-bold text-lg tracking-tight text-yellow-500 sm:hidden">
+							<span className="font-bold text-lg tracking-tight text-yellow-300 sm:hidden">
 								MdM
 							</span>
 						</div>
@@ -84,15 +84,15 @@ export default function MentalidadDeMangostaBook() {
 						{/* Desktop Navigation */}
 						<nav className="hidden md:flex space-x-1">
 							<div className="relative group">
-								<button className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-yellow-400 transition-colors">
+								<button className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-yellow-300 transition-colors">
 									<span>Índice de Capítulos</span>
 									<ChevronRight
 										size={16}
-										className="rotate-90 group-hover:text-yellow-400"
+										className="rotate-90 group-hover:text-yellow-300"
 									/>
 								</button>
 								{/* Dropdown for Desktop */}
-								<div className="absolute right-0 w-64 mt-2 bg-neutral-900 rounded-xl shadow-2xl border border-yellow-500/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right overflow-hidden">
+								<div className="absolute right-0 w-64 mt-2 bg-neutral-900 rounded-xl shadow-2xl border border-yellow-300/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right overflow-hidden">
 									<div className="py-2">
 										{chapters.map((chapter) => (
 											<button
@@ -100,7 +100,7 @@ export default function MentalidadDeMangostaBook() {
 												onClick={() => scrollToSection(chapter.id)}
 												className={`block w-full text-left px-4 py-2.5 text-sm transition-colors border-l-2 ${
 													activeSection === chapter.id
-														? "bg-yellow-500/10 text-yellow-400 border-yellow-500 font-medium"
+														? "bg-yellow-300/10 text-yellow-300 border-yellow-300 font-medium"
 														: "text-slate-400 border-transparent hover:bg-neutral-800 hover:text-yellow-200"
 												}`}>
 												{chapter.title}
@@ -114,7 +114,7 @@ export default function MentalidadDeMangostaBook() {
 						{/* Mobile Menu Button */}
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
-							className="md:hidden p-2 rounded-md text-slate-300 hover:text-yellow-400 hover:bg-neutral-900 transition-colors focus:outline-none"
+							className="md:hidden p-2 rounded-md text-slate-300 hover:text-yellow-300 hover:bg-neutral-900 transition-colors focus:outline-none"
 							aria-label="Menu">
 							{isMenuOpen ? <X size={24} /> : <Menu size={24} />}
 						</button>
@@ -123,7 +123,7 @@ export default function MentalidadDeMangostaBook() {
 
 				{/* Mobile Navigation Drawer */}
 				{isMenuOpen && (
-					<div className="md:hidden border-t border-yellow-500/20 bg-neutral-950 absolute w-full shadow-lg max-h-[80vh] overflow-y-auto">
+					<div className="md:hidden border-t border-yellow-300/20 bg-neutral-950 absolute w-full shadow-lg max-h-[80vh] overflow-y-auto">
 						<div className="py-2 px-2 space-y-1">
 							{chapters.map((chapter) => (
 								<button
@@ -131,7 +131,7 @@ export default function MentalidadDeMangostaBook() {
 									onClick={() => scrollToSection(chapter.id)}
 									className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
 										activeSection === chapter.id
-											? "bg-yellow-500/10 text-yellow-400 border-l-4 border-yellow-500"
+											? "bg-yellow-300/10 text-yellow-300 border-l-4 border-yellow-300"
 											: "text-slate-400 hover:bg-neutral-900 hover:text-yellow-200"
 									}`}>
 									{chapter.title}
@@ -149,7 +149,7 @@ export default function MentalidadDeMangostaBook() {
 					<section
 						id="agradecimientos"
 						className="scroll-mt-24 animate-fade-in">
-						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 mb-8 pb-2 border-b border-yellow-500/30 inline-block tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-8 pb-2 border-b border-yellow-300/30 inline-block tracking-tight">
 							AGRADECIMIENTOS
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -181,7 +181,7 @@ export default function MentalidadDeMangostaBook() {
 
 					{/* Introducción */}
 					<section id="introduccion" className="scroll-mt-24">
-						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-400 mb-8 pb-2 border-b border-yellow-500/30 inline-block tracking-tight">
+						<h2 className="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-8 pb-2 border-b border-yellow-300/30 inline-block tracking-tight">
 							INTRODUCCIÓN
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -276,7 +276,7 @@ export default function MentalidadDeMangostaBook() {
 									la renovación de vuestro entendimiento"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Romanos 12:2
 								</strong>
 								). Aunque no tenía control sobre lo que me sucedió cuando era
@@ -299,8 +299,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 1 */}
 					<section
 						id="capitulo-1"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							Capítulo 1: Mentalidad de Mangosta: El Inicio de Todo
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -425,20 +425,20 @@ export default function MentalidadDeMangostaBook() {
 								confirmarlo.
 							</p>
 
-							<div className="border-l-4 border-yellow-500 pl-6 py-4 my-8 bg-yellow-500/10 italic text-slate-300 rounded-r-lg">
+							<div className="border-l-4 border-yellow-300 pl-6 py-4 my-8 bg-yellow-300/10 italic text-slate-300 rounded-r-lg">
 								Un día, cuando tenía alrededor de 11 años, mientras dormía, soñé
 								que estaba frente a una estatua de Jesucristo y que me
 								encontraba pidiéndole ayuda. Al levantar la vista, me di cuenta
 								de que no era una estatua, sino que Él, estaba allí, sonriendo,
 								y me dijo:{" "}
-								<span className="font-semibold text-yellow-400">
+								<span className="font-semibold text-yellow-300">
 									"No soy una estatua, no temas, estoy contigo."
 								</span>
 							</div>
 
 							<p>
 								En ese momento, escuché una voz fuerte que me llamó:{" "}
-								<span className="uppercase font-bold text-yellow-500">
+								<span className="uppercase font-bold text-yellow-300">
 									"¡GARY, DESPIERTA!"
 								</span>
 								. Al abrir los ojos, vi un puñal viniendo en dirección hacia mí.
@@ -521,8 +521,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 2 */}
 					<section
 						id="capitulo-2"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CAPÍTULO 2: EL CORAZÓN DE DIOS TAMBIÉN LATE POR LOS PERDIDOS
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -542,7 +542,7 @@ export default function MentalidadDeMangostaBook() {
 									"Hace salir su sol sobre justos e injustos"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Mateo 5:45
 								</strong>
 								). Esto significa que su amor y compasión no se limitan a los
@@ -553,7 +553,7 @@ export default function MentalidadDeMangostaBook() {
 									"deja las 99 ovejas para ir tras la que está perdida"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Lucas 15:4—7
 								</strong>
 								).
@@ -594,7 +594,7 @@ export default function MentalidadDeMangostaBook() {
 								que no tenía escapatoria. En ese momento, escuché una voz fuerte
 								que me dijo:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—¡Corre!
 							</p>
 							<p>
@@ -634,7 +634,7 @@ export default function MentalidadDeMangostaBook() {
 								para que entendiera que Él me estaba escuchando, porque ni
 								siquiera estaba nublado. Así que le seguí hablando y le dije:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Dios, si me sacas de esta, con mi vida te sirvo; te serviré a
 								tiempo completo.
 							</p>
@@ -643,7 +643,7 @@ export default function MentalidadDeMangostaBook() {
 								la nada, se acercó un niño de unos dos o tres años, me haló el
 								pantalón y me dijo:
 							</p>
-							<p className="pl-4 font-bold text-yellow-400">
+							<p className="pl-4 font-bold text-yellow-300">
 								—Vámonos con Dios.
 							</p>
 							<p>Miré al niño y le dije:</p>
@@ -655,11 +655,11 @@ export default function MentalidadDeMangostaBook() {
 								Lo empujé suavemente para que se apartara de mí, pero el niño se
 								aferró a mi pantalón y repitió:
 							</p>
-							<p className="pl-4 font-bold text-yellow-400">
+							<p className="pl-4 font-bold text-yellow-300">
 								—Vámonos con Dios.
 							</p>
 							<p>Volví a mirar al cielo y dije:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Señor, no te he pedido señales, pero ahora sí te voy a pedir
 								una: dame una señal y me iré.
 							</p>
@@ -668,7 +668,7 @@ export default function MentalidadDeMangostaBook() {
 								y empecé a caminar. Escuché los pasos detrás de mí, intenté
 								voltear mi cara y el niño me sostuvo el rostro y me dijo:
 							</p>
-							<p className="pl-4 font-bold text-yellow-400">
+							<p className="pl-4 font-bold text-yellow-300">
 								—No te voltees, que te están mirando, vámonos con Dios.
 							</p>
 							<p>
@@ -686,12 +686,12 @@ export default function MentalidadDeMangostaBook() {
 								al frente y confesamos a Cristo. Recuerdo que me arrodillé en el
 								altar para orar y le dije:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Señor, ya te acepté, pero nunca he visto a un cristiano robando
 								ni vendiendo drogas. ¿Cómo me voy a sostener con esposa?
 							</p>
 							<p>Escuché una voz que me dijo:</p>
-							<p className="text-center font-bold text-2xl text-yellow-400 italic font-serif my-4">
+							<p className="text-center font-bold text-2xl text-yellow-300 italic font-serif my-4">
 								"Sé fiel a mí, ocúpate de lo mío, que yo me ocuparé de lo tuyo".
 							</p>
 							<p>
@@ -720,7 +720,7 @@ export default function MentalidadDeMangostaBook() {
 							</p>
 							<p>
 								Esto lo vemos claramente en{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Lucas 18:13-14
 								</strong>
 								, donde un publicano reconoce sus faltas y desobediencia ante
@@ -759,8 +759,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 3 */}
 					<section
 						id="capitulo-3"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CAPÍTULO 3: FORJADOS EN EL FUEGO
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -810,7 +810,7 @@ export default function MentalidadDeMangostaBook() {
 								situación que estábamos viviendo. No teníamos a dónde ir. Su
 								respuesta fue directa:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Si no tienen dónde dormir, busquen otra iglesia donde los
 								puedan ayudar, que los dejen quedarse allí. Vayan a congregarse
 								en ese lugar.
@@ -868,7 +868,7 @@ export default function MentalidadDeMangostaBook() {
 									"como hijo de los dioses"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Daniel 3:25
 								</strong>
 								). Esa figura era Jesús mismo, acompañándolos en medio de su
@@ -877,7 +877,7 @@ export default function MentalidadDeMangostaBook() {
 							<p>
 								Este detalle es fundamental. A veces, Dios no nos librará de las
 								dificultades, sino que entrará en ellas con nosotros. En{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Isaías 43:2
 								</strong>
 								, Dios nos promete:{" "}
@@ -987,7 +987,7 @@ export default function MentalidadDeMangostaBook() {
 								dirección que necesitábamos.
 							</p>
 
-							<div className="bg-yellow-900/20 p-6 rounded-lg my-8 border border-yellow-500/30">
+							<div className="bg-yellow-900/20 p-6 rounded-lg my-8 border border-yellow-300/30">
 								<p className="italic font-medium text-yellow-100 mb-4 text-center">
 									"Pacientemente esperé a Jehová, y se inclinó a mí, y oyó mi
 									clamor. Me sacó del pozo de la desesperación, del lodo
@@ -995,7 +995,7 @@ export default function MentalidadDeMangostaBook() {
 									Puso luego en mi boca cántico nuevo, alabanza a nuestro Dios.
 									Verán esto muchos, y temerán, y confiarán en Jehová."
 								</p>
-								<p className="text-right font-bold text-yellow-400">
+								<p className="text-right font-bold text-yellow-300">
 									—Salmos 40:1-3
 								</p>
 							</div>
@@ -1012,8 +1012,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 4 */}
 					<section
 						id="capitulo-4"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CAPÍTULO 4: EL SECRETO PARA LA VICTORIA
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -1118,7 +1118,7 @@ export default function MentalidadDeMangostaBook() {
 								que debía ser vivido con sinceridad y autenticidad. La oración
 								no es mecánica, es un espacio donde Dios se revela, nos habla y
 								nos transforma. Como dice{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Marcos 11:24
 								</strong>
 								:{" "}
@@ -1156,7 +1156,7 @@ export default function MentalidadDeMangostaBook() {
 									tierra"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Mateo 6:10
 								</strong>
 								). Esto no es una simple frase, sino una declaración de
@@ -1167,7 +1167,7 @@ export default function MentalidadDeMangostaBook() {
 								Como hijos de Dios, debemos aprender a aferrarnos a Su voluntad,
 								entendiendo que sus caminos y pensamientos son más altos que los
 								nuestros (
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Isaías 55:8-9
 								</strong>
 								). Aunque a veces no comprendemos el porqué de ciertas
@@ -1188,7 +1188,7 @@ export default function MentalidadDeMangostaBook() {
 							</p>
 							<p>
 								Cuando Jesús se acerca a Juan el Bautista en{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Mateo 3:13-17
 								</strong>
 								, Juan ya había predicado acerca de Él, afirmando que después de
@@ -1220,11 +1220,11 @@ export default function MentalidadDeMangostaBook() {
 								son grandes, pero Dios tiene bendiciones aún mayores preparadas
 								para nuestras vidas.
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic my-6">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic my-6">
 								"Y de igual manera el Espíritu nos ayuda en nuestra debilidad,
 								porque no sabemos pedir como conviene, pero el Espíritu mismo es
 								por nosotros con gemidos indecibles” (
-								<strong className="text-yellow-400 font-bold not-italic">
+								<strong className="text-yellow-300 font-bold not-italic">
 									Romanos 8:26
 								</strong>
 								).
@@ -1245,7 +1245,7 @@ export default function MentalidadDeMangostaBook() {
 								Si has estado orando durante años por algo en particular y de
 								repente descubres que la voluntad de Dios es otra, simplemente
 								da gracias y sigue firme las pisadas que Él marque.{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Proverbios 14:12
 								</strong>{" "}
 								nos enseña que{" "}
@@ -1271,8 +1271,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 5 */}
 					<section
 						id="capitulo-5"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CAPÍTULO 5: SIN FE NO HAY CONQUISTA
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -1280,7 +1280,7 @@ export default function MentalidadDeMangostaBook() {
 								El relato de la caída de las murallas de Jericó demuestra cómo
 								una fe constante es fundamental para lograr victorias que
 								parecen imposibles. En el libro de{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Josué 6:1-20
 								</strong>
 								, Dios dio una instrucción que, humanamente, no tenía sentido:
@@ -1324,21 +1324,21 @@ export default function MentalidadDeMangostaBook() {
 								segundo día, se me acercó una madre con su hija de 11 años, y me
 								dijo:
 							</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Si usted ora por ella, ella sanará. Mi hija lo cree.
 							</p>
 							<p>Le respondí:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Corazón, recuerda que el que sana no soy yo, sino el que me
 								envió, que es Dios. ¿Tú crees que Él te sanará?
 							</p>
 							<p>Y la niña contestó:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Mi madre estaba enferma, mi padre también, y cuando ayer usted
 								oró por él, fue sanado.
 							</p>
 							<p>La niña continuó:</p>
-							<p className="pl-4 border-l-2 border-yellow-500/50 text-yellow-200 italic">
+							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—Yo sufro de epilepsia, todos los días me despierto a la 1:30 de
 								la madrugada con ataques. Si usted ora por mí, sé que Dios me
 								sanará.
@@ -1349,11 +1349,11 @@ export default function MentalidadDeMangostaBook() {
 									—¿Tú crees que Dios te sanará?
 								</span>{" "}
 								—y ella me respondió:{" "}
-								<span className="font-bold text-yellow-400">—Sí.</span>
+								<span className="font-bold text-yellow-300">—Sí.</span>
 							</p>
 							<p>
 								Entonces le dije:{" "}
-								<span className="font-bold text-yellow-400">
+								<span className="font-bold text-yellow-300">
 									—Tu fe te ha sanado.
 								</span>
 							</p>
@@ -1370,19 +1370,19 @@ export default function MentalidadDeMangostaBook() {
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
 								Certeza en lo invisible
 							</h3>
-							<div className="bg-yellow-900/20 p-6 rounded-lg my-6 border border-yellow-500/30">
+							<div className="bg-yellow-900/20 p-6 rounded-lg my-6 border border-yellow-300/30">
 								<p className="italic font-medium text-yellow-100 mb-4">
 									"Pero sin fe es imposible agradar a Dios; porque es necesario
 									que el que se acerca a Dios crea que le hay, y que es
 									galardonador de los que le buscan."
 								</p>
-								<p className="text-right font-bold text-yellow-400">
+								<p className="text-right font-bold text-yellow-300">
 									—Hebreos 11:6
 								</p>
 							</div>
 							<p>
 								En{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Hebreos 11:1
 								</strong>
 								, se da la mejor y más clara definición de lo que es la Fe. Dice
@@ -1434,7 +1434,7 @@ export default function MentalidadDeMangostaBook() {
 									muerta"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Santiago 2:17
 								</strong>
 								). Una fe sin obras es estéril, vacía.
@@ -1451,7 +1451,7 @@ export default function MentalidadDeMangostaBook() {
 								<span className="italic text-yellow-200">
 									"Levántate, toma tu lecho y anda"
 								</span>{" "}
-								(<strong className="text-yellow-400 font-bold">Juan 5:8</strong>
+								(<strong className="text-yellow-300 font-bold">Juan 5:8</strong>
 								). Él no solo declaraba sanidad, sino que pedía una respuesta,
 								una acción.
 							</p>
@@ -1474,7 +1474,7 @@ export default function MentalidadDeMangostaBook() {
 							</h3>
 							<p>
 								En{" "}
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Lucas 17:5
 								</strong>
 								, vemos un momento clave en la vida de los discípulos: "Dijeron
@@ -1501,7 +1501,7 @@ export default function MentalidadDeMangostaBook() {
 									imposible"
 								</span>{" "}
 								(
-								<strong className="text-yellow-400 font-bold">
+								<strong className="text-yellow-300 font-bold">
 									Mateo 17:20
 								</strong>
 								). Con fe, todo se puede alcanzar: milagros, transformación y
@@ -1551,7 +1551,7 @@ export default function MentalidadDeMangostaBook() {
 									<li
 										key={index}
 										className="flex flex-col sm:flex-row gap-2 sm:gap-4 bg-neutral-900 border border-neutral-800 p-4 rounded-lg shadow-sm">
-										<span className="font-bold text-yellow-400 whitespace-nowrap">
+										<span className="font-bold text-yellow-300 whitespace-nowrap">
 											{verse.ref} —
 										</span>
 										<span className="text-slate-300 italic">{verse.text}</span>
@@ -1564,8 +1564,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 6 */}
 					<section
 						id="capitulo-6"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CAPÍTULO 6: PRINCIPIOS QUE TODO VENCEDOR DEBE APLICAR
 						</h2>
 						<div className="space-y-8 text-lg text-slate-200">
@@ -1706,7 +1706,7 @@ export default function MentalidadDeMangostaBook() {
 										"ama al dador alegre"
 									</span>{" "}
 									(
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										2 Corintios 9:7
 									</strong>
 									). Y no damos con el propósito de recibir algo a cambio; damos
@@ -1796,7 +1796,7 @@ export default function MentalidadDeMangostaBook() {
 									capacidad de juzgar sabiamente qué consejos son útiles y
 									cuáles no. La Biblia nos llama a ser prudentes y a pedir
 									discernimiento para tomar decisiones correctas.{" "}
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										Proverbios 3:21
 									</strong>{" "}
 									nos dice:{" "}
@@ -1827,7 +1827,7 @@ export default function MentalidadDeMangostaBook() {
 									Aquí es vital ejercer discernimiento: saber cuándo escuchar y
 									cuándo seguir el propósito que Dios ha puesto en tu corazón.
 									Como dice{" "}
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										Santiago 1:5
 									</strong>
 									: "Si a alguno de ustedes le falta sabiduría, pídala a Dios, y
@@ -1881,7 +1881,7 @@ export default function MentalidadDeMangostaBook() {
 										"Ama a tu prójimo como a ti mismo"
 									</span>{" "}
 									(
-									<strong className="text-yellow-400 font-bold">
+									<strong className="text-yellow-300 font-bold">
 										Mateo 22:39
 									</strong>
 									). Este mandamiento implica que para poder amar a los demás,
@@ -1930,8 +1930,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 7 */}
 					<section
 						id="capitulo-7"
-						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-500/10">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-neutral-900/50 rounded-2xl border border-yellow-300/10">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 uppercase tracking-tight">
 							CAPÍTULO 7: TEN CUIDADO CON LOS JUDAS Y LOS PEDROS
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
@@ -2155,8 +2155,8 @@ export default function MentalidadDeMangostaBook() {
 					{/* Capítulo 8 */}
 					<section
 						id="capitulo-8"
-						className="scroll-mt-24 p-6 md:p-8 bg-yellow-900/30 rounded-2xl shadow-lg border border-yellow-500/30">
-						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-400 mb-6 border-b border-yellow-500/30 pb-4 uppercase tracking-tight">
+						className="scroll-mt-24 p-6 md:p-8 bg-yellow-900/30 rounded-2xl shadow-lg border border-yellow-300/30">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6 border-b border-yellow-300/30 pb-4 uppercase tracking-tight">
 							CAPÍTULO 8: EL CÓDIGO DE ORO
 						</h2>
 						<div className="space-y-6 text-lg text-yellow-50">
@@ -2287,7 +2287,7 @@ export default function MentalidadDeMangostaBook() {
 			{/* Back to top button */}
 			<button
 				onClick={scrollToTop}
-				className={`fixed bottom-8 right-8 p-3 bg-yellow-500 text-black rounded-full shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all duration-300 hover:bg-yellow-400 hover:scale-110 focus:outline-none z-40 ${
+				className={`fixed bottom-8 right-8 p-3 bg-yellow-300 text-black rounded-full shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all duration-300 hover:bg-yellow-300 hover:scale-110 focus:outline-none z-40 ${
 					showScrollTop
 						? "opacity-100 translate-y-0"
 						: "opacity-0 translate-y-10 pointer-events-none"
@@ -2296,7 +2296,7 @@ export default function MentalidadDeMangostaBook() {
 				<ChevronUp size={24} strokeWidth={3} />
 			</button>
 
-			<footer className="bg-neutral-950 text-slate-500 py-12 text-center border-t border-yellow-500/10">
+			<footer className="bg-neutral-950 text-slate-500 py-12 text-center border-t border-yellow-300/10">
 				<p>© 2024 Mentalidad de Mangosta. Todos los derechos reservados.</p>
 				<p className="text-sm mt-2">
 					Diseñado para la edificación del cuerpo de Cristo.
