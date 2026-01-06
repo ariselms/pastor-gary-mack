@@ -3,7 +3,7 @@ import { sql } from "@vercel/postgres";
 import { generateVerificationCodeWithExpirationTime } from "@/helpers/server";
 import { v4 as uuidv4 } from "uuid";
 import { languageOptions } from "@/static";
-import { sendEmail } from "@/helpers/server";
+import { sendEmailNoReply } from "@/helpers/server";
 import { emailCodeConfirmationTemplate } from "@/email-templates";
 
 export async function POST(request: Request) {
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
           ${sessionTokenExpirationTime.toLocaleString()}) RETURNING *`;
 
 			if (newUser.length > 0) {
-				await sendEmail(
+				await sendEmailNoReply(
 					[email, "rnavedojr@gmail.com"],
 					emaillSubject,
 					htmlBody
@@ -58,11 +58,21 @@ export async function POST(request: Request) {
 					{ status: 200 }
 				);
 			}
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "An error occured, please try again...",
+          data: null
+        },
+        { status: 500 }
+      );
+
 		} catch (dbError) {
 			return NextResponse.json(
 				{
 					success: false,
-					message: "Error creating user: " + dbError,
+					message: "An error occured, please try again: " + dbError,
 					data: null
 				},
 				{ status: 500 }
@@ -80,7 +90,7 @@ export async function POST(request: Request) {
         RETURNING *`;
 
 			if (updatedUser) {
-				await sendEmail(
+				await sendEmailNoReply(
 					[email, "rnavedojr@gmail.com"],
 					emaillSubject,
 					htmlBody

@@ -1,5 +1,5 @@
 // TODO: Import language from server side to make the metadata dynamic
-import { HomePageContent } from "@/components/pages-content/home";
+import { HomePageContent } from "@/components/pages-content/HomePageContent";
 import { languageOptions } from "@/static";
 import { cookies } from "next/headers";
 

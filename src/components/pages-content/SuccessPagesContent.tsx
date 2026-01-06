@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/authContext";
 
-export function StripeSuccessPageContent() {
+export function StripeBookSuccessPageContent() {
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
 	const router = useRouter();
@@ -92,7 +92,7 @@ export function StripeSuccessPageContent() {
 										{language === languageOptions.english
 											? "Delivery Method: "
 											: "Método de Entrega: "}
-										{"Lectura Digital"}
+										digital
 									</p>
 								</div>
 								{/* 3. Link now pushes to the bottom of the 12rem (h-48) container */}
@@ -101,6 +101,102 @@ export function StripeSuccessPageContent() {
 									// use the product id
 									href={`/profile/orders/books/read/${order.products[0].id}`}>
 									Leer Ahora &rarr;
+								</Link>
+							</div>
+						</section>
+					</article>
+				</Container7xl>
+			)}
+		</>
+	);
+}
+
+export function StripeGiveSuccessPageContent() {
+	const { language } = useLanguageContext();
+	const { user } = useAuthContext();
+	const router = useRouter();
+
+	const params = useSearchParams();
+	const sessionId = params.get("session_id");
+
+	const [loading, setLoading] = useState(true);
+	const [order, setOrder] = useState<any | null>(null);
+
+	useEffect(() => {
+		if (sessionId && user) {
+			const fetchOrder = async () => {
+				try {
+					const requestOrder = await fetch(`/api/user/orders/${sessionId}`);
+
+					const responseOrder = await requestOrder.json();
+
+					if (responseOrder.success) {
+						// console.log("Order response: ", responseOrder.data);
+						setOrder(responseOrder.data);
+
+						setLoading(false);
+					} else {
+						router.push("/books");
+					}
+				} catch (error) {
+					console.error(error);
+				}
+			};
+
+			fetchOrder();
+		}
+
+		// cleanup
+		return () => {};
+	}, [sessionId, user]);
+
+	return (
+		<>
+			{loading ? (
+				<Spinner />
+			) : (
+				<Container7xl>
+					<article className="w-full py-16 text-slate-100">
+						<h1 className="mb-4">
+							{language === languageOptions.english
+								? "Order Completed"
+								: "Orden Completada"}
+						</h1>
+						<p>
+							<strong>
+								{language === languageOptions.english ? "By: " : "Por: "}
+							</strong>{" "}
+							{user?.name !== "" ? user?.name : "Sin Definir"}
+						</p>
+						<p>
+							<strong>Id:</strong> {sessionId}
+						</p>
+						<section className="flex gap-4 flex-wrap mt-10 h-full">
+							<img
+								src={order.products[0].image}
+								className="h-48 w-48 object-cover rounded-sm"
+							/>
+
+							{/* 2. Added 'flex-1' to ensure it takes up remaining width */}
+							{/* The container now stretches to match the image height (h-48) */}
+							<div className="flex flex-col justify-between flex-1 min-h-[12rem]">
+								<div>
+									<p className="text-2xl font-bold">
+										{language === languageOptions.english
+											? "Name: "
+											: "Nombre: "}{" "}
+										{order.products[0].description}
+									</p>
+									<p className="text-xl text-slate-200 mt-1">
+										Total: ${order.amount_total} USD
+									</p>
+								</div>
+								{/* 3. Link now pushes to the bottom of the 12rem (h-48) container */}
+								<Link
+									className="relative rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all"
+									// use the product id
+									href={`/profile/`}>
+									Ver Detalles &rarr;
 								</Link>
 							</div>
 						</section>

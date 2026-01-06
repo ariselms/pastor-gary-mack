@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { serverBaseUrl } from "@/static";
 import { cookies } from "next/headers";
+import { saleCagegories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
@@ -45,9 +46,10 @@ export async function POST(req: Request) {
 			],
 			payment_method_types: ["card"],
 			metadata: {
-				bookId: book.id, // Useful for webhooks/fulfillment later
-				bookName: book.name,
-				bookImage: book.images[0]
+				itemId: book.id, // Useful for webhooks/fulfillment later
+				itemName: book.name,
+				itemImage: book.images[0],
+				itemCategory: saleCagegories.book
 			},
 			mode: "payment",
 			success_url: `${serverBaseUrl}/books/success?session_id={CHECKOUT_SESSION_ID}`,

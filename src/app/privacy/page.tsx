@@ -1,4 +1,4 @@
-import { PrivacyPageContent } from "@/components/pages-content/privacy";
+import { PrivacyPageContent } from "@/components/pages-content/PrivacyPageContent";
 import { languageOptions } from "@/static";
 import { cookies } from "next/headers";
 

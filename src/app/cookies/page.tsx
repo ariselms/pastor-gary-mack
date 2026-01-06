@@ -1,4 +1,4 @@
-import { CookiesPageContent } from "@/components/pages-content/cookies";
+import { CookiesPageContent } from "@/components/pages-content/CookiesPageContent";
 import { languageOptions } from "@/static";
 import { cookies } from "next/headers";
 

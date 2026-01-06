@@ -142,7 +142,7 @@ export default function MainNavigation() {
 	};
 
 	return (
-		<header className="w-full relative h-22 flex items-center justify-center">
+		<header className="w-full relative h-22 flex items-center justify-center border-b-10 border-slate-800">
 			<nav className="px-4 py-4 rounded-none bg-black flex items-center justify-between relative w-full">
 				<Link
 					onClick={() => isMobile && setShowMenu(false)}

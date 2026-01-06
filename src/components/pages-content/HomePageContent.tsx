@@ -1,9 +1,10 @@
 "use client"
-import { Container7xl } from "@/components/containers";
 import { JumbotronWithCenteredLetters } from "@/components/jumbotron/";
 import Link from "next/link";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
+import AboutPastorGaryMack from "@/components/AboutPastorGaryMack";
+import SupportOurMinistry from "@/components/SupportOurMinistry";
 
 export function HomePageContent() {
 
@@ -38,9 +39,8 @@ export function HomePageContent() {
 				personTitleSubText="Gary Mack"
 				htmlContainer={renderJumbotronButtons()}
 			/>
-			<Container7xl>
-				<article></article>
-			</Container7xl>
+      <AboutPastorGaryMack/>
+      <SupportOurMinistry/>
 		</>
 	);
 }

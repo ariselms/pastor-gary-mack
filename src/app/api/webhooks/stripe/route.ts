@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { sql } from "@vercel/postgres";
+import { saleCagegories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET!;
@@ -40,55 +41,120 @@ export async function POST(req: Request) {
 			// Now we can safely access line_items
 			const productInfo = session.line_items?.data[0];
 
-			// Prepare data for DB
-			const order = {
-				stripe_session_id: session.id,
-				by_user_id: session.client_reference_id, // Ensure this was sent from client
-				stripe_product_id: session.metadata?.bookId || "", // Metadata is safer/easier here
-				stripe_product_name: session.metadata?.bookName || "",
-				stripe_price_id: productInfo?.price?.id,
-				stripe_unit_amount: productInfo?.price?.unit_amount,
-				created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
-				image_url: session.metadata?.bookImage || ""
-			};
+      console.log("Product: ", productInfo)
 
-			if (!order.by_user_id) {
-				return NextResponse.json(
-					{
-						success: true,
-						message: "This is not a digital book order.",
-						data: null
-					},
-					{ status: 200 }
-				);
+      console.log("Category: ", session.metadata?.itemCategory);
+
+			if (session.metadata?.itemCategory === saleCagegories?.book) {
+				// Prepare data for DB
+				const bookOrder = {
+					stripe_session_id: session.id,
+					by_user_id: session.client_reference_id, // Ensure this was sent from client
+					stripe_product_id: session.metadata?.itemId || "", // Metadata is safer/easier here
+					stripe_product_name: session.metadata?.itemName || "",
+					stripe_price_id: productInfo?.price?.id,
+					stripe_unit_amount: productInfo?.price?.unit_amount,
+					created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
+					image_url: session.metadata?.itemImage || ""
+				};
+
+				if (!bookOrder.by_user_id) {
+					return NextResponse.json(
+						{
+							success: true,
+							message: "This is not a digital book order.",
+							data: null
+						},
+						{ status: 200 }
+					);
+				}
+
+				// 3. Insert into Neon DB (Fixed table name to match your previous schema)
+				// Note: Added missing comma before created_at in VALUES
+				const { rows: newBookOrderCreated } = await sql`
+          INSERT INTO digital_books_orders (
+            by_user_id,
+            stripe_product_id,
+            stripe_product_name,
+            stripe_session_id,
+            stripe_price_id,
+            stripe_unit_amount,
+            created_at,
+            image_url,
+            metodo_entrega
+          )
+          VALUES (
+            ${bookOrder.by_user_id},
+            ${bookOrder.stripe_product_id},
+            ${bookOrder.stripe_product_name},
+            ${bookOrder.stripe_session_id},
+            ${bookOrder.stripe_price_id},
+            ${bookOrder.stripe_unit_amount},
+            ${bookOrder.created_at},
+            ${bookOrder.image_url},
+            'digital'
+          ) RETURNING *`;
+
+				if (newBookOrderCreated) {
+					console.log("New Book Order Created: ", newBookOrderCreated);
+				}
 			}
 
-			// 3. Insert into Neon DB (Fixed table name to match your previous schema)
-			// Note: Added missing comma before created_at in VALUES
-			const { rows: newOrderCreated } = await sql`
-        INSERT INTO digital_books_orders (
-          by_user_id,
-          stripe_product_id,
-          stripe_product_name,
-          stripe_session_id,
-          stripe_price_id,
-          stripe_unit_amount,
-          created_at,
-          image_url
-        )
-        VALUES (
-          ${order.by_user_id},
-          ${order.stripe_product_id},
-          ${order.stripe_product_name},
-          ${order.stripe_session_id},
-          ${order.stripe_price_id},
-          ${order.stripe_unit_amount},
-          ${order.created_at},
-          ${order.image_url}
-        ) RETURNING *`;
+			if (session.metadata?.itemCategory === saleCagegories?.donation) {
 
-			if (newOrderCreated) {
-				console.log("New Order Created: ", newOrderCreated);
+				// Prepare data for DB
+				const donationOrder = {
+					by_user_id: session.client_reference_id, // Ensure this was sent from client
+					stripe_product_id: session.metadata?.itemId || "", // Metadata is safer/easier here
+					stripe_product_name: session.metadata?.itemName || "",
+					stripe_session_id: session.id,
+					stripe_price_id: productInfo?.price?.id,
+					stripe_unit_amount: productInfo?.price?.unit_amount,
+					created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
+					image_url: session.metadata?.itemImage || ""
+				};
+
+				if (!donationOrder.by_user_id) {
+
+					return NextResponse.json(
+						{
+							success: true,
+							message: "This is not a digital donationOrder.",
+							data: null
+						},
+						{ status: 200 }
+					);
+				}
+
+				// 3. Insert into Neon DB (Fixed table name to match your previous schema)
+				// Note: Added missing comma before created_at in VALUES
+				const { rows: newDonationCreated } = await sql`
+          INSERT INTO donations_orders (
+            by_user_id,
+            stripe_product_id,
+            stripe_product_name,
+            stripe_session_id,
+            stripe_price_id,
+            stripe_unit_amount,
+            created_at,
+            image_url,
+            metodo_entrega
+          )
+          VALUES (
+            ${donationOrder.by_user_id},
+            ${donationOrder.stripe_product_id},
+            ${donationOrder.stripe_product_name},
+            ${donationOrder.stripe_session_id},
+            ${donationOrder.stripe_price_id},
+            ${donationOrder.stripe_unit_amount},
+            ${donationOrder.created_at},
+            ${donationOrder.image_url},
+            'digital'
+          ) RETURNING *`;
+
+				if (newDonationCreated) {
+					console.log("New Donation Order Created: ", newDonationCreated);
+				}
 			}
 		} catch (error) {
 			console.error("Failed to process order:", error);

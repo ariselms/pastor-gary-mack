@@ -1,10 +1,11 @@
 // TODO: Handle Creating and Looking up customers to avoid duplicated data
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { serverBaseUrl } from "@/static";
+import { languageOptions, serverBaseUrl } from "@/static";
 import { cookies } from "next/headers";
 import { donationFrequencyOptions } from "@/static";
 import { DonationProductData } from "@/types/donationTypes";
+import { saleCagegories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
@@ -42,24 +43,48 @@ export async function POST(req: Request) {
 
 		// 6. Define common parameters
 		// This allows us to create the product on the fly without setting it up in the dashboard first
+
+		// get the name in english or spanish either a donation or monthly suscription
+		// get the name in english or spanish either a donation or monthly suscription
+		// Helper boolean to make the logic cleaner below
+		const isSpanish = currentLanguage === languageOptions.spanish;
+		const isSubscription = frequency === donationFrequencyOptions.subscription.value;
+
+    console.log("Is subscription: ", frequency);
+
+		let productDataName = "";
+		let productDataDescription = "";
+
+		if (isSubscription) {
+			// Handle Monthly
+			productDataName = isSpanish ? "Donar Mensual" : "Monthly Donation";
+			productDataDescription = isSpanish
+				? "Donación mensual a pastor Gary Mack"
+				: "Monthly Donation committed to pastor Gary Mack";
+		} else {
+			// Handle One-Time (Default)
+			productDataName = isSpanish ? "Donación Única" : "One-Time Donation";
+			productDataDescription = isSpanish
+				? "Donación única a pastor Gary Mack"
+				: "One-Time Donation committed to pastor Gary Mack";
+		}
+
 		const productData: DonationProductData = {
-			name: "Donation",
-			description:
-				frequency === donationFrequencyOptions.subscription
-					? "Monthly Donation to Our Cause"
-					: "One-time Donation to Our Cause",
-			  images: [imageUrl], // Optional
+			name: productDataName,
+			description: productDataDescription,
+			images: [imageUrl] // Optional
 		};
 
 		// 7. Construct the Price Data object
 		const priceData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData = {
 			currency: "usd",
 			unit_amount: amountInCents,
-			product_data: productData
+			product_data: productData,
+			tax_behavior: "inclusive"
 		};
 
 		// 8. Add recurring logic if necessary
-		if (frequency === donationFrequencyOptions.subscription) {
+		if (frequency === donationFrequencyOptions.subscription.value) {
 			priceData.recurring = {
 				interval: "month" // or 'year', 'week'
 			};
@@ -75,7 +100,7 @@ export async function POST(req: Request) {
 				enabled: true
 			},
 			mode:
-				frequency === donationFrequencyOptions.subscription
+				frequency === donationFrequencyOptions.subscription.value
 					? "subscription"
 					: "payment",
 			client_reference_id: user.id,
@@ -88,19 +113,21 @@ export async function POST(req: Request) {
 			],
 			payment_method_types: ["card"],
 			metadata: {
-				donationType: frequency,
+				itemId: "donation",
+				itemName: productData.name,
+				itemImage: imageUrl,
+				itemCategory: saleCagegories.donation
 			},
 			success_url: `${serverBaseUrl}/give/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${serverBaseUrl}/books`
+			cancel_url: `${serverBaseUrl}/give`
 		});
 
+		// console.log("Stripe Session: ", stripeSession);
+
 		return NextResponse.json({ url: stripeSession.url });
-
 	} catch (err: any) {
-
 		console.error("Error creating Stripe checkout session: ", err.message);
 
 		return NextResponse.json({ error: err.message }, { status: 500 });
-
 	}
 }

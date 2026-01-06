@@ -1,4 +1,4 @@
-import { GivePageContent } from "@/components/pages-content/give";
+import { GivePageContent } from "@/components/pages-content/GivePageContent";
 
 export default function GiveAndDonatePage() {
 	return (

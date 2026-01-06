@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { languageOptions } from "@/static";
-import { ContactPageContent } from "@/components/pages-content/contact";
+import { ContactPageContent } from "@/components/pages-content/ContactPageContent";
 
 export default function ContactPage() {
 	return (

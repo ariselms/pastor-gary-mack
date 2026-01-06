@@ -1,7 +1,5 @@
 export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
-// import { sendEmail } from "@/helpers/server";
-// import { languageOptions } from "@/static";
 import { sql } from "@vercel/postgres";
 
 // update user
