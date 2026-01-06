@@ -25,8 +25,8 @@ export default function AboutPastorGaryMack() {
 						</p>
 						<p className="mb-4 font-medium">
 							{language === languageOptions.english
-								? "With over a decade of service in the Dominican Republic preaching the Gospel and helping the needy, he now pastors 'Nación de Fe' Church alongside his wife, Denisse Mack, and their family in the state of Maryland, USA."
-								: "Con más de una década de servicio en la República Dominicana predicando el Evangelio y ayudando al necesitado, hoy se encuentra pastoreando la Iglesia Nación de Fe junto a su esposa, Denisse Mack, y su familia en el estado de Maryland, Estados Unidos."}
+								? "With over a decade of service in the Dominican Republic preaching the Gospel and helping the needy, he now pastors 'Nación de Fe' Church alongside his wife, Dennise Mack, and their family in the state of Maryland, USA."
+								: "Con más de una década de servicio en la República Dominicana predicando el Evangelio y ayudando al necesitado, hoy se encuentra pastoreando la Iglesia Nación de Fe junto a su esposa, Dennise Mack, y su familia en el estado de Maryland, Estados Unidos."}
 						</p>
 						<p className="mb-4 font-medium">
 							{language === languageOptions.english
