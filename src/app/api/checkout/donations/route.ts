@@ -50,8 +50,6 @@ export async function POST(req: Request) {
 		const isSpanish = currentLanguage === languageOptions.spanish;
 		const isSubscription = frequency === donationFrequencyOptions.subscription.value;
 
-    console.log("Is subscription: ", frequency);
-
 		let productDataName = "";
 		let productDataDescription = "";
 
@@ -90,21 +88,73 @@ export async function POST(req: Request) {
 			};
 		}
 
+    // --- 1. FIND OR CREATE CUSTOMER ---
+    let customerId: string;
+
+    const existingCustomers = await stripe.customers.list({
+      email: user.contact_email,
+      limit: 1,
+    });
+
+    console.log("Existing Customers: ", existingCustomers);
+
+    if (existingCustomers.data.length > 0) {
+
+      customerId = existingCustomers.data[0].id;
+
+    } else {
+
+      const newCustomer = await stripe.customers.create({
+        email: user.contact_email,
+        name: `${user.first_name || ''} ${user.last_name || ''}`.trim(),
+        metadata: { userId: user.id },
+      });
+
+      customerId = newCustomer.id;
+
+    }
+
+    // --- 2. CHECK FOR EXISTING SUBSCRIPTION (NEW) ---
+    // Only run this check if they are trying to start a NEW subscription
+    if (frequency === donationFrequencyOptions.subscription.value) {
+
+      const activeSubscriptions = await stripe.subscriptions.list({
+        customer: customerId,
+        status: "active", // Only look for active ones
+        limit: 1,
+      });
+
+
+      if (activeSubscriptions.data.length > 0) {
+        const alreadySubscribed = isSpanish
+					? "Ya tienes una subscripción activa. Debes cancelarla si quieres crear una nueva con una cantidad diferente. Visita tu perfil en la pestaña de donaciones, oprime el botón Portal del Cliente para cancelar. Si tienes problemas, contáctanos y con gusto te ayudaremos."
+					: "You already have an active subscription. You must cancel it if you want to create a new one with a different amount. Visit your profile in the donations tab, press the button Customer Portal to cancel. If you have problems, contact us and we'll be happy to help.";
+
+        // If they already have one, stop here.
+        return NextResponse.json(
+          {
+            success: false,
+            data: null,
+            message: alreadySubscribed
+          },
+          { status: 400 }
+        );
+      }
+
+    }
+
 		// 9. Create the Stripe Session
 		const stripeSession = await stripe.checkout.sessions.create({
 			locale: currentLanguage === "en" ? "en" : "es",
-			tax_id_collection: {
-				enabled: true
-			},
-			automatic_tax: {
-				enabled: true
-			},
 			mode:
 				frequency === donationFrequencyOptions.subscription.value
 					? "subscription"
 					: "payment",
 			client_reference_id: user.id,
-			customer_email: user.contact_email,
+			customer: customerId,
+      invoice_creation: {
+        enabled: true,
+      },
 			line_items: [
 				{
 					price_data: priceData,

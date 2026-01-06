@@ -56,11 +56,15 @@ export function GivePageContent() {
 
 			if (url) {
 				router.push(url);
-			}
+			} else if (!donationResponse.success){
+        alert(donationResponse.message);
+        setLoading(false);
+        return;
+      }
 
 		} catch (error) {
 
-			console.error(error);
+			console.error("Donation error: ", error);
 
 		} finally {
 

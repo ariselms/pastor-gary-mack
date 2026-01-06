@@ -7,6 +7,7 @@ import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static/";
 
 export function UserOrders({ user }: { user: UserType }) {
+
   const { language } = useLanguageContext();
 
 	const [userOrders, setUserOrders] = useState<any[] | null>(null);
@@ -37,9 +38,9 @@ export function UserOrders({ user }: { user: UserType }) {
 	}, [user]);
 
 	return (
-		<section>
+		<section className="py-8">
 			{userOrders == null && (
-				<div className="py-8 text-slate-100 text-center w-full">
+				<div className="text-slate-100 text-center w-full">
 					Aún no has completado una compra, visita la{" "}
 					<Link className="text-slate-100 underline" href="/books">
 						página de libros

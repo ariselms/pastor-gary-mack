@@ -1,6 +1,6 @@
 "use client";
 
-import {Container7xl} from "@/components/containers";
+import { Container7xl } from "@/components/containers";
 import { languageOptions } from "@/static";
 import { TabItem, Tabs } from "flowbite-react";
 import UserProfileForm from "@/components/forms/UserProfile";
@@ -11,12 +11,13 @@ import { useState } from "react";
 import Spinner from "@/components/Spinner";
 import { UserOrders } from "@/components/books/UserOrders";
 import { userRoles } from "@/static";
+import { UserDonationsTab } from "@/components/donations/UserDonations";
 
 export default function ProfilePage() {
-  const { language } = useLanguageContext();
-  const { user } = useAuthContext();
+	const { language } = useLanguageContext();
+	const { user } = useAuthContext();
 
-  const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	return (
 		<section>
@@ -68,12 +69,18 @@ export default function ProfilePage() {
 									}>
 									<UserOrders user={user} />
 								</TabItem>
-								{/* <TabItem
+								<TabItem
 									title={
-										language === languageOptions.english ? "Donations" : "Donaciones"
+										language === languageOptions.english
+											? "Donations"
+											: "Donaciones"
 									}>
-									<UserDonationsTab userEmail={user?.contact_email} language={language} languageOptions={languageOptions} />
-								</TabItem> */}
+									<UserDonationsTab
+										userEmail={user?.contact_email}
+										language={language}
+										languageOptions={languageOptions}
+									/>
+								</TabItem>
 							</Tabs>
 						</Container7xl>
 					</div>

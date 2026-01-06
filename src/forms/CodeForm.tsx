@@ -44,7 +44,7 @@ export default function CodeForm({
 							? "Processing..."
 							: "Procesando..."}
 					</>
-				) : languageOptions.english ? (
+				) : language === languageOptions.english ? (
 					"Verify"
 				) : (
 					"Verificar"

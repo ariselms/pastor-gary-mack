@@ -102,7 +102,7 @@ export default function UserProfileForm({
 	return (
 		<div
 			id="application-form"
-			className="border-slate-700 pb-16">
+			className="border-slate-700 py-8">
 			<h2 className="text-base font-semibold leading-7 text-slate-100">
 				{language === languageOptions.english
 					? "User Information"

@@ -1,4 +1,5 @@
 // app/api/webhooks/stripe/route.ts
+// TODO: add the webhook for when the user cancel a subscription...
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -40,10 +41,6 @@ export async function POST(req: Request) {
 
 			// Now we can safely access line_items
 			const productInfo = session.line_items?.data[0];
-
-      console.log("Product: ", productInfo)
-
-      console.log("Category: ", session.metadata?.itemCategory);
 
 			if (session.metadata?.itemCategory === saleCagegories?.book) {
 				// Prepare data for DB
@@ -111,7 +108,12 @@ export async function POST(req: Request) {
 					stripe_price_id: productInfo?.price?.id,
 					stripe_unit_amount: productInfo?.price?.unit_amount,
 					created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
-					image_url: session.metadata?.itemImage || ""
+					image_url: session.metadata?.itemImage || "",
+					is_active:
+						session.metadata?.itemName === "Donar Mensual"
+            || session.metadata?.itemName === "Donate Monthly"
+            ? true
+            : false
 				};
 
 				if (!donationOrder.by_user_id) {

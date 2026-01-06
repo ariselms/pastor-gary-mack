@@ -26,18 +26,38 @@ export async function POST(req: Request) {
 			);
 		}
 
+		// -- FIND OR CREATE CUSTOMER -- //
+		let customerId: string;
+
+		const existingCustomers = await stripe.customers.list({
+			email: user.contact_email,
+			limit: 1
+		});
+
+		if (existingCustomers.data.length > 0) {
+
+			customerId = existingCustomers.data[0].id;
+
+		} else {
+
+			const newCustomer = await stripe.customers.create({
+				email: user.contact_email,
+				name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+				metadata: { userId: user.id }
+			});
+
+			customerId = newCustomer.id;
+
+		}
+
 		// 4. Create the Stripe Session
 		const stripeSession = await stripe.checkout.sessions.create({
 			locale: currentLanguage === "en" ? "en" : "es",
-			tax_id_collection: {
-				enabled: true
-			},
-			automatic_tax: {
-				enabled: true
-			},
-			customer_creation: "always",
+			customer: customerId, // Use the ID we found above
 			client_reference_id: user.id,
-			customer_email: user.contact_email,
+      invoice_creation: {
+        enabled: true
+      },
 			line_items: [
 				{
 					price: book.default_price.id,
