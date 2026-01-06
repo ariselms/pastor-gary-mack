@@ -35,12 +35,12 @@ export function ModalToPromptUserToLogin({
 				<div className="space-y-6">
 					<p className="text-base leading-relaxed text-slate-200">
 						{language === languageOptions.english
-							? ""
+							? "Because we document all transactions for legal and accountability purposes, you must be logged in to make purchases or donations. This ensures your history is correctly associated with your account."
 							: "Debido a que documentamos todas las transacciones por motivos legales, para realizar compras o donaciones, es necesario iniciar una sesión para poder asociar tu historial."}
 					</p>
 					<p className="text-base leading-relaxed text-slate-200">
 						{language === languageOptions.english
-							? ""
+							? "To proceed, please log in using just your email address. Otherwise, you may simply close this window."
 							: "Si eso es lo que quieres, debes iniciar sesión, todo lo que necesitas es tu correo electrónico. Si no, puedes simplemente cerrar esta ventana."}
 					</p>
 				</div>
