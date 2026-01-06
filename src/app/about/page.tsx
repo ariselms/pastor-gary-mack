@@ -3,7 +3,6 @@ import { AboutPageContent } from "@/components/pages-content/AboutPageContent";
 import { languageOptions } from "@/static";
 import { cookies } from "next/headers";
 
-
 export default function AboutUsPage() {
 	return (
 		<main className="bg-black" role="main">
@@ -13,27 +12,25 @@ export default function AboutUsPage() {
 }
 
 export async function generateMetadata(): Promise<any> {
-  // 1. Get the language cookie
-  const language = (await cookies()).get("language")?.value;
+	// 1. Get the language cookie
+	const language = (await cookies()).get("language")?.value;
 
-  // 2. Define logic
-  const isEnglish = language === languageOptions.english
+	// 2. Define logic
+	const isEnglish = language === languageOptions.english;
 
-  // 3. Return the metadata object dynamically
-  return {
+	// 3. Return the metadata object dynamically
+	return {
 		title: isEnglish
-			? "Pastor Gary Mack - Ministerio Los Rescatados Rescatando - Sobre Nosotros"
-			: "Pastor Gary Mack - Los Rescatados Rescatando Ministry - About Us",
+			? "Bio | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
+			: "Biografía | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 		description: isEnglish
-			? "Discover the Christian books created by Pastor Gary Mack."
-			: "Conoce los libros cristianos creados por el pastor Gary Mack.",
+			? "Learn about the Pastor Gary Mack's life, a short bio about his beginnings, God's call and current work in the ministry."
+			: "Aprende sobre la vida del Pastor Gary Mack, una biografía breve sobre sus inicios, el llamado de Dios y su trabajo actual en el ministerio.",
 		keywords: [
 			"pastor gary mack",
 			isEnglish
-				? "los rescatados rescatando ministry"
-				: "ministerio los rescatados rescatando",
-			isEnglish ? "mongoose mentality book" : "libro mentalidad de mangosta",
-			isEnglish ? "the prayer god wants" : "libro la oración que Dios quiere"
+				? "los rescatados rescatando ministry, mongoose mentality, the prayer that God wants"
+				: "ministerio los rescatados rescatando, mentalidad de mangosta, la oración que Dios quiere"
 		],
 		robots: {
 			index: true,
@@ -41,12 +38,12 @@ export async function generateMetadata(): Promise<any> {
 		},
 		openGraph: {
 			title: isEnglish
-				? "Pastor Gary Mack - Ministry Los Rescatados Rescatando"
-				: "Pastor Gary Mack - Ministerio Los Rescatados Rescatando",
+				? "Bio | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
+				: "Biografía | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 			description: isEnglish
-				? "Pastor Gary Mack welcomes you to the page. We appreciate your support."
-				: "Pastor Gary Mack - Ministerio Los Rescatados Rescatando te da la bienvenida a mi página. Agradecemos tu apoyo a nuestro ministerio.",
-			url: "https://pastorgarymack.com/about",
+				? "Learn about the Pastor Gary Mack's life, a short bio about his beginnings, God's call and current work in the ministry."
+				: "Aprende sobre la vida del Pastor Gary Mack, una biografía breve sobre sus inicios, el llamado de Dios y su trabajo actual en el ministerio.",
+			url: "https://pastorgarymack.com/",
 			siteName: "Pastor Gary Mack",
 			type: "website",
 			locale: isEnglish ? "en_US" : "es_US",

@@ -3,7 +3,6 @@ import { languageOptions } from "@/static";
 import { cookies } from "next/headers";
 
 export default async function BooksPage() {
-
 	return (
 		<main className="bg-black" role="main">
 			<BookPageContent />
@@ -16,23 +15,21 @@ export async function generateMetadata(): Promise<any> {
 	const language = (await cookies()).get("language")?.value;
 
 	// 2. Define logic
-	const isEnglish = language === languageOptions.english
+	const isEnglish = language === languageOptions.english;
 
 	// 3. Return the metadata object dynamically
 	return {
 		title: isEnglish
-			? "Pastor Gary Mack - Author of Christian Books"
-			: "Pastor Gary Mack - Autor de varios libros cristianos",
+			? "Books | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
+			: "Libros | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 		description: isEnglish
-			? "Discover the Christian books created by Pastor Gary Mack."
-			: "Conoce los libros cristianos creados por el pastor Gary Mack.",
+			? "Discover Pastor Gary Mack's Christian books, grow in faith and support our ministry."
+			: "Descubre los libros del Pastor Gary Mack, crece en la fe y apoya nuestro ministerio.",
 		keywords: [
 			"pastor gary mack",
 			isEnglish
-				? "los rescatados rescatando ministry"
-				: "ministerio los rescatados rescatando",
-			isEnglish ? "mongoose mentality book" : "libro mentalidad de mangosta",
-			isEnglish ? "the prayer god wants" : "libro la oración que Dios quiere"
+				? "los rescatados rescatando ministry, mongoose mentality, the prayer that God wants"
+				: "ministerio los rescatados rescatando, mentalidad de mangosta, la oración que Dios quiere"
 		],
 		robots: {
 			index: true,
@@ -40,12 +37,12 @@ export async function generateMetadata(): Promise<any> {
 		},
 		openGraph: {
 			title: isEnglish
-				? "Pastor Gary Mack - Ministry Los Rescatados Rescatando"
-				: "Pastor Gary Mack - Ministerio Los Rescatados Rescatando",
+				? "Discover Pastor Gary Mack's Christian books, grow in faith and support our ministry."
+				: "Descubre los libros del Pastor Gary Mack, crece en la fe y apoya nuestro ministerio.",
 			description: isEnglish
-				? "Pastor Gary Mack welcomes you to the page. We appreciate your support."
-				: "Pastor Gary Mack - Ministerio Los Rescatados Rescatando te da la bienvenida a mi página. Agradecemos tu apoyo a nuestro ministerio.",
-			url: "https://pastorgarymack.com/books",
+				? "Discover Pastor Gary Mack's Christian books, grow in faith and support our ministry."
+				: "Descubre los libros del Pastor Gary Mack, crece en la fe y apoya nuestro ministerio.",
+			url: "https://pastorgarymack.com/",
 			siteName: "Pastor Gary Mack",
 			type: "website",
 			locale: isEnglish ? "en_US" : "es_US",
