@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<any> {
 			"pastor gary mack",
 			isEnglish
 				? "los rescatados rescatando ministry, mongoose mentality, the prayer that God wants"
-				: "ministerio los rescatados rescatando, mentalidad de mangosta, la oración que Dios quiere"
+				: "ministerio los rescatados rescatando, mentalidad de mangosta, la oración que el Padre quiere"
 		],
 		robots: {
 			index: true,

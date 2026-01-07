@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<any> {
 			: "Donar | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 		description: isEnglish
 			? "Support our ministry with any amount. We appreciate your support. May the Father God bless you!"
-			: "Apoya nuestro ministerio con cualquier cantidad. Apreciamos tu apoyo. Dios Padre te bendiga!",
+			: "Apoya nuestro ministerio con cualquier cantidad. Apreciamos tu apoyo. El Padre te bendiga!",
 		keywords: [
 			"donate to pastor gary mack",
 			isEnglish
@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<any> {
 				: "Donar | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 			description: isEnglish
 				? "Support our ministry with any amount. We appreciate your support. May the Father God bless you!"
-				: "Apoya nuestro ministerio con cualquier cantidad. Apreciamos tu apoyo. Dios Padre te bendiga!",
+				: "Apoya nuestro ministerio con cualquier cantidad. Apreciamos tu apoyo. El Padre te bendiga!",
 			url: "https://pastorgarymack.com/",
 			siteName: "Pastor Gary Mack",
 			type: "website",

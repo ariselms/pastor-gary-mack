@@ -87,7 +87,7 @@ export const mentalidadDeMangostaValues = (isEnglish: boolean) => [
 		coreValue: isEnglish ? "Bold Faith" : "Fe Audaz",
 		belief: isEnglish
 			? "Prayer is not just asking; it is a weapon of warfare used to dismantle the works of the enemy. God is pleased when His children pray with the authority He gave them."
-			: "La oración no es solo pedir; es un arma de guerra usada para desmantelar las obras del enemigo. A Dios le agrada cuando Sus hijos oran con la autoridad que Él les dio.",
+			: "La oración no es solo pedir; es un arma de guerra usada para desmantelar las obras del enemigo. A el Padre le agrada cuando Sus hijos oran con la autoridad que Él les dio.",
 		verse: isEnglish
 			? "Let us then approach God’s throne of grace with confidence... (Hebrews 4:16)"
 			: "Acerquémonos, pues, confiadamente al trono de la gracia... (Hebreos 4:16)"
@@ -98,7 +98,7 @@ export const mentalidadDeMangostaValues = (isEnglish: boolean) => [
 		coreValue: isEnglish ? "Relentless Persistence" : "Persistencia Implacable",
 		belief: isEnglish
 			? "The prayer that pleases God is the one that refuses to give up. It is the 'widow and the judge' type of intercession: pounding on the door of Heaven until the answer manifests."
-			: "La oración que agrada a Dios es la que se niega a rendirse. Es el tipo de intercesión de 'la viuda y el juez': golpear la puerta del Cielo hasta que la respuesta se manifieste.",
+			: "La oración que agrada a el Padre es la que se niega a rendirse. Es el tipo de intercesión de 'la viuda y el juez': golpear la puerta del Cielo hasta que la respuesta se manifieste.",
 		verse: isEnglish
 			? "...that they should always pray and not give up. (Luke 18:1)"
 			: "...la necesidad de orar siempre, y no desmayar. (Lucas 18:1)"
@@ -135,7 +135,7 @@ export const mentalidadDeMangostaValues = (isEnglish: boolean) => [
 		coreValue: isEnglish ? "Expectant Faith" : "Fe Expectante",
 		belief: isEnglish
 			? "Prayer without the expectation of an answer is an insult to God’s character. We pray from a position of victory, not for victory, because Christ has already overcome."
-			: "Orar sin esperar una respuesta es un insulto al carácter de Dios. Oramos desde una posición de victoria, no para obtener la victoria, porque Cristo ya venció.",
+			: "Orar sin esperar una respuesta es un insulto al carácter de el Padre. Oramos desde una posición de victoria, no para obtener la victoria, porque Cristo ya venció.",
 		verse: isEnglish
 			? "But when you ask, you must believe and not doubt... (James 1:6)"
 			: "Pero pida con fe, no dudando nada... (Santiago 1:6)"
