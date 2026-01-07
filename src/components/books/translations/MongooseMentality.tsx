@@ -11,7 +11,7 @@ export default function MongooseMentalityBook() {
 		{ id: "acknowledgments", title: "Acknowledgments" },
 		{ id: "introduction", title: "Introduction" },
 		{ id: "chapter-1", title: "Chapter 1: The Beginning" },
-		{ id: "chapter-2", title: "Chapter 2: God's Heart" },
+		{ id: "chapter-2", title: "Chapter 2: Father God's Heart Also Loves the Lost" },
 		{ id: "chapter-3", title: "Chapter 3: Forged in Fire" },
 		{ id: "chapter-4", title: "Chapter 4: The Secret to Victory" },
 		{ id: "chapter-5", title: "Chapter 5: No Conquest Without Faith" },
@@ -154,10 +154,11 @@ export default function MongooseMentalityBook() {
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
 							<p>
-								I thank Almighty God for allowing me to write this book. I thank
+								I thank Father God for allowing me to write this book. I thank
 								my family, especially my wife and children, for enduring and
 								understanding all the times I have had to sacrifice some of the
-								time I dedicate to them to carry out these projects for God.
+								time I dedicate to them to carry out these projects for my
+								Father.
 							</p>
 							<p>
 								I am grateful to the entire congregation, the ministry, the
@@ -168,7 +169,7 @@ export default function MongooseMentalityBook() {
 							<p>
 								I am grateful to each and every person who stood up against me;
 								they were a motivation for me not to stop and to be able to show
-								them that God fulfills his purpose in my life.
+								them that Father God fulfills his purpose in my life.
 							</p>
 							<p>
 								I urge you never to stop, no matter how many rise up, because
@@ -221,31 +222,33 @@ export default function MongooseMentalityBook() {
 							</p>
 
 							<h3 className="text-2xl font-bold text-yellow-100 mt-8 mb-4">
-								A past transformed by God
+								A past transformed by Father God
 							</h3>
 							<p>
 								Throughout my life, I faced situations that made me question my
 								worth, my strength, and even my purpose. From a young age, the
 								abuse I suffered seemed to define who I was and who I would
 								become. However, I discovered that we are not condemned to be
-								prisoners of our past. Although scars may try to define us, God
-								has the power to transform any situation. He can restore our
-								lives, change our story, and give us a new identity.
+								prisoners of our past. Although scars may try to define us,
+								Father God has the power to transform any situation. He can
+								restore our lives, change our story, and give us a new identity.
 							</p>
 							<p>
 								The key to this transformation lies in a life of prayer and
-								intimacy with God. It is through prayer that we break the chains
-								that bind us to the past and move forward with firm steps toward
-								our purpose. Without a deep connection with God, it is difficult
-								to maintain a renewed mindset; but when we surrender our burdens
-								to Him, He strengthens us to face and overcome them.
+								intimacy with Father God. It is through prayer that we break the
+								chains that bind us to the past and move forward with firm steps
+								toward our purpose. Without a deep connection with Father God,
+								it is difficult to maintain a renewed mindset; but when we
+								surrender our burdens to Him, He strengthens us to face and
+								overcome them.
 							</p>
 							<p>
 								Throughout this book, I will share how, despite what I've been
 								through, I managed to change my mindset: I went from being a
 								victim of circumstance to someone who walks with sure steps
-								toward the destiny God has designed for me. I want you to know
-								that this transformation process isn't easy, but it is possible.
+								toward the destiny Father God has designed for me. I want you to
+								know that this transformation process isn't easy, but it is
+								possible.
 							</p>
 
 							<h3 className="text-2xl font-bold text-yellow-100 mt-8 mb-4">
@@ -256,13 +259,13 @@ export default function MongooseMentalityBook() {
 								When I decided to stop living in the shadow of my past, I began
 								to see my life differently. Just as the mongoose confronts its
 								predator, we too can face our greatest fears, insecurities, and
-								traumas with the strength God gives us.
+								traumas with the strength Father God gives us.
 							</p>
 							<p>
 								There were times when I thought I couldn't get better, that I
 								was stuck in the valley of despair. But when I started to pray,
-								to renew my mind, and to put my trust in God, everything began
-								to change. The Bible says:{" "}
+								to renew my mind, and to put my trust in Father God, everything
+								began to change. The Bible says:{" "}
 								<span className="italic text-yellow-200/90">
 									"Do not conform to the pattern of this world, but be
 									transformed by the renewing of your mind."
@@ -274,15 +277,16 @@ export default function MongooseMentalityBook() {
 								). Although I had no control over what happened to me as a
 								child, I did have control over how I would live from that moment
 								on and how I would use those experiences as motivation to grow
-								with God's help.
+								with Father God's help.
 							</p>
 							<p>
 								I want you to know that no matter what you've faced in your
-								life, God can change your story. If I was able to change my
-								mindset, heal, and improve, you can too. The transformation we
-								seek begins in our minds and in our relationship with God. Every
-								external change is a reflection of an internal transformation,
-								and that transformation comes when we fully trust in Him.
+								life, Father God can change your story. If I was able to change
+								my mindset, heal, and improve, you can too. The transformation
+								we seek begins in our minds and in our relationship with Father
+								God. Every external change is a reflection of an internal
+								transformation, and that transformation comes when we fully
+								trust in Him.
 							</p>
 						</div>
 					</section>
@@ -305,9 +309,9 @@ export default function MongooseMentalityBook() {
 							<p>
 								But to help you better understand what I mean, let me share a
 								part of my personal story. My testimony reflects how, despite
-								the adversities and circumstances I faced, God's purpose was
-								always present, guiding me through every challenge to transform
-								me and lead me toward the life He designed for me.
+								the adversities and circumstances I faced, Father God's purpose
+								was always present, guiding me through every challenge to
+								transform me and lead me toward the life He designed for me.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -365,9 +369,9 @@ export default function MongooseMentalityBook() {
 								When my paternal grandmother learned of the situation, she
 								decided to take me into her home. She began to raise me and
 								teach me life principles, such as studying, being kind to
-								others, and seeking God. However, despite this, I didn't have a
-								normal childhood. While other children played, I had to go out
-								and sell empanadas in the streets, or walk around hawking
+								others, and seeking Father God. However, despite this, I didn't
+								have a normal childhood. While other children played, I had to
+								go out and sell empanadas in the streets, or walk around hawking
 								mangoes, avocados, and lemongrass, depending on the harvest
 								season. I also sold charcoal and collected food in the
 								neighborhood for the pigs my grandmother raised.
@@ -400,10 +404,12 @@ export default function MongooseMentalityBook() {
 							<p>
 								Reading this part of my story and all that I had to suffer, it's
 								normal to wonder:{" "}
-								<span className="italic text-yellow-300">Where was God?</span>{" "}
+								<span className="italic text-yellow-300">
+									Where was Father God?
+								</span>{" "}
 								In moments of pain and suffering, we question how a good being
 								can allow such evil things to happen. Yet, in the midst of
-								anguish and pain, God is present. We may not perceive Him
+								anguish and pain, Father God is present. We may not perceive Him
 								immediately, but He is there, and I was able to confirm it.
 							</p>
 
@@ -427,10 +433,11 @@ export default function MongooseMentalityBook() {
 								my uncles was trying to kill me. I jumped out of bed, running
 								and screaming for help, and the neighbors came to my defense.
 								They were the ones who took care of me after my grandmother
-								died, and I am grateful to God for putting these people in my
-								path during that difficult time. In the midst of it all, God
-								used them to show His faithfulness. They fed me, clothed me, and
-								their support was so important during those times of crisis.
+								died, and I am grateful to Father God for putting these people
+								in my path during that difficult time. In the midst of it all,
+								Father God used them to show His faithfulness. They fed me,
+								clothed me, and their support was so important during those
+								times of crisis.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -450,12 +457,13 @@ export default function MongooseMentalityBook() {
 							<p>
 								Anyone who carefully analyzes this part of my story might think
 								that this dark period, which I consider more of a stop on the
-								train of my life, wasn't part of God's plan. And, in reality,
-								it's logical to think that way. However, it's important to
-								understand the miraculous nature of God's word. Every experience
-								we go through, even if not directly caused by Him, can be used
-								by God to show His glory through us. Often, in these difficult
-								times, God manifests Himself in unexpected and powerful ways.
+								train of my life, wasn't part of Father God's plan. And, in
+								reality, it's logical to think that way. However, it's important
+								to understand the miraculous nature of Father God's word. Every
+								experience we go through, even if not directly caused by Him,
+								can be used by Father God to show His glory through us. Often,
+								in these difficult times, Father God manifests Himself in
+								unexpected and powerful ways.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -463,36 +471,36 @@ export default function MongooseMentalityBook() {
 							</h3>
 							<p>
 								I am certain that everything I went through with my mother had a
-								purpose in God's plan. Today, my mother serves Christ, and our
-								relationship has been transformed: she loves me, and I love her.
-								My youngest brother is also a Christian, and now only my other
-								brother remains. However, I trust that God is working in his
-								life. I remember that one day He told me that my whole family
-								would serve Him, and I believed Him. I have seen how that
-								promise is being fulfilled and how God has been glorified in our
-								lives.
+								purpose in Father God's plan. Today, my mother serves Christ,
+								and our relationship has been transformed: she loves me, and I
+								love her. My youngest brother is also a Christian, and now only
+								my other brother remains. However, I trust that Father God is
+								working in his life. I remember that one day He told me that my
+								whole family would serve Him, and I believed Him. I have seen
+								how that promise is being fulfilled and how Father God has been
+								glorified in our lives.
 							</p>
 							<p>
 								Therefore, I have no doubt that everything I suffered, even
 								though I didn't understand it at the time, was somehow used by
-								God in His divine plan for my benefit. What the enemy thought
-								would destroy me, God reversed and used to bring blessing to my
-								life.
+								Father God in His divine plan for my benefit. What the enemy
+								thought would destroy me, Father God reversed and used to bring
+								blessing to my life.
 							</p>
 							<p>
 								But the process wasn't easy. It required humility in His
 								presence and prayer. I want to teach you that if you don't have
 								a prayer life, make the necessary adjustments to begin praying
 								immediately. Prayer is the most effective way, and I would say
-								the only way, to maintain constant communication with God. You
-								cannot receive the revelation of God's purpose for your life
-								without prayer.
+								the only way, to maintain constant communication with Father
+								God. You cannot receive the revelation of Father God's purpose
+								for your life without prayer.
 							</p>
 							<p>
-								Always seek to listen to God and speak to Him; make Him your
-								friend. This will ensure your victory in the Christian life.
-								Leave the past behind and focus on the glorious future God has
-								in store for you.
+								Always seek to listen to Father God and speak to Him; make Him
+								your friend. This will ensure your victory in the Christian
+								life. Leave the past behind and focus on the glorious future
+								Father God has in store for you.
 							</p>
 						</div>
 					</section>
@@ -506,9 +514,9 @@ export default function MongooseMentalityBook() {
 						</h2>
 						<div className="space-y-6 text-lg text-slate-200">
 							<p>
-								Sometimes we think that God only blesses and helps those who
-								follow Him and strive to do His will. As Christians, we run the
-								risk of becoming insensitive to the suffering of others,
+								Sometimes we think that Father God only blesses and helps those
+								who follow Him and strive to do His will. As Christians, we run
+								the risk of becoming insensitive to the suffering of others,
 								especially when we feel that, being saved, we are fine. However,
 								we must remember that the world is full of people who suffer,
 								and although it may seem hard to believe, these people also
@@ -550,8 +558,8 @@ export default function MongooseMentalityBook() {
 								National Drug Control Directorate (DNCD) were going to raid the
 								neighborhood where I was involved in drug micro-trafficking, I
 								would pack everything up and go to a church to attend a service,
-								praying to God that the DNCD wouldn't find me. But one day,
-								members of that agency carried out a raid at 4:00 in the
+								praying to Father God that the DNCD wouldn't find me. But one
+								day, members of that agency carried out a raid at 4:00 in the
 								afternoon, and at that hour there were no churches open, so I
 								had to go to the house of an associate in the criminal
 								enterprise.
@@ -578,7 +586,7 @@ export default function MongooseMentalityBook() {
 							<p>
 								I wondered where I should run. Then I remembered that when I was
 								in trouble, I cried out to God. Time seemed to stand still. I
-								looked up at the sky, spoke to God aloud, and said:
+								looked up at the sky, spoke to Father God aloud, and said:
 							</p>
 
 							<div className="bg-neutral-800/50 p-4 rounded-lg italic text-slate-300">
@@ -607,9 +615,9 @@ export default function MongooseMentalityBook() {
 								</span>
 							</p>
 							<p>
-								I knew that lightning flash had been a sign from God to let me
-								know He was listening to me, because it wasn't even cloudy. So I
-								kept talking to Him and said:
+								I knew that lightning flash had been a sign from Father God to
+								let me know He was listening to me, because it wasn't even
+								cloudy. So I kept talking to Him and said:
 							</p>
 							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—God, if you get me out of this, I will serve you with my life;
@@ -676,19 +684,19 @@ export default function MongooseMentalityBook() {
 							</p>
 							<p>
 								In 18 years of drug use, I had never heard voices, but that day
-								I heard that voice and I knew it was the voice of God. Loud,
-								clear, and unmistakable.
+								I heard that voice and I knew it was the voice of Father God.
+								Loud, clear, and unmistakable.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
-								Does God listen to the sinner?
+								Does Father God listen to the sinner?
 							</h3>
 							<p>
 								I know this part of my story may be controversial for many,
-								because there's a notion that God doesn't hear the sinner's
-								prayer. However, it's worth asking to what extent this is true,
-								since we all begin in a sinful state, and the Lord, in His
-								infinite mercy, has heard our cries.
+								because there's a notion that Father God doesn't hear the
+								sinner's prayer. However, it's worth asking to what extent this
+								is true, since we all begin in a sinful state, and the Lord, in
+								His infinite mercy, has heard our cries.
 							</p>
 							<p>
 								Although I do not want to make a doctrine of it, since the
@@ -703,9 +711,9 @@ export default function MongooseMentalityBook() {
 									Luke 18:13-14
 								</strong>
 								. In this passage, a tax collector acknowledges his sins and
-								disobedience before God, as well as his lack of merit to find
-								forgiveness. In verse 14, Jesus Christ himself says that this
-								man went home justified, while in the preceding verses, the
+								disobedience before Father God, as well as his lack of merit to
+								find forgiveness. In verse 14, Jesus Christ himself says that
+								this man went home justified, while in the preceding verses, the
 								Pharisee boasts of fasting twice a week and fulfilling the
 								entire law, forgetting that before the Almighty no one can be
 								justified except by His grace. It is from this recognition of
@@ -713,14 +721,14 @@ export default function MongooseMentalityBook() {
 								with this precious gospel.
 							</p>
 							<p>
-								I understand that if God hadn't heard me and rescued me when the
-								DNCD almost arrested me, I don't know where I'd be today. But
-								something happened: I placed all my faith and trust in the
-								Lord's mercy, and I was blessed when my cry was heard and
+								I understand that if Father God hadn't heard me and rescued me
+								when the DNCD almost arrested me, I don't know where I'd be
+								today. But something happened: I placed all my faith and trust
+								in the Lord's mercy, and I was blessed when my cry was heard and
 								answered. That's why today I serve Him with immense joy, facing
-								every obstacle with faith and courage. If God did it once, I
-								have complete certainty that He will do it again, and His glory
-								will be even greater.
+								every obstacle with faith and courage. If Father God did it
+								once, I have complete certainty that He will do it again, and
+								His glory will be even greater.
 							</p>
 							<p>
 								Make this truth a firm conviction in your life: remain constant
@@ -756,8 +764,8 @@ export default function MongooseMentalityBook() {
 							</p>
 							<p>
 								I went through a similar phase too. After surrendering my life
-								to Christ, while I was praying one day, God spoke to me clearly
-								and asked me to get rid of everything I owned: clothes,
+								to Christ, while I was praying one day, Father God spoke to me
+								clearly and asked me to get rid of everything I owned: clothes,
 								furniture, and other household belongings. All of it came from
 								illicit activities, and obeying His voice, I threw it all away.
 								I was left with literally nothing.
@@ -778,9 +786,9 @@ export default function MongooseMentalityBook() {
 								One day, the pastor of the church approached me and told me we
 								had to find another place to sleep, that we couldn't continue
 								staying at the church with the other members. People in the
-								neighborhood were already talking about what God had done in our
-								lives, in my wife's and mine. He knew that as long as we were
-								there, there wouldn't be any robberies in the church or the
+								neighborhood were already talking about what Father God had done
+								in our lives, in my wife's and mine. He knew that as long as we
+								were there, there wouldn't be any robberies in the church or the
 								surrounding area.
 							</p>
 							<p>
@@ -797,11 +805,11 @@ export default function MongooseMentalityBook() {
 								and suffered greatly. We had no choice; we couldn't sleep on the
 								street. The people in the neighborhood knew me well; they knew
 								everything I had been through before coming to Christ, what my
-								life had been like in the world. Now that I was on God's path,
-								they couldn't bear to see me in that situation, sleeping on the
-								street. They would question me about love and compassion in the
-								church, and that would not only be humiliating but could also
-								damage my witness to the kingdom of God.
+								life had been like in the world. Now that I was on Father God's
+								path, they couldn't bear to see me in that situation, sleeping
+								on the street. They would question me about love and compassion
+								in the church, and that would not only be humiliating but could
+								also damage my witness to the kingdom of God.
 							</p>
 							<p>
 								Desperate, I made a decision. My wife and I started sleeping in
@@ -824,20 +832,20 @@ export default function MongooseMentalityBook() {
 								Despite the hardships, we maintained a prayer routine from 5 to
 								7 in the morning. During those hours, our struggle was not only
 								against physical difficulties, but also a spiritual battle. We
-								fervently proclaimed the kingdom of God.
+								fervently proclaimed the kingdom of Father God.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
-								God is not absent in our difficulty
+								Father God is not absent in our difficulty
 							</h3>
 							<p>
 								You probably know the story of Shadrach, Meshach, and Abednego,
-								three young men whose faith in God led them to face a very
-								difficult test. When they refused to worship the golden statue
-								that King Nebuchadnezzar had erected, they were thrown into a
-								blazing furnace. But something amazing happened: the king not
-								only saw the three young men in the furnace, but he also noticed
-								a fourth figure with them,{" "}
+								three young men whose faith in Father God led them to face a
+								very difficult test. When they refused to worship the golden
+								statue that King Nebuchadnezzar had erected, they were thrown
+								into a blazing furnace. But something amazing happened: the king
+								not only saw the three young men in the furnace, but he also
+								noticed a fourth figure with them,{" "}
 								<span className="italic text-yellow-200">
 									"as a son of the gods"
 								</span>{" "}
@@ -849,30 +857,30 @@ export default function MongooseMentalityBook() {
 								of their trial.
 							</p>
 							<p>
-								This detail is crucial. Sometimes, God will not deliver us from
-								difficulties, but will enter into them with us. In{" "}
+								This detail is crucial. Sometimes, Father God will not deliver
+								us from difficulties, but will enter into them with us. In{" "}
 								<strong className="text-yellow-300 font-bold">
 									Isaiah 43:2
 								</strong>
-								, God promises us:{" "}
+								, Father God promises us:{" "}
 								<span className="italic text-yellow-200">
 									"When you pass through the waters, I will be with you; and
 									when you pass through the rivers, they will not sweep over
 									you; when you walk through the fire, you will not be burned;
 									the flames will not set you ablaze."
 								</span>{" "}
-								Instead of eliminating suffering, God joins us in the midst of
-								it, offering us His presence and strength.
+								Instead of eliminating suffering, Father God joins us in the
+								midst of it, offering us His presence and strength.
 							</p>
 							<p>
 								He assures us that we are not alone in our struggles. Even
-								though we face challenges and trials, God's presence transforms
-								our difficulties into blessings and spiritual growth. My wife
-								and I are living witnesses to this. Just as gold is purified in
-								fire, we are strengthened through trials. The key is not to run
-								from the process, but to embrace it, knowing that every step we
-								take, every difficult moment we go through, is shaping us into
-								the character of a true victor.
+								though we face challenges and trials, Father God's presence
+								transforms our difficulties into blessings and spiritual growth.
+								My wife and I are living witnesses to this. Just as gold is
+								purified in fire, we are strengthened through trials. The key is
+								not to run from the process, but to embrace it, knowing that
+								every step we take, every difficult moment we go through, is
+								shaping us into the character of a true victor.
 							</p>
 							<p>
 								Today, our lives have changed radically. Every week we visit
@@ -885,8 +893,8 @@ export default function MongooseMentalityBook() {
 								We have witnessed over a thousand prisoners accept Christ. In
 								our evangelistic campaigns, we have seen criminals surrender
 								knives, daggers, and firearms as they give themselves to Christ.
-								They have seen the change in my life and trust that God can do
-								the same in theirs.
+								They have seen the change in my life and trust that Father God
+								can do the same in theirs.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -900,9 +908,9 @@ export default function MongooseMentalityBook() {
 								My wife and I faced moments of deep sorrow and discouragement,
 								but instead of remaining stuck in sadness, we chose to take our
 								suffering to the cross of Christ. We transformed our pain into
-								an opportunity to glorify God and speak of His greatness. We
-								learned to recognize His purpose in our lives as a couple chosen
-								for His glory.
+								an opportunity to glorify Father God and speak of His greatness.
+								We learned to recognize His purpose in our lives as a couple
+								chosen for His glory.
 							</p>
 							<p>
 								Remaining silent and inactive only fuels spiritual laziness,
@@ -911,9 +919,9 @@ export default function MongooseMentalityBook() {
 								circumstances, but we cannot allow those excuses to hold us
 								back. Moses was a stutterer, but that didn't prevent him from
 								leading the people of Israel. Gideon felt insignificant and
-								fearful, but God used him to deliver Israel from the Midianites.
-								Jeremiah was young and felt he lacked the necessary experience,
-								but God called him to be a powerful prophet.
+								fearful, but Father God used him to deliver Israel from the
+								Midianites. Jeremiah was young and felt he lacked the necessary
+								experience, but Father God called him to be a powerful prophet.
 							</p>
 							<p>
 								Spiritual mediocrity arises when we choose comfort over courage,
@@ -926,9 +934,10 @@ export default function MongooseMentalityBook() {
 								filling ourselves with resentment toward those who should be
 								helping us. It's easy to waver in our faith and succumb to
 								despair. But that attitude belongs to those who are called, but
-								not chosen. Those who have truly been selected by God and have
-								the courage to be brave, put on the armor of Christ and go out
-								onto the battlefield with faith in God as their guide.
+								not chosen. Those who have truly been selected by Father God and
+								have the courage to be brave, put on the armor of Christ and go
+								out onto the battlefield with faith in Father God as their
+								guide.
 							</p>
 							<p>
 								I won't deny that discouraging thoughts arose. This is a very
@@ -937,8 +946,8 @@ export default function MongooseMentalityBook() {
 								difficulties, with my previous life, when money came in
 								questionable ways. But since Christ rescued me, He has sealed me
 								for His glory. That transformation taught me that, even though
-								the path may be difficult, God's purpose in our lives is much
-								greater than any challenge we may face.
+								the path may be difficult, Father God's purpose in our lives is
+								much greater than any challenge we may face.
 							</p>
 							<p>
 								Some people understand the value of prudence and the power of
@@ -947,7 +956,8 @@ export default function MongooseMentalityBook() {
 								speak boldly about who Jesus is and what he has done in our
 								lives. If I had remained silent during my difficulties and not
 								shared my faith, I cannot imagine where I would be today; I
-								probably wouldn't have the ministry God has entrusted to me.
+								probably wouldn't have the ministry Father God has entrusted to
+								me.
 							</p>
 							<p>
 								Thanks to His eternal mercy, my wife and I have been able to
@@ -998,10 +1008,11 @@ export default function MongooseMentalityBook() {
 							</p>
 							<p>
 								Those who truly achieve victory are not those who sit and cry in
-								the midst of the process, beginning to doubt God's goodness, but
-								those who understand that every trial is preparation, and every
-								process is an opportunity to grow in faith, character, and
-								spiritual maturity. A very famous saying goes that{" "}
+								the midst of the process, beginning to doubt Father God's
+								goodness, but those who understand that every trial is
+								preparation, and every process is an opportunity to grow in
+								faith, character, and spiritual maturity. A very famous saying
+								goes that{" "}
 								<span className="italic text-yellow-200">
 									"God gives his toughest battles to his toughest soldiers"
 								</span>
@@ -1035,55 +1046,57 @@ export default function MongooseMentalityBook() {
 								thing that can truly strengthen our spiritual life.
 							</p>
 							<p>
-								Prayer is the means by which we deepen our communion with God,
-								giving us the assurance that His promises will be fulfilled in
-								our lives. However, if we pray without acknowledging who God is
-								and without the reverence He deserves, we are not genuinely
-								entering His presence.
+								Prayer is the means by which we deepen our communion with Father
+								God, giving us the assurance that His promises will be fulfilled
+								in our lives. However, if we pray without acknowledging who
+								Father God is and without the reverence He deserves, we are not
+								genuinely entering His presence.
 							</p>
 							<p>
 								Sometimes our prayers are brief, lasting 10, 30 minutes, or
 								perhaps an hour, but if we pray with the constancy and depth
-								that Jesus did, our communication with God would become more
-								natural and powerful.
+								that Jesus did, our communication with Father Father God would
+								become more natural and powerful.
 							</p>
 							<p>
 								Jesus, though unsinful, spent entire nights in prayer, as the
 								Gospel of Luke recounts. He would go up the mountain and pray
-								for hours, then come down and perform miracles, fulfilling God's
-								will on earth. If He, being the Son of God, considered prayer a
-								priority, how much more should we, who are imperfect, follow His
-								example. Let us not forget that prayer requires sacrifice and
-								perseverance, something we often avoid because we prefer to rely
-								on our own self-sufficiency rather than seek God's guidance.
+								for hours, then come down and perform miracles, fulfilling
+								Father God's will on earth. If He, being the Son of God,
+								considered prayer a priority, how much more should we, who are
+								imperfect, follow His example. Let us not forget that prayer
+								requires sacrifice and perseverance, something we often avoid
+								because we prefer to rely on our own self-sufficiency rather
+								than seek Father God's guidance.
 							</p>
 							<p>
 								The disciples noticed that every time Jesus prayed, his requests
 								were granted, which led them to want to learn to pray with the
 								same intensity and effectiveness. Jesus taught them that prayer
-								should be an intimate communion with God, a sincere dialogue in
-								the secret place where the Father reveals himself and speaks to
-								our hearts.
+								should be an intimate communion with Father God, a sincere
+								dialogue in the secret place where the Father reveals himself
+								and speaks to our hearts.
 							</p>
 							<p>
 								Through prayer, we receive power and direction for our lives.
 								Jesus emphasized, as recorded in Matthew, that we should pray in
 								secret, not seeking the approval of others, but a genuine
-								relationship with God.
+								relationship with Father God.
 							</p>
 							<p>
-								God doesn't focus so much on the physical place where we pray,
-								but rather on our disposition and communion with Him. We cannot
-								fall into the trap of reducing prayer to a formula or method. No
-								matter how many books we read, prayer cannot be limited to human
-								techniques. It is a spiritual pattern that must be lived out
-								through experience and relationship with God.
+								Father God doesn't focus so much on the physical place where we
+								pray, but rather on our disposition and communion with Him. We
+								cannot fall into the trap of reducing prayer to a formula or
+								method. No matter how many books we read, prayer cannot be
+								limited to human techniques. It is a spiritual pattern that must
+								be lived out through experience and relationship with Father
+								God.
 							</p>
 							<p>
 								Jesus didn't give us a rigid method for praying, but a model to
 								be lived with sincerity and authenticity. Prayer isn't
-								mechanical; it's a space where God reveals himself, speaks to
-								us, and transforms us. As he says{" "}
+								mechanical; it's a space where Father God reveals himself,
+								speaks to us, and transforms us. As he says{" "}
 								<strong className="text-yellow-300 font-bold">
 									Mark 11:24
 								</strong>
@@ -1098,19 +1111,19 @@ export default function MongooseMentalityBook() {
 							</p>
 							<p>
 								It's not so much about the time we spend praying or where we do
-								it, but about the disposition with which we approach God. He
-								seeks a living and authentic relationship with us, and that
+								it, but about the disposition with which we approach Father God.
+								He seeks a living and authentic relationship with us, and that
 								relationship is key to receiving what we have asked for,
 								according to His will and purpose.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
-								Cling to God's will
+								Cling to Father God's will
 							</h3>
 							<p>
 								Many times we find ourselves pursuing our own desires and plans,
-								without realizing that God has a different, much bigger and
-								better purpose for our lives.
+								without realizing that Father God has a different, much bigger
+								and better purpose for our lives.
 							</p>
 							<p>
 								In the model prayer that Jesus taught us, He does not say "Do
@@ -1127,7 +1140,7 @@ export default function MongooseMentalityBook() {
 								His will is good, pleasing, and perfect.
 							</p>
 							<p>
-								As children of God, we must learn to cling to His will,
+								As children of Father God, we must learn to cling to His will,
 								understanding that His ways and thoughts are higher than our own
 								(
 								<strong className="text-yellow-300 font-bold">
@@ -1136,17 +1149,17 @@ export default function MongooseMentalityBook() {
 								). Although we sometimes don't understand the reasons behind
 								certain situations, we must trust that His plan will always lead
 								us to a more blessed destination. Often, what we ask for or long
-								for is limited by our human perspective, but God, who sees the
-								whole picture, has the best for us, even when it doesn't align
-								with what we initially desired.
+								for is limited by our human perspective, but Father God, who
+								sees the whole picture, has the best for us, even when it
+								doesn't align with what we initially desired.
 							</p>
 							<p>
-								Clinging to God's will means letting go of our own desires,
-								submitting our plans to His control, and trusting that He has a
-								purpose for every situation. While it may not always be easy to
-								accept that things don't go as planned, we must remember that
-								what He has in store for us is always greater than anything we
-								can imagine or ask for.
+								Clinging to Father God's will means letting go of our own
+								desires, submitting our plans to His control, and trusting that
+								He has a purpose for every situation. While it may not always be
+								easy to accept that things don't go as planned, we must remember
+								that what He has in store for us is always greater than anything
+								we can imagine or ask for.
 							</p>
 							<p>
 								When Jesus approaches John the Baptist in{" "}
@@ -1178,8 +1191,8 @@ export default function MongooseMentalityBook() {
 								Father, the Son, and the Holy Spirit in a glorious
 								manifestation. Therefore, we should always pray that the
 								Father's will be done, not our own. We ask for things that, in
-								our opinion, are great, but God has even greater blessings
-								prepared for our lives.
+								our opinion, are great, but Father God has even greater
+								blessings prepared for our lives.
 							</p>
 							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic my-6">
 								"Likewise the Spirit helps us in our weakness, for we do not
@@ -1196,15 +1209,16 @@ export default function MongooseMentalityBook() {
 								Holy Spirit puts the right words in our mouths. Thus, as
 								believers in Christ, it is crucial not to cling to material
 								things or positions, but to walk with the mental flexibility
-								that, at any moment, God will move us according to His higher
-								plan. Setting goals is not a sin; in fact, it is a very good and
-								right thing to do, but we must understand that the Lord's ways
-								are higher than our own, and His thoughts are far more perfect.
+								that, at any moment, Father God will move us according to His
+								higher plan. Setting goals is not a sin; in fact, it is a very
+								good and right thing to do, but we must understand that the
+								Lord's ways are higher than our own, and His thoughts are far
+								more perfect.
 							</p>
 							<p>
 								If you have been praying for years for something in particular
-								and suddenly discover that God's will is different, simply give
-								thanks and firmly follow the path He sets.{" "}
+								and suddenly discover that Father God's will is different,
+								simply give thanks and firmly follow the path He sets.{" "}
 								<strong className="text-yellow-300 font-bold">
 									Proverbs 14:12
 								</strong>{" "}
@@ -1215,12 +1229,12 @@ export default function MongooseMentalityBook() {
 								</span>{" "}
 								It is important to reflect on this biblical truth when dreaming
 								about what we desire for our lives, because clinging to ideals
-								without consulting God's will will only lead us down a "path of
-								death".
+								without consulting Father God's will will only lead us down a
+								"path of death".
 							</p>
 							<p>
 								We must allow the Holy Spirit to minister to our spirit
-								regarding God's purpose for us, molding our souls to be
+								regarding Father God's purpose for us, molding our souls to be
 								submissive to His heavenly designs, even though they don't
 								always bring us happiness. Joy, however, will always be present.
 							</p>
@@ -1242,24 +1256,24 @@ export default function MongooseMentalityBook() {
 								<strong className="text-yellow-300 font-bold">
 									Joshua 6:1-20
 								</strong>
-								, God gave an instruction that, humanly speaking, made no sense:
-								to circle the city for six days in silence, and on the seventh
-								day to circle it seven times, blow the trumpets and cry out for
-								the walls of Jericho to fall.
+								, Father God gave an instruction that, humanly speaking, made no
+								sense: to circle the city for six days in silence, and on the
+								seventh day to circle it seven times, blow the trumpets and cry
+								out for the walls of Jericho to fall.
 							</p>
 							<p>
 								Perhaps, for the Israelite army, accustomed to using their
 								weapons in every battle, this strategy may have seemed strange;
 								however, they obeyed with faith, and it was precisely that faith
-								in the word of God that allowed them to conquer the city in a
-								miraculous way.
+								in the word of Father God that allowed them to conquer the city
+								in a miraculous way.
 							</p>
 							<p>
 								How many victories have you lost because of your lack of faith?
 								How many times have you let doubt prevent you from moving toward
-								the victory God has already promised? Faith is the bridge that
-								will take you to a higher level of intimacy with God, where you
-								can achieve the victories you thought were impossible.
+								the victory Father God has already promised? Faith is the bridge
+								that will take you to a higher level of intimacy with God, where
+								you can achieve the victories you thought were impossible.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -1275,11 +1289,11 @@ export default function MongooseMentalityBook() {
 									"Your faith has saved you"
 								</span>
 								. And instantly they received the miracle. Likewise, if we
-								believe, God will do greater, greater, and more powerful things
-								in our lives if we trust in Him.
+								believe, Father God will do greater, greater, and more powerful
+								things in our lives if we trust in Him.
 							</p>
 							<p>
-								I remember one day, at an evangelistic campaign, God was
+								I remember one day, at an evangelistic campaign, Father God was
 								glorified in healing and deliverance from the very first day. On
 								the second day, a mother approached me with her 11-year-old
 								daughter and said:
@@ -1290,7 +1304,8 @@ export default function MongooseMentalityBook() {
 							<p>I replied:</p>
 							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—My dear, remember that it is not I who heals, but the one who
-								sent me, who is God. Do you believe that He will heal you?
+								sent me, who is Father God. Do you believe that He will heal
+								you?
 							</p>
 							<p>And the girl replied:</p>
 							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
@@ -1300,13 +1315,13 @@ export default function MongooseMentalityBook() {
 							<p>The girl continued:</p>
 							<p className="pl-4 border-l-2 border-yellow-300/50 text-yellow-200 italic">
 								—I suffer from epilepsy; every day I wake up at 1:30 in the
-								morning with seizures. If you pray for me, I know God will heal
-								me.
+								morning with seizures. If you pray for me, I know Father God
+								will heal me.
 							</p>
 							<p>
 								I asked her:{" "}
 								<span className="italic text-yellow-200">
-									—Do you believe God will heal you?
+									—Do you believe Father God will heal you?
 								</span>{" "}
 								—and she answered me:{" "}
 								<span className="font-bold text-yellow-300">—Yes.</span>
@@ -1323,8 +1338,9 @@ export default function MongooseMentalityBook() {
 								watching her, waiting to see if she would have the epileptic
 								seizure that always plagued her at that time. The girl asked her
 								what she was doing awake, since the pastor who had prayed for
-								her said that God had healed her. Then, the daughter told her to
-								go back to sleep, assuring her that she was already healed.
+								her said that Father God had healed her. Then, the daughter told
+								her to go back to sleep, assuring her that she was already
+								healed.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -1332,9 +1348,9 @@ export default function MongooseMentalityBook() {
 							</h3>
 							<div className="bg-yellow-900/20 p-6 rounded-lg my-6 border border-yellow-300/30">
 								<p className="italic font-medium text-yellow-100 mb-4">
-									"But without faith it is impossible to please God, because
-									anyone who comes to him must believe that he exists and that
-									he rewards those who earnestly seek him."
+									"But without faith it is impossible to please Father God,
+									because anyone who comes to him must believe that he exists
+									and that he rewards those who earnestly seek him."
 								</p>
 								<p className="text-right font-bold text-yellow-300">
 									—Hebrews 11:6
@@ -1348,45 +1364,46 @@ export default function MongooseMentalityBook() {
 								, The best and clearest definition of faith is given here. It
 								says that faith is the certainty and absolute assurance of what
 								is hoped for, and the conviction and vision of what has not yet
-								been seen. This implies that when we pray to God, we await the
-								miracle without doubting, understanding that God's will for our
-								lives is good.
+								been seen. This implies that when we pray to Father God, we
+								await the miracle without doubting, understanding that Father
+								God's will for our lives is good.
 							</p>
 							<p>
 								When I pray, even though I don't physically see what I'm asking
 								for, in the spiritual realm I know it's a reality. If we take
-								verse 6 and combine it with verse 1, we see that God is pleased
-								with those who don't doubt, with those who believe without
-								seeing. Consequently, He will open the heavens in their favor.
+								verse 6 and combine it with verse 1, we see that Father God is
+								pleased with those who don't doubt, with those who believe
+								without seeing. Consequently, He will open the heavens in their
+								favor.
 							</p>
 							<p>
 								To pray with faith, one must step outside the natural realm and
 								immerse oneself in the spiritual, forgetting human limitations
-								and trusting in God's inexhaustible resources. It is essential
-								to clarify what God's will means, since those who pray with
-								faith accept His will, understanding that it is what is best for
-								the one who asks. Faith breaks chains, but it does not attempt
-								to override the designs of the Holy Spirit.
+								and trusting in Father God's inexhaustible resources. It is
+								essential to clarify what Father God's will means, since those
+								who pray with faith accept His will, understanding that it is
+								what is best for the one who asks. Faith breaks chains, but it
+								does not attempt to override the designs of the Holy Spirit.
 							</p>
 							<p>
-								Faith does not confuse God's will with human emotions. Rather,
-								it is a force that empowers us to bring heaven to earth. The
-								apostle James emphasizes the connection between faith and works,
-								for faith without works is worthless. Therefore, I invite you to
-								strengthen your faith: yes, your conviction in God and the
-								assurance that He guides you in all your ways. Furthermore, I
-								urge you to discipline yourself in prayer, in constant intimacy
-								with the Lord. Only in this way will you see His will fulfilled
-								in your life.
+								Faith does not confuse Father God's will with human emotions.
+								Rather, it is a force that empowers us to bring heaven to earth.
+								The apostle James emphasizes the connection between faith and
+								works, for faith without works is worthless. Therefore, I invite
+								you to strengthen your faith: yes, your conviction in Father God
+								and the assurance that He guides you in all your ways.
+								Furthermore, I urge you to discipline yourself in prayer, in
+								constant intimacy with the Lord. Only in this way will you see
+								His will fulfilled in your life.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
 								Faith without works is dead faith
 							</h3>
 							<p>
-								It's easy to say we have faith in God, that we trust in His
-								power and His promises, but the reality is that faith isn't just
-								a matter of words or thoughts. True faith is demonstrated
+								It's easy to say we have faith in Father God, that we trust in
+								His power and His promises, but the reality is that faith isn't
+								just a matter of words or thoughts. True faith is demonstrated
 								through actions. The apostle James expresses it this way:{" "}
 								<span className="italic text-yellow-200">
 									"So also faith by itself, if it is not accompanied by works,
@@ -1418,13 +1435,14 @@ export default function MongooseMentalityBook() {
 								True faith is manifested when we not only say we believe, but
 								when we act as if what we ask for is already a reality. It is
 								the kind of faith that doesn't wait to see before acting, but
-								moves forward, trusting that God has already answered.
+								moves forward, trusting that Father God has already answered.
 							</p>
 							<p>
 								It's easy to say you have faith, but how do you demonstrate it?
-								Are you moving in the direction of what you believe God will do
-								in your life? The faith that pleases God is that which goes
-								beyond prayer and becomes action, obedience, and complete trust.
+								Are you moving in the direction of what you believe Father God
+								will do in your life? The faith that pleases Father God is that
+								which goes beyond prayer and becomes action, obedience, and
+								complete trust.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -1462,9 +1480,10 @@ export default function MongooseMentalityBook() {
 									Matthew 17:20
 								</strong>
 								). With faith, anything is possible: miracles, transformation,
-								and a life guided by God's will. It's not just a superficial
-								belief; it's a conviction that drives you to act, to trust fully
-								in what God will do, even if you don't yet see it.
+								and a life guided by Father God's will. It's not just a
+								superficial belief; it's a conviction that drives you to act, to
+								trust fully in what Father God will do, even if you don't yet
+								see it.
 							</p>
 
 							<h3 className="text-xl font-bold text-yellow-100 mt-8 mb-4">
@@ -1527,21 +1546,21 @@ export default function MongooseMentalityBook() {
 						</h2>
 						<div className="space-y-8 text-lg text-slate-200">
 							<p>
-								When you notice the absence of God's voice in your life, it's
-								not that He has stopped speaking to you because He doesn't want
-								to as a Father. On the contrary, His greatest desire is to
+								When you notice the absence of Father God's voice in your life,
+								it's not that He has stopped speaking to you because He doesn't
+								want to as a Father. On the contrary, His greatest desire is to
 								communicate daily with His creation. However, He often doesn't
 								do so because, when He speaks, His primary purpose is to give us
 								guidance, and human beings are generally unwilling to follow it.
 							</p>
 							<p>
-								Most people don't like to obey what God asks, and for this
-								reason, He prefers to stop speaking to you, since it would be
-								pointless if we don't follow His will. If God speaks to you
-								constantly and you don't obey, you would be sinning at every
-								moment, because disobedience is sin. Therefore, in His wisdom
-								and love, God prefers to stop speaking to you rather than
-								provoke you to sin through disobedience.
+								Most people don't like to obey what Father God asks, and for
+								this reason, He prefers to stop speaking to you, since it would
+								be pointless if we don't follow His will. If Father God speaks
+								to you constantly and you don't obey, you would be sinning at
+								every moment, because disobedience is sin. Therefore, in His
+								wisdom and love, Father God prefers to stop speaking to you
+								rather than provoke you to sin through disobedience.
 							</p>
 
 							<div>
@@ -1550,24 +1569,25 @@ export default function MongooseMentalityBook() {
 								</h3>
 								<p className="mb-4">
 									You shouldn't tie your feelings or emotions to your calling,
-									because that could cause you to miss out on the blessings God
-									has for your life. We often associate our emotions with our
-									purpose, which can lead us astray from God's plan. God loved
-									the world so much that He gave His only Son, the Beloved of
-									heaven. If He had tied His feelings or emotions to that act of
-									love, perhaps He wouldn't have allowed Jesus to give His life
-									for us. He wouldn't have let His Son die on the cross of
-									Calvary.
+									because that could cause you to miss out on the blessings
+									Father God has for your life. We often associate our emotions
+									with our purpose, which can lead us astray from Father God's
+									plan. Father God loved the world so much that He gave His only
+									Son, the Beloved of heaven. If He had tied His feelings or
+									emotions to that act of love, perhaps He wouldn't have allowed
+									Jesus to give His life for us. He wouldn't have let His Son
+									die on the cross of Calvary.
 								</p>
 								<p className="mb-4">
 									That's why you often find yourself crying in a corner, feeling
-									alone, distressed, or believing that God has abandoned you.
-									But God isn't looking for someone who lives only on feelings;
-									He's looking for warriors who will rise up in the midst of
-									their tears, their brokenness, and their battles, and say:{" "}
+									alone, distressed, or believing that Father God has abandoned
+									you. But Father God isn't looking for someone who lives only
+									on feelings; He's looking for warriors who will rise up in the
+									midst of their tears, their brokenness, and their battles, and
+									say:{" "}
 									<span className="italic text-yellow-200">
-										"I can, I'm going to fight this battle because God has
-										chosen me for this."
+										"I can, I'm going to fight this battle because Father God
+										has chosen me for this."
 									</span>
 								</p>
 								<p className="mb-4">
@@ -1581,17 +1601,18 @@ export default function MongooseMentalityBook() {
 									to do what was assigned to us.
 								</p>
 								<p className="mb-4">
-									The same is true with God. Perhaps He has not only called you,
-									but chosen you for a mission that only you can fulfill.
+									The same is true with Father God. Perhaps He has not only
+									called you, but chosen you for a mission that only you can
+									fulfill.
 								</p>
 								<p>
 									Sometimes you ask yourself:{" "}
 									<span className="italic text-yellow-200">—Why me, Lord?</span>{" "}
 									The answer is that if this process had been given to someone
 									else, perhaps that person would have given up by now. But you,
-									even though you've been through a lot, have persevered. God
-									chose you, and that's why you need to finish the assignment
-									you were given, in order to receive your blessings.
+									even though you've been through a lot, have persevered. Father
+									God chose you, and that's why you need to finish the
+									assignment you were given, in order to receive your blessings.
 								</p>
 							</div>
 
@@ -1641,15 +1662,15 @@ export default function MongooseMentalityBook() {
 									Give without restrictions
 								</h3>
 								<p className="mb-4">
-									It is essential to learn to obey God's voice when He speaks to
-									us about giving, for true blessing lies in it. It's not just
-									about giving what is comfortable for us, but about offering
-									what He specifically asks of us. It's not enough to offer an
-									apology when God calls you to sincere forgiveness. It's not
-									about handing over an old shirt when He asks you to buy a new
-									one for your brother. Nor is it enough to give what you have
-									in your pockets when He is calling you to offer what you have
-									in your bank account.
+									It is essential to learn to obey Father God's voice when He
+									speaks to us about giving, for true blessing lies in it. It's
+									not just about giving what is comfortable for us, but about
+									offering what He specifically asks of us. It's not enough to
+									offer an apology when Father God calls you to sincere
+									forgiveness. It's not about handing over an old shirt when He
+									asks you to buy a new one for your brother. Nor is it enough
+									to give what you have in your pockets when He is calling you
+									to offer what you have in your bank account.
 								</p>
 								<p className="mb-4">
 									For many, giving can be a challenge, but letting go is one of
@@ -1663,8 +1684,8 @@ export default function MongooseMentalityBook() {
 										2 Corinthians 9:7
 									</strong>
 									). And we do not give with the purpose of receiving something
-									in return; we give with the confidence that God is and always
-									will be our sustenance.
+									in return; we give with the confidence that Father God is and
+									always will be our sustenance.
 								</p>
 								<p className="mb-4">
 									He who gives without expecting anything in return is truly
@@ -1757,8 +1778,8 @@ export default function MongooseMentalityBook() {
 										"My son, keep your judgment and discernment, and do not lose
 										sight of prudence."
 									</span>{" "}
-									It is essential to ask God for wisdom to distinguish between
-									an opinion that builds up and one that destroys.
+									It is essential to ask Father God for wisdom to distinguish
+									between an opinion that builds up and one that destroys.
 								</p>
 								<p className="mb-4">
 									This often happens when you decide to start your own business.
@@ -1779,7 +1800,8 @@ export default function MongooseMentalityBook() {
 								</p>
 								<p className="mb-4">
 									Here, discernment is vital: knowing when to listen and when to
-									follow the purpose God has placed in your heart. As it says{" "}
+									follow the purpose Father God has placed in your heart. As it
+									says{" "}
 									<strong className="text-yellow-300 font-bold">
 										James 1:5
 									</strong>
@@ -2002,12 +2024,12 @@ export default function MongooseMentalityBook() {
 								Many times in life, blessings are waiting for us, but we want to
 								rush things and try to speed up the process. This causes us to
 								lose our way, the blessings to slip away, and we fail to receive
-								what God has truly reserved for us.
+								what Father God has truly reserved for us.
 							</p>
 							<p>
-								We often think that God has forgotten us, and that's why we
-								don't receive what we want. But that's not the case; many times
-								we're asking for what we want, not what's best for us. God
+								We often think that Father God has forgotten us, and that's why
+								we don't receive what we want. But that's not the case; many
+								times we're asking for what we want, not what's best for us. God
 								doesn't want to give us only what we want, but what is truly
 								best for us.
 							</p>
@@ -2109,11 +2131,12 @@ export default function MongooseMentalityBook() {
 						<div className="space-y-6 text-lg text-yellow-50">
 							<p>
 								Prayer is a lifestyle, because it's where you empower yourself
-								with God's power. There is power in your relationship with God.
-								There are two kinds of relationships: one with God and one with
-								your neighbor. Your relationship with God should be your
-								priority, and if you have problems in your relationship with
-								your neighbor or with God, He won't hear your prayer.
+								with Father God's power. There is power in your relationship
+								with God. There are two kinds of relationships: one with Father
+								God and one with your neighbor. Your relationship with Father
+								God should be your priority, and if you have problems in your
+								relationship with your neighbor or with Father God, He won't
+								hear your prayer.
 							</p>
 
 							<h3 className="text-xl font-bold text-white mt-8 mb-4">
@@ -2123,8 +2146,8 @@ export default function MongooseMentalityBook() {
 								One of the most important aspects of prayer is having identity.
 								If you lack identity, you lack authority; and if you lack
 								identity, your honor will not be genuine. You must first go to
-								the source of life, which is God, having identity and knowing
-								that you belong to Him and are in Him.
+								the source of life, which is Father God, having identity and
+								knowing that you belong to Him and are in Him.
 							</p>
 							<p>
 								We must learn to pray not as bastards, not as servants, but as
@@ -2135,10 +2158,11 @@ export default function MongooseMentalityBook() {
 								life.
 							</p>
 							<p>
-								The stronger our sense of identity, the more God uses us.
+								The stronger our sense of identity, the more Father God uses us.
 								Identity is believing based on firsthand experience, and that
 								experience leads us to pray more. Consequently, by praying more,
-								we attain greater spiritual maturity and learn to depend on God.
+								we attain greater spiritual maturity and learn to depend on
+								Father God.
 							</p>
 
 							<h3 className="text-xl font-bold text-white mt-8 mb-4">
@@ -2147,11 +2171,12 @@ export default function MongooseMentalityBook() {
 							<p>
 								When we pray constantly, we become not only speakers, but also
 								intercessors. But to be an intercessor, it is necessary to have
-								a life of prayer with God. In{" "}
+								a life of prayer with Father God. In{" "}
 								<strong className="text-white">Exodus 32:32</strong>, when Moses
-								interceded for the people who sinned against God by making a
-								golden calf, Moses' prayer of intercession was so powerful that
-								God took it into account and changed his mind.
+								interceded for the people who sinned against Father God by
+								making a golden calf, Moses' prayer of intercession was so
+								powerful that Father God took it into account and changed his
+								mind.
 							</p>
 							<p>
 								When we reach the level of intercession, we become true
@@ -2160,32 +2185,33 @@ export default function MongooseMentalityBook() {
 								Jesus spoke to us about being one in Him and in the Father,
 								because He is our greatest intercessor. When you are a true
 								intercessor, you are not selfish; you pray for others and not
-								for your own benefit. You sacrifice for others, and God is
-								pleased by sacrifices for His glory.
+								for your own benefit. You sacrifice for others, and Father God
+								is pleased by sacrifices for His glory.
 							</p>
 
 							<h3 className="text-xl font-bold text-white mt-8 mb-4">
-								Recognizing the sovereignty of God
+								Recognizing the sovereignty of Father God
 							</h3>
 							<p>
 								To pray effectively, it is essential to understand our position
-								and God's position in the communion established between the
-								Almighty and humankind. By carefully studying the model prayer
-								that Jesus taught us, we notice that Christ begins it with{" "}
+								and Father Father God's position in the communion established
+								between the Almighty and humankind. By carefully studying the
+								model prayer that Jesus taught us, we notice that Christ begins
+								it with{" "}
 								<span className="italic text-yellow-200">
 									"Our Father who art in heaven"
 								</span>
-								. This should be the attitude of one who approaches God in
-								prayer: to recognize His absolute deity and superiority.
+								. This should be the attitude of one who approaches Father God
+								in prayer: to recognize His absolute deity and superiority.
 							</p>
 							<p>
-								No one who seeks God based on their own merits, without
+								No one who seeks Father God based on their own merits, without
 								surrendering their earthly crowns to the Redeemer, will be heard
-								by the King of kings and Lord of lords. God is not just another
-								god; He is the only true God, the One who is all-powerful and
-								who has never lost a battle. This makes Him immediately superior
-								to humankind. It is useless to be arrogant in prayer and believe
-								that we are equal to God.
+								by the King of kings and Lord of lords. Father God is not just
+								another god; He is the only true Father God, the One who is
+								all-powerful and who has never lost a battle. This makes Him
+								immediately superior to humankind. It is useless to be arrogant
+								in prayer and believe that we are equal to Father God.
 							</p>
 
 							<h3 className="text-xl font-bold text-white mt-8 mb-4">
@@ -2196,8 +2222,8 @@ export default function MongooseMentalityBook() {
 								will be simple and will become essential in our daily lives. We
 								will understand that if we do not go into the presence of the
 								Eternal One, our day will be a logical failure. It is impossible
-								to know God without prayer, since it was created as the means
-								for that purpose. Prayer cannot be replaced by any other
+								to know Father God without prayer, since it was created as the
+								means for that purpose. Prayer cannot be replaced by any other
 								spiritual discipline. It is useless to read a lot of the Bible,
 								study intensely in a seminary, preach with logical coherence, or
 								have a beautiful voice if all of that is not accompanied by a
@@ -2206,22 +2232,23 @@ export default function MongooseMentalityBook() {
 							<p>
 								Daniel prayed three times a day, and because of this, he was
 								able to endure the spirit of idolatry in the Babylonian Empire
-								and possessed a superior spirit, to the point that God revealed
-								to him the secrets of the ages. Furthermore, due to his constant
-								communion with God, he played a prominent role in Babylon during
-								three distinct reigns, without compromising his principles and
-								overcoming obstacles with faith and trust in Jehovah.
+								and possessed a superior spirit, to the point that Father God
+								revealed to him the secrets of the ages. Furthermore, due to his
+								constant communion with Father God, he played a prominent role
+								in Babylon during three distinct reigns, without compromising
+								his principles and overcoming obstacles with faith and trust in
+								Jehovah.
 							</p>
 							<p>
 								We should ask ourselves if devotional prayer is truly an
 								integral part of our daily lives, or if we only turn to it when
-								we want God to use us powerfully or when we have needs.
+								we want Father God to use us powerfully or when we have needs.
 							</p>
 							<p className="font-medium text-center italic text-white/90 text-xl mt-8">
-								"Let us be true children of God. Let us communicate to our
-								Heavenly Father all that we want to do, and what better way to
-								do so than through prayer, so that we may dwell in His presence.
-								Amen."
+								"Let us be true children of Father God. Let us communicate to
+								our Heavenly Father all that we want to do, and what better way
+								to do so than through prayer, so that we may dwell in His
+								presence. Amen."
 							</p>
 						</div>
 					</section>

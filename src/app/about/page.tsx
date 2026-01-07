@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<any> {
 			? "Bio | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
 			: "Biografía | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 		description: isEnglish
-			? "Learn about the Pastor Gary Mack's life, a short bio about his beginnings, God's call and current work in the ministry."
+			? "Learn about the Pastor Gary Mack's life, a short bio about his beginnings, the Father's call and current work in the ministry."
 			: "Aprende sobre la vida del Pastor Gary Mack, una biografía breve sobre sus inicios, el llamado de el Padre y su trabajo actual en el ministerio.",
 		keywords: [
 			"pastor gary mack",
@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<any> {
 				? "Bio | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
 				: "Biografía | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
 			description: isEnglish
-				? "Learn about the Pastor Gary Mack's life, a short bio about his beginnings, God's call and current work in the ministry."
+				? "Learn about the Pastor Gary Mack's life, a short bio about his beginnings, the Father's call and current work in the ministry."
 				: "Aprende sobre la vida del Pastor Gary Mack, una biografía breve sobre sus inicios, el llamado de el Padre y su trabajo actual en el ministerio.",
 			url: "https://pastorgarymack.com/",
 			siteName: "Pastor Gary Mack",

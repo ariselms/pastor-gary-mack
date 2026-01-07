@@ -97,7 +97,7 @@ export const mentalidadDeMangostaValues = (isEnglish: boolean) => [
 		subtitle: isEnglish ? "Immunity to Poison" : "Inmunidad al Veneno",
 		coreValue: isEnglish ? "Relentless Persistence" : "Persistencia Implacable",
 		belief: isEnglish
-			? "The prayer that pleases God is the one that refuses to give up. It is the 'widow and the judge' type of intercession: pounding on the door of Heaven until the answer manifests."
+			? "The prayer that pleases Father God is the one that refuses to give up. It is the 'widow and the judge' type of intercession: pounding on the door of Heaven until the answer manifests."
 			: "La oración que agrada a el Padre es la que se niega a rendirse. Es el tipo de intercesión de 'la viuda y el juez': golpear la puerta del Cielo hasta que la respuesta se manifieste.",
 		verse: isEnglish
 			? "...that they should always pray and not give up. (Luke 18:1)"
