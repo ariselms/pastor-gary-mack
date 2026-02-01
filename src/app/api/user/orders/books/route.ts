@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server"
 import { sql } from "@vercel/postgres"
 
-export async function GET(req:Request){
+export async function GET(request:Request){
   // get request search params
 
   try {
 
-    const {searchParams} = new URL(req.url)
+    const {searchParams} = new URL(request.url)
     const userId = searchParams.get('userId')
 
     const { rows: userOrders } = await sql`

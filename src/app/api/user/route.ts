@@ -5,7 +5,7 @@ import { sql } from "@vercel/postgres";
 // update user
 export async function PUT(request: Request) {
 	try {
-		const body = await req.json(); // Parse the request body
+		const body = await request.json(); // Parse the request body
 
 		const {
 			name,

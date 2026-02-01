@@ -10,7 +10,7 @@ export const config = {
   ]
 };
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
 	// Tu lógica normal de auth aquí
 	return NextResponse.next();
 }

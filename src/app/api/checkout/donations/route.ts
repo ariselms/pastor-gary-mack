@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
 	try {
 		// 1. Receive the single book and user objects directly
-		const { donationData, user } = await req.json();
+		const { donationData, user } = await request.json();
 
 		// 2. Destructure data coming from the frontend, except the user
 		const { amount, frequency, imageUrl } = donationData;

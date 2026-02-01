@@ -6,7 +6,7 @@ export async function GET(
 	{ params }: { params: Promise<{ productId: string }> }
 ) {
 	try {
-		const { searchParams } = new URL(req.url);
+		const { searchParams } = new URL(request.url);
 		const userId = searchParams.get("userId");
 		const {productId} = await params;
 

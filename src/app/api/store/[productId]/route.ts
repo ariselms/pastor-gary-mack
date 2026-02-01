@@ -3,9 +3,8 @@ import { getStoreSingleProduct } from "@/helpers/server";
 import { ResponseObject } from "@/helpers/server";
 
 export async function GET(
-
+  request: Request,
 	{ params }: { params: Promise<{ productId: string }> }
-
 ) {
 
 	const { productId } = await params;

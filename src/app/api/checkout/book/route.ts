@@ -11,7 +11,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 export async function POST(request: Request) {
 	try {
 		// 1. Receive the single book and user objects directly
-		const { book, user } = await req.json();
+		const { book, user } = await request.json();
 
 		// 2. Get the current language to set Stripe checkout language
 		const cookieStore = cookies();
