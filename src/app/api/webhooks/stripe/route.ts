@@ -9,7 +9,7 @@ import { saleCagegories } from "@/static";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET!;
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
 	const body = await req.text();
 	const stripeSignature = (await headers()).get("stripe-signature") as string;
 

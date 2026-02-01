@@ -52,7 +52,13 @@ export async function POST(request: Request) {
 					data: user
 				});
 
-        serverResponse.cookies.set("session_token", user.session_token);
+        serverResponse.cookies.set("session_token", user.session_token, {
+          expires: user.session_expiration,
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Recommended: Only send over HTTPS
+          path: "/",
+        });
+
         serverResponse.cookies.set("language", language);
 
         return serverResponse;
@@ -116,7 +122,7 @@ export async function GET() {
       success: false,
       message: "User not found",
       data: null
-    }, { status: 404 });
+    }, { status: 200 });
 
   } catch (error) {
     console.error(error);
@@ -134,7 +140,11 @@ export async function DELETE() {
 
 		const cookieStore = cookies();
 
-		(await cookieStore).delete("session_token");
+		(await cookieStore).delete({
+      name: "session_token",
+      path: "/",
+      httpOnly: true,
+    });
 
 		return NextResponse.json(
 			{
@@ -145,6 +155,7 @@ export async function DELETE() {
 			{ status: 200 }
 		);
 	} catch (error) {
+
 		console.error(error);
 
 		return NextResponse.json(
@@ -157,16 +168,3 @@ export async function DELETE() {
 		);
 	}
 }
-
-// TODO:
-// 1. set email credentials in namecheap DONE
-// 2. complete workflow by persisting the user
-// 3. double check the workflow and refactor as necessary
-// 4. test the workflow several times
-// 5. start working in the quote page
-// 6. start working in the subscription emails
-// 10.set up sub categories and everything that it implies
-// 9. set up orders functionality with cart and checkout
-// 7. complete the products for sale functionaltiy
-// 8. start working in react admin  to implement crud operations for super admins
-// 11. start working in an upgrade that will allow users to preview certain products before buying them

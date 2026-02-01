@@ -9,7 +9,7 @@ import { saleCagegories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
 
 	try {
 		// 1. Receive the single book and user objects directly

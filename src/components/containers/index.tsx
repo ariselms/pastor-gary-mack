@@ -18,7 +18,6 @@ export function Container2xl({ children }: { children: React.ReactNode }) {
 	return <div className="max-w-2xl mx-auto px-4">{children}</div>;
 }
 
-// Medium
 export function Container3xl({ children }: { children: React.ReactNode }) {
 	return <div className="max-w-3xl mx-auto px-4">{children}</div>;
 }

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { cookies } from "next/headers";
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
 	try {
 		const body = await req.json();
 

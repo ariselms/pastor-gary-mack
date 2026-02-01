@@ -1,4 +1,4 @@
-import { StripeGiveSuccessPageContent } from "@/components/pages-content/SuccessPagesContent";
+import { StripeGiveSuccessPageContent } from "@/components/pages-content/SuccessPageContent";
 import Spinner from "@/components/Spinner";
 import { Suspense } from "react";
 

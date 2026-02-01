@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 
 export async function GET(
-	req: Request,
+	request: Request,
 	{ params }: { params: Promise<{ productId: string }> }
 ) {
 	try {

@@ -4,7 +4,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function GET(
-	req: Request,
+	request: Request,
 	{ params }: { params: Promise<{ sessionId: string }> }
 ) {
 	const { sessionId } = await params;

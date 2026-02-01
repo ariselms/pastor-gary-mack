@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!, {
 });
 
 export async function GET(
-	req: Request,
+	request: Request,
 	{ params }: { params: Promise<{ productId: string }> } // Note: params is a Promise in recent Next.js versions
 ) {
 	try {

@@ -1,15 +1,16 @@
 "use client";
+
+import Link from "next/link";
+import gsap from "gsap";
+import LanguageHandler from "@/components/forms/LanguageHandler";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
 import { useEffect, useState, useRef } from "react";
-import { MenuIcon } from "@/components/svg/Icons";
-import Link from "next/link";
-import LanguageHandler from "@/components/forms/LanguageHandler";
 import { useAuthContext } from "@/context/authContext";
 import { usePathname } from "next/navigation";
-import { GaryMackLogo } from "@/components/logo";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { MenuIcon } from "@/components/svg/Icons";
+import { GaryMackLogo } from "@/components/logo";
 
 export default function MainNavigation() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -166,23 +167,23 @@ export default function MainNavigation() {
 					id="menu"
 					ref={menuRef}
 					className={`
-            flex flex-col md:flex-row md:items-center
-            absolute md:static right-0 top-23 z-20 order-2
-            backdrop-blur-sm bg-black/80 md:dark:bg-transparent md:bg-transparent
-            w-full md:w-auto gap-y-4 gap-x-4
+            flex flex-col lg:flex-row lg:items-center
+            absolute lg:static right-0 top-23 z-20 order-2
+            backdrop-blur-sm bg-black/80 lg:dark:bg-transparent lg:bg-transparent
+            w-full lg:w-auto gap-y-4 gap-x-4
             border-b border-slate-800 overflow-hidden
             h-0 opacity-0 invisible
-            md:h-auto md:p-0 md:opacity-100 md:border-t-0 md:border-b-0 md:visible
+            lg:h-auto lg:p-0 lg:opacity-100 lg:border-t-0 lg:border-b-0 lg:visible
           `}>
-					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 lg:opacity-100 lg:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
-							className={`${isActiveLink("/") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1 md:m-0`}
+							className={`${isActiveLink("/") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1 lg:m-0`}
 							href="/">
 							{language === languageOptions.spanish ? "Inicio" : "Home"}
 						</Link>
 					</li>
-					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 lg:opacity-100 lg:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
 							className={`${isActiveLink("/about") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
@@ -190,7 +191,7 @@ export default function MainNavigation() {
 							{language === languageOptions.spanish ? "Sobre Mi" : "About Me"}
 						</Link>
 					</li>
-					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 lg:opacity-100 lg:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
 							className={`${isActiveLink("/books") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
@@ -198,7 +199,7 @@ export default function MainNavigation() {
 							{language === languageOptions.spanish ? "Libros" : "Books"}
 						</Link>
 					</li>
-					<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
+					<li className="opacity-0 lg:opacity-100 lg:p-0 text-center hover:bg-transparent transition-all">
 						<Link
 							onClick={() => isMobile && setShowMenu(false)}
 							className={`${isActiveLink("/give") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
@@ -206,11 +207,19 @@ export default function MainNavigation() {
 							{language === languageOptions.spanish ? "Donar" : "Donate"}
 						</Link>
 					</li>
+					<li className="opacity-0 lg:opacity-100 lg:p-0 text-center hover:bg-transparent transition-all">
+						<Link
+							onClick={() => isMobile && setShowMenu(false)}
+							className={`${pathname.includes("/store") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
+							href="/store">
+							{language === languageOptions.spanish ? "Tienda" : "Store"}
+						</Link>
+					</li>
 					{user ? (
 						/* FIX: Removed 'opacity-0' from this UL container so it doesn't hide the children */
-						<ul className="flex flex-col md:inline-flex md:flex-row md:items-center md:gap-x-0">
-							{/* FIX: Added 'opacity-0 md:opacity-100' to the LIs so they stagger in correctly */}
-							<li className="opacity-0 md:opacity-100 md:pl-4 md:pr-2 md:py-1 border-r border-slate-400 md:p-0 text-center hover:bg-transparent transition-all">
+						<ul className="flex flex-col lg:inline-flex lg:flex-row lg:items-center lg:gap-x-0">
+							{/* FIX: Added 'opacity-0 lg:opacity-100' to the LIs so they stagger in correctly */}
+							<li className="opacity-0 lg:opacity-100 lg:pl-4 lg:pr-2 lg:py-1 border-r border-slate-400 lg:p-0 text-center hover:bg-transparent transition-all">
 								<Link
 									onClick={() => isMobile && setShowMenu(false)}
 									className={`${isActiveLink("/profile") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}
@@ -218,21 +227,21 @@ export default function MainNavigation() {
 									{language === languageOptions.spanish ? "Perfil" : "Profile"}
 								</Link>
 							</li>
-							{/* FIX: Added 'opacity-0 md:opacity-100' */}
-							<li className="opacity-0 md:opacity-100 md:p-0 md:pl-2 md:pr-4 md:py-1 text-center hover:bg-transparent transition-all">
+							{/* FIX: Added 'opacity-0 lg:opacity-100' */}
+							<li className="opacity-0 lg:opacity-100 lg:p-0 lg:pl-2 lg:pr-4 lg:py-1 text-center hover:bg-transparent transition-all">
 								<Link
 									onClick={() => {
 										isMobile && setShowMenu(false);
 										signOutUser();
 									}}
-									className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-400 hover:border-b-2 hover:border-yellow-300 transition-all mt-4 mb-6 md:mt-0 md:mb-0 inline-block leading-none pb-1`}
+									className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-400 hover:border-b-2 hover:border-yellow-300 transition-all mt-4 mb-6 lg:mt-0 lg:mb-0 inline-block leading-none pb-1`}
 									href="/login">
 									{language === languageOptions.spanish ? "Salir" : "Logout"}
 								</Link>
 							</li>
 						</ul>
 					) : (
-						<li className="opacity-0 md:opacity-100 md:p-0 text-center hover:bg-transparent transition-all">
+						<li className="opacity-0 lg:opacity-100 lg:p-0 text-center hover:bg-transparent transition-all">
 							<Link
 								onClick={() => isMobile && setShowMenu(false)}
 								className={`${isActiveLink("/login") && "border-b-2 border-yellow-300"} text-slate-100 hover:border-b-2 hover:border-yellow-300 transition-all inline-block leading-none pb-1`}

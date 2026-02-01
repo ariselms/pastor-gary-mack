@@ -7,6 +7,7 @@ export default async function ProfileLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+
 	const cookie = (await cookies()).get("session_token");
 
 	if (!cookie) {

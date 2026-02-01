@@ -1,5 +1,6 @@
 "use client";
 
+import Spinner from "@/components/Spinner";
 import { useEffect, useState } from "react";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
@@ -7,7 +8,6 @@ import { StripeProduct } from "@/types/bookTypes";
 import { BookInfoCard } from "@/components/cards";
 import { Container7xl } from "@/components/containers";
 import { JumbotronShared } from "@/components/jumbotron/";
-import Spinner from "@/components/Spinner";
 import { useAuthContext } from "@/context/authContext";
 import { CoreValuesCard } from "@/components/cards";
 import { mentalidadDeMangostaValues } from "@/static";
@@ -16,10 +16,11 @@ import { usePathname } from "next/navigation";
 import { serverBaseUrl } from "@/static";
 
 export function BookPageContent() {
+  // hooks
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
   const pathname = usePathname();
-
+  // state
 	const [loading, setLoading] = useState(true);
 	const [book, setBook] = useState<StripeProduct | null>(null);
 	const [userOwned, setUserOwned] = useState(false);
@@ -109,7 +110,12 @@ export function BookPageContent() {
 			) : (
 				<Container7xl>
 					<ul className="text-slate-200 pt-16">
-						{book && <BookInfoCard book={book} isUserOwned={userOwned} setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}/>}
+						{book &&
+              <BookInfoCard
+                book={book}
+                isUserOwned={userOwned}
+                setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}
+            />}
 					</ul>
 
 					<article>
