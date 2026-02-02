@@ -1,6 +1,3 @@
-import React from "react";
-import { Spinner as FlowbiteSpinner } from "flowbite-react";
-
 const Spinner = () => {
 	return (
 		<div className="py-32">

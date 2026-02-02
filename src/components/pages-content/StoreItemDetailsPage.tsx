@@ -1,35 +1,44 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { Container7xl } from "@/components/containers";
+import Link from "next/link";
+import Spinner from "@/components/Spinner";
+import { useState, useEffect, useMemo } from "react";
 import { useLanguageContext } from "@/context/languageContext";
-import { formatPrice } from "@/helpers/client";
-import { languageOptions } from "@/static";
-import { ModalToPromptUserToLogin } from "@/components/modals";
 import { useAuthContext } from "@/context/authContext";
+import { useCartContext } from "@/context/cartContext";
 import { usePathname } from "next/navigation";
 import { serverBaseUrl } from "@/static";
+import { formatPrice } from "@/helpers/client";
+import { languageOptions } from "@/static";
+import { Container7xl } from "@/components/containers";
+import { ModalToPromptUserToLogin } from "@/components/modals";
+import { toast } from "react-toastify"
 
 export default function ProductClientView({
 	ProductData
 }: {
 	ProductData: any;
 }) {
-	// hooks //
+
+  // --- HOOKS --- //
 	const { language } = useLanguageContext();
-  const { user } = useAuthContext();
-  const pathname = usePathname();
-  const [isModalToPromptUserToLoginOpen, setIsModalToPromptUserToLoginOpen]
-    = useState<boolean>(false);
+	const { user } = useAuthContext();
+  const { addToCart, cartItems, setShowCartCheckout } = useCartContext();
+	const pathname = usePathname();
 
 
-  // state //
+	// --- STATE --- //
+	const [isModalToPromptUserToLoginOpen, setIsModalToPromptUserToLoginOpen] =
+		useState<boolean>(false);
 	const [selectedColorId, setSelectedColorId] = useState<number | null>(null);
 	const [selectedSizeId, setSelectedSizeId] = useState<number | null>(null);
 	const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+	const [isInitialStateSet, setIsInitialStateSet] = useState(false);
 
-	// 1. Filter for variants that are actually purchasable (Active & In Stock)
+
+	// --- MEMOS --- //
+	// 1. Only enabled and in-stock variants
 	const activeVariants = useMemo(() => {
 		return (
 			ProductData?.variants.filter(
@@ -38,7 +47,7 @@ export default function ProductClientView({
 		);
 	}, [ProductData]);
 
-	// 2. Filter Color Options: Only show colors that have at least one active variant
+	// 2. Available colors for active variants
 	const availableColorOptions = useMemo(() => {
 		const colorGroup = ProductData?.options?.find(
 			(opt: any) => opt.type === "color"
@@ -52,42 +61,75 @@ export default function ProductClientView({
 		);
 	}, [ProductData, activeVariants]);
 
-	// 3. Size Options Group
-	const sizeOptionGroup = useMemo(
-		() => ProductData?.options?.find((opt: any) => opt.type === "size"),
-		[ProductData]
-	);
+	// 3. Size/Model options group (Filtered based on color selection)
+	const sizeOptionGroup = useMemo(() => {
+		const group = ProductData?.options?.find((opt: any) => opt.type === "size");
+		if (!group) return null;
 
-	// 4. Set Initial State
+		const filteredValues = group.values.filter((sizeVal: any) =>
+			activeVariants.some(
+				(variant: any) =>
+					variant.options.includes(sizeVal.id) &&
+					(selectedColorId ? variant.options.includes(selectedColorId) : true)
+			)
+		);
+
+		return { ...group, values: filteredValues };
+	}, [ProductData, activeVariants, selectedColorId]);
+
+	// --- EFFECTS --- //
+
+	// Set Initial State ONCE
 	useEffect(() => {
+		if (isInitialStateSet || activeVariants.length === 0) return;
+
 		if (availableColorOptions.length > 0) {
 			const firstColorId = availableColorOptions[0].id;
 			setSelectedColorId(firstColorId);
 
-			// Find the first available size for this specific color
-			if (sizeOptionGroup) {
-				const firstAvailableSize = sizeOptionGroup.values.find((size: any) =>
-					activeVariants.some(
-						(v: any) =>
-							v.options.includes(firstColorId) && v.options.includes(size.id)
-					)
-				);
-				if (firstAvailableSize) setSelectedSizeId(firstAvailableSize.id);
+			if (sizeOptionGroup && sizeOptionGroup.values.length > 0) {
+				// Find first available size for that color
+				const firstAvailableSize = sizeOptionGroup.values[0].id;
+				setSelectedSizeId(firstAvailableSize);
 			}
+			setIsInitialStateSet(true);
+		} else if (sizeOptionGroup && sizeOptionGroup.values.length > 0) {
+			// Products without colors (Phone Cases)
+			setSelectedSizeId(sizeOptionGroup.values[0].id);
+			setIsInitialStateSet(true);
 		}
-	}, [availableColorOptions, sizeOptionGroup, activeVariants]);
+	}, [
+		activeVariants,
+		isInitialStateSet,
+		availableColorOptions,
+		sizeOptionGroup
+	]);
 
-	// 5. Derived State: The currently selected Variant object
+	// --- DERIVED VARIANT --- //
 	const currentVariant = useMemo(() => {
-		if (!selectedColorId) return null;
+		const hasColorOptions = availableColorOptions.length > 0;
 
-		const variant = activeVariants.find((v: any) => {
-			const matchesColor = v.options.includes(selectedColorId);
-			const matchesSize = sizeOptionGroup
+		// Safety check: if we are still initializing, show loading
+		if (hasColorOptions && !selectedColorId && !isInitialStateSet) return null;
+		if (sizeOptionGroup && !selectedSizeId && !isInitialStateSet) return null;
+
+		// Attempt exact match
+		let variant = activeVariants.find((v: any) => {
+			const matchesColor = hasColorOptions
+				? v.options.includes(selectedColorId)
+				: true;
+			const matchesSize = selectedSizeId
 				? v.options.includes(selectedSizeId)
 				: true;
 			return matchesColor && matchesSize;
 		});
+
+		// FALLBACK: If color changed and size doesn't match, grab the first variant of that color
+		if (!variant && selectedColorId) {
+			variant = activeVariants.find((v: any) =>
+				v.options.includes(selectedColorId)
+			);
+		}
 
 		if (!variant) return null;
 
@@ -110,45 +152,88 @@ export default function ProductClientView({
 		activeVariants,
 		availableColorOptions,
 		sizeOptionGroup,
-		ProductData.images
+		ProductData.images,
+		isInitialStateSet
 	]);
 
-  // handle add product to cart
-  const handleAddToCart = async () => {
+	// --- HANDLERS --- //
+  // color selection change
+	const handleColorChange = (colorId: number) => {
+		setCurrentImageIndex(0);
+		setSelectedColorId(colorId);
+		setCurrentImageIndex(0);
 
-    if (!user) {
-      setIsModalToPromptUserToLoginOpen(true);
-      return;
+		// Auto-select the first available size for this new color to prevent "stuck" state
+		if (sizeOptionGroup) {
+			const firstSizeForNewColor = sizeOptionGroup.values.find((size: any) =>
+				activeVariants.some(
+					(v: any) => v.options.includes(colorId) && v.options.includes(size.id)
+				)
+			);
+			if (firstSizeForNewColor) setSelectedSizeId(firstSizeForNewColor.id);
+		}
+	};;
+
+  // add to cart
+	const handleAddToCart = async () => {
+
+		if (!user) {
+			setIsModalToPromptUserToLoginOpen(true);
+			return;
+		}
+
+    // check if the item already exists in the cart
+
+    let alreadyAdded:boolean = false;
+
+    cartItems.forEach((item: any) => {
+      if(item.productId === ProductData.id && item.variant.id === currentVariant.id) {
+        alreadyAdded = true;
+        const alreadyAddedMessage = language === languageOptions.english
+          ? "Product already in cart. Update quantity."
+          : "El producto ya en el carrito de compras. Actualiza la cantidad."
+        toast.warn(alreadyAddedMessage)
+        setShowCartCheckout(true)
+        return true
+      }
+    })
+
+    if(!alreadyAdded) {
+      addToCart(ProductData.id, currentVariant);
+      toast.success("Product added to cart")
     }
 
-  }
 
-
+	};
 
 	if (!currentVariant)
 		return (
-			<div className="text-white p-20 text-center">
-				{language === languageOptions.english ? "Loading available options..." : "Cargando opciones disponibles..."}
-			</div>
+			<Spinner/>
 		);
 
 	return (
 		<Container7xl>
-			<section className="text-slate-100 py-16">
+			<section className="text-slate-100 py-16 ">
+				<Link
+					className="inline-block underline underline-offset-4 mb-4"
+					href="/store">
+					&larr; Todos los productos
+				</Link>
 				<h1 className="text-3xl font-bold mb-4">{ProductData?.title}</h1>
 				<span className="block text-2xl font-bold text-yellow-400 mb-4">
 					{formatPrice(currentVariant.price)}
 				</span>
 
 				<div className="flex flex-col md:flex-row gap-10">
-					{/* LEFT: Gallery */}
-					<div className="flex-2">
+					{/* GALLERY */}
+					<div className="flex-1">
 						<div className="relative aspect-square overflow-hidden bg-neutral-800 rounded-lg">
 							<Image
+								width={500}
+								height={500}
 								src={currentVariant.images[currentImageIndex]}
 								alt={currentVariant.title}
-								fill
-								className="object-contain"
+								className="object-contain w-full"
 								priority
 							/>
 						</div>
@@ -162,80 +247,87 @@ export default function ProductClientView({
 											? "border-yellow-400"
 											: "border-transparent"
 									}`}>
-									<Image src={img} alt="thumb" fill className="object-cover" />
+									<Image
+										src={img}
+										alt="thumb"
+										width={100}
+										height={100}
+										className="object-cover"
+									/>
 								</div>
 							))}
 						</div>
 					</div>
 
-					{/* RIGHT: Selectors */}
-					<div className="flex-3 space-y-8">
+					{/* SELECTORS */}
+					<div className="flex-1 space-y-8">
 						{/* COLORS */}
-						<div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
-							<h2 className="text-sm uppercase tracking-widest text-slate-400 font-bold mb-4">
-								1. Choose Color
-							</h2>
-							<div className="flex flex-wrap gap-4">
-								{availableColorOptions.map((option: any) => (
-									<button
-										key={option.id}
-										onClick={() => {
-											setSelectedColorId(option.id);
-											setCurrentImageIndex(0);
-										}}
-										className={`group relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${
-											selectedColorId === option.id
-												? "border-yellow-400 scale-110 shadow-lg shadow-yellow-400/20"
-												: "opacity-60 hover:opacity-100 border-2 border-slate-700 hover:scale-110"
-										}`}>
-										<div className="flex w-full h-full">
-											{option.colors.map((c: string, i: number) => (
-												<div
-													key={i}
-													className="flex-1 h-full"
-													style={{ backgroundColor: c }}
-												/>
-											))}
-										</div>
-									</button>
-								))}
-							</div>
-							<p className="mt-4 text-sm font-medium">
-								Selected Color:{" "}
-								<span className="text-yellow-400">
-									{currentVariant.displayTitle}
-								</span>
-							</p>
-						</div>
-
-						{/* SIZES */}
-						{sizeOptionGroup && (
+						{availableColorOptions.length > 0 && (
 							<div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
 								<h2 className="text-sm uppercase tracking-widest text-slate-400 font-bold mb-4">
-									2. Select Size
+									{language === languageOptions.english
+										? "Choose Color"
+										: "Seleccionar Color"}
+								</h2>
+								<div className="flex flex-wrap gap-4">
+									{availableColorOptions.map((option: any) => (
+										<button
+											key={option.id}
+											onClick={() => handleColorChange(option.id)}
+											className={`group relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${
+												selectedColorId === option.id
+													? "border-yellow-400 scale-110 shadow-lg shadow-yellow-400/20"
+													: "opacity-60 hover:opacity-100 border-2 border-slate-700 hover:scale-110"
+											}`}>
+											<div className="flex w-full h-full">
+												{option.colors.map((c: string, i: number) => (
+													<div
+														key={i}
+														className="flex-1 h-full"
+														style={{ backgroundColor: c }}
+													/>
+												))}
+											</div>
+										</button>
+									))}
+								</div>
+								<p className="mt-4 text-sm font-medium">
+									Selected Color:{" "}
+									<span className="text-yellow-400">
+										{currentVariant.displayTitle}
+									</span>
+								</p>
+							</div>
+						)}
+
+						{/* SIZES / PHONE MODELS */}
+						{sizeOptionGroup && sizeOptionGroup.values.length > 0 && (
+							<div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+								<h2 className="text-sm uppercase tracking-widest text-slate-400 font-bold mb-4">
+									{availableColorOptions.length > 0
+										? language === languageOptions.english
+											? "Select Size"
+											: "Seleccionar Tamaño"
+										: language === languageOptions.english
+											? "Select Model"
+											: "Seleccionar Modelo"}
 								</h2>
 								<div className="flex flex-wrap gap-2">
-									{sizeOptionGroup.values.map((size: any) => {
-										const isAvailable = activeVariants.some(
-											(v: any) =>
-												v.options.includes(selectedColorId) &&
-												v.options.includes(size.id)
-										);
-
-										return (
-											<button
-												key={size.id}
-												disabled={!isAvailable}
-												onClick={() => setSelectedSizeId(size.id)}
-												className={`min-w-60px h-12 px-4 text-sm font-bold border-2 transition-all rounded-lg ${
-													selectedSizeId === size.id
-														? "bg-yellow-400 border-yellow-400 text-black"
-														: "border-slate-700 text-white hover:border-slate-500"
-												} ${!isAvailable ? "opacity-10 cursor-not-allowed pointer-events-none" : ""}`}>
-												{size.title}
-											</button>
-										);
-									})}
+									{sizeOptionGroup.values.map((size: any) => (
+										<button
+											key={size.id}
+											onClick={() => {
+												setCurrentImageIndex(0);
+												setSelectedSizeId(size.id);
+											}}
+											className={`min-w-80px h-12 px-4 text-sm font-bold border-2 transition-all rounded-lg ${
+												selectedSizeId === size.id
+													? "bg-yellow-400 border-yellow-400 text-black"
+													: "border-slate-700 text-white hover:border-slate-500"
+											}`}>
+											{size.title}
+										</button>
+									))}
 								</div>
 							</div>
 						)}
@@ -245,20 +337,22 @@ export default function ProductClientView({
 							dangerouslySetInnerHTML={{ __html: ProductData.description }}
 						/>
 
-						<button
-              onClick={handleAddToCart}
-              className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-black py-5 rounded-xl transition-all transform active:scale-95 uppercase tracking-tighter text-lg">
-							Add to Cart — ${(currentVariant.price / 100).toFixed(2)}
-						</button>
+            <button
+              className="w-full rounded-lg text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 cursor-pointer mt-4 md:mt-0 transition-all text-center"
+              onClick={handleAddToCart}>
+              Add to Cart -{" "}
+              {formatPrice(currentVariant.price)}
+            </button>
 					</div>
 				</div>
 			</section>
-      <ModalToPromptUserToLogin
-        setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}
-        isModalToPromptUserToLoginOpen={isModalToPromptUserToLoginOpen}
-        serverBaseUrl={serverBaseUrl || ""}
-        pathname={pathname}
-      />
+
+			<ModalToPromptUserToLogin
+				setIsModalToPromptUserToLoginOpen={setIsModalToPromptUserToLoginOpen}
+				isModalToPromptUserToLoginOpen={isModalToPromptUserToLoginOpen}
+				serverBaseUrl={serverBaseUrl || ""}
+				pathname={pathname}
+			/>
 		</Container7xl>
 	);
 }

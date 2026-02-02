@@ -1,34 +1,47 @@
 import { createTheme } from "flowbite-react";
 
-export const CarouselTheme = createTheme({
+export const DrawerTheme = createTheme({
 	root: {
-		base: "relative h-full w-full",
-		leftControl:
-			"absolute left-0 top-0 flex h-full items-center justify-center px-4 focus:outline-none",
-		rightControl:
-			"absolute right-0 top-0 flex h-full items-center justify-center px-4 focus:outline-none"
-	},
-	indicators: {
-		active: {
-			off: "bg-slate-100/50 hover:bg-slate-300 cursor-pointer",
-			on: "bg-slate-100 cursor-pointer"
-		},
-		base: "h-3 w-3 rounded-full",
-		wrapper: "absolute bottom-5 left-1/2 flex -translate-x-1/2 space-x-3 pb-2"
-	},
-	item: {
-		base: "absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2",
-		wrapper: {
-			off: "w-full shrink-0 transform cursor-default snap-center",
-			on: "w-full shrink-0 transform cursor-grab snap-center"
+		base: "fixed z-40 overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800",
+		backdrop: "fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80",
+		edge: "bottom-16",
+		position: {
+			top: {
+				on: "left-0 right-0 top-0 w-full transform-none",
+				off: "left-0 right-0 top-0 w-full -translate-y-full"
+			},
+			right: {
+				on: "right-0 top-0 h-screen w-80 transform-none",
+				off: "right-0 top-0 h-screen w-80 translate-x-full"
+			},
+			bottom: {
+				on: "bottom-0 left-0 right-0 w-full transform-none",
+				off: "bottom-0 left-0 right-0 w-full translate-y-full"
+			},
+			left: {
+				on: "left-0 top-0 h-screen w-80 transform-none",
+				off: "left-0 top-0 h-screen w-80 -translate-x-full"
+			}
 		}
 	},
-	control: {
-		base: "inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white sm:h-10 sm:w-10 dark:bg-slate-800/30 dark:group-hover:bg-slate-800/60 dark:group-focus:ring-slate-800/70",
-		icon: "h-5 w-5 text-white sm:h-6 sm:w-6 dark:text-slate-800"
+	header: {
+		inner: {
+			closeButton:
+				"absolute end-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-full text-sm text-gray-400 bg-red-700 hover:bg-red-800 text-slate-50 hover:text-slate-100 transition-all",
+			closeIcon: "h-4 w-4",
+			titleCloseIcon: "sr-only",
+			titleIcon: "me-2.5 h-4 w-4",
+			titleText:
+				"mb-4 inline-flex items-center text-base font-semibold text-gray-500 dark:text-gray-400"
+		},
+		collapsed: {
+			on: "hidden",
+			off: "block"
+		}
 	},
-	scrollContainer: {
-		base: "flex h-full snap-mandatory overflow-y-hidden overflow-x-hidden scroll-smooth rounded-lg",
-		snap: "snap-x"
+	items: {
+		base: ""
 	}
 });
+
+

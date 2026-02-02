@@ -1,30 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import Spinner from "@/components/Spinner";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowUpDown, Filter, X } from "lucide-react";
 import { useLanguageContext } from "@/context/languageContext";
-import { formatPrice } from "@/helpers/client";
 import { languageOptions } from "@/static";
+import { formatPrice } from "@/helpers/client";
+import { ArrowUpDown, Filter, X } from "lucide-react";
 
 export default function StoreHomePageContent({
 	ProductsData
 }: {
 	ProductsData: any;
 }) {
-  // hooks //
-  const { language } = useLanguageContext();
+	const { language } = useLanguageContext();
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
-  // ui state //
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
-  // product state //
 	const activeTag = searchParams.get("tag") || "All";
 	const sortBy = searchParams.get("sort") || "newest";
-	const currentPage = Number(searchParams.get("page")) || 1;
 	const products = ProductsData?.data || [];
 
 	const allTags = useMemo(() => {
@@ -46,7 +44,8 @@ export default function StoreHomePageContent({
 		return list;
 	}, [products, activeTag, sortBy]);
 
-	const updateQuery = (key: string, value: string) => {
+	const handleUpdateQuery = (key: string, value: string) => {
+		setIsLoading(true);
 		const params = new URLSearchParams(searchParams.toString());
 		params.set(key, value);
 		if (key !== "page") params.set("page", "1");
@@ -54,11 +53,32 @@ export default function StoreHomePageContent({
 		setIsMobileMenuOpen(false);
 	};
 
+	useEffect(() => {
+		setIsLoading(false);
+	}, [ProductsData, searchParams]);
+
 	return (
-		<div className="min-h-screen text-slate-100">
+		<div className="relative min-h-screen text-slate-100">
+			{/* OVERLAY SPINNER:
+          This will only show when isLoading is true.
+          The 'animate-in' makes the transition smoother.
+      */}
+			{isLoading && (
+				<div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-sm transition-all duration-300 animate-in fade-in">
+					<div className="bg-slate-900/80 p-8 rounded-3xl border border-slate-800 shadow-2xl flex flex-col items-center">
+						<Spinner />
+						<p className="text-yellow-300 font-bold uppercase tracking-widest text-xs mt-4 animate-pulse">
+							{language === languageOptions.english
+								? "Updating"
+								: "Actualizando"}
+						</p>
+					</div>
+				</div>
+			)}
+
 			<main className="max-w-7xl mx-auto px-4 py-8">
 				{/* Header Section */}
-				<div className="flex items-end justify-between mb-8 border-b border-slate-200 pb-6">
+				<div className="flex items-end justify-between mb-8 border-b border-slate-700 pb-6">
 					<div>
 						<h1 className="text-3xl font-black uppercase tracking-wider text-slate-100">
 							{language === languageOptions.english ? "Store" : "Tienda"}
@@ -70,7 +90,6 @@ export default function StoreHomePageContent({
 					</div>
 
 					<div className="flex items-center gap-4">
-						{/* Mobile Filter Trigger */}
 						<button
 							onClick={() => setIsMobileMenuOpen(true)}
 							className="md:hidden flex items-center gap-2 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 rounded-lg">
@@ -78,12 +97,11 @@ export default function StoreHomePageContent({
 							{language === languageOptions.english ? "Filter" : "Filtrar"}
 						</button>
 
-						{/* Sort Dropdown */}
 						<div className="hidden md:flex items-center gap-3 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 rounded-lg">
 							<ArrowUpDown className="w-4 h-4 text-slate-800" />
 							<select
 								value={sortBy}
-								onChange={(e) => updateQuery("sort", e.target.value)}
+								onChange={(e) => handleUpdateQuery("sort", e.target.value)}
 								className="bg-transparent border-none text-sm font-bold focus:ring-0 cursor-pointer p-0 pr-8">
 								<option value="newest">
 									{language === languageOptions.english
@@ -107,7 +125,6 @@ export default function StoreHomePageContent({
 				</div>
 
 				<div className="flex gap-10">
-					{/* DESKTOP SIDEBAR FILTER */}
 					<aside className="hidden md:block w-64 shrink-0">
 						<div className="sticky top-24 space-y-8">
 							<div>
@@ -120,7 +137,7 @@ export default function StoreHomePageContent({
 									{allTags.map((tag) => (
 										<button
 											key={tag}
-											onClick={() => updateQuery("tag", tag)}
+											onClick={() => handleUpdateQuery("tag", tag)}
 											className={`text-left py-2.5 rounded-xl text-sm font-bold transition-all ${
 												activeTag === tag
 													? "px-4 bg-yellow-300 text-slate-800"
@@ -134,31 +151,31 @@ export default function StoreHomePageContent({
 						</div>
 					</aside>
 
-					{/* MAIN GRID */}
 					<div className="flex-1">
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
 							{filteredProducts.map((product: any) => (
 								<ProductCard key={product.id} product={product} />
 							))}
 						</div>
-
-						{/* Pagination remains the same... */}
 					</div>
 				</div>
 			</main>
 
 			{/* MOBILE FILTER MENU (SHEET OVERLAY) */}
+
 			{isMobileMenuOpen && (
 				<div className="fixed inset-0 z-50 md:hidden">
 					<div
 						className="absolute inset-0 bg-black/60 backdrop-blur-sm"
 						onClick={() => setIsMobileMenuOpen(false)}
 					/>
+
 					<div className="absolute right-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl p-6 flex flex-col transition-transform animate-in slide-in-from-right">
 						<div className="flex items-center justify-between mb-8">
 							<h2 className="text-xl text-slate-800 font-black uppercase">
 								{language === languageOptions.english ? "Filter" : "Filtrar"}
 							</h2>
+
 							<button
 								onClick={() => setIsMobileMenuOpen(false)}
 								className="p-2 bg-red-700 hover:bg-red-800 rounded-full transition-all">
@@ -172,11 +189,12 @@ export default function StoreHomePageContent({
 									? "Sort By"
 									: "Ordenar por"}
 							</h3>
+
 							<div className="grid grid-cols-2 gap-2">
 								{["newest", "price-low", "price-high", "az"].map((opt) => (
 									<button
 										key={opt}
-										onClick={() => updateQuery("sort", opt)}
+										onClick={() => handleUpdateQuery("sort", opt)}
 										className={`px-4 py-3 rounded-xl text-xs font-bold border ${sortBy === opt ? "text-center p-4 rounded-2xl font-bold border-2 transition-all bg-yellow-300 border-yellow-300 text-black" : "text-center p-4 rounded-2xl font-bold border-2 transition-all border-slate-100 text-slate-600"}`}>
 										{opt.replace("-", " ").toUpperCase()}
 									</button>
@@ -191,11 +209,12 @@ export default function StoreHomePageContent({
 										? "Categories"
 										: "Categorías"}
 								</h3>
+
 								<div className="grid grid-cols-1 gap-2">
 									{allTags.map((tag) => (
 										<button
 											key={tag}
-											onClick={() => updateQuery("tag", tag)}
+											onClick={() => handleUpdateQuery("tag", tag)}
 											className={`text-left p-4 rounded-2xl font-bold border-2 transition-all ${
 												activeTag === tag
 													? "bg-yellow-300 border-yellow-300 text-black"
@@ -215,7 +234,7 @@ export default function StoreHomePageContent({
 }
 
 const ProductCard = ({ product }: any) => {
-  const { language } = useLanguageContext();
+	const { language } = useLanguageContext();
 
 	const prices = product.variants.map((v: any) => v.price);
 	const minPrice = Math.min(...prices);
@@ -247,19 +266,19 @@ const ProductCard = ({ product }: any) => {
 				/>
 
 				<div className="absolute bottom-1 right-1">
-					<span className="flex flex-col justify-between gap-1 bg-slate-900/80 backdrop-blur-md text-slate-100 text-[10px] font-black uppercase tracking-tighter px-2 pt-0.5 pb-2 rounded border border-slate-700/50">
-						{language === languageOptions.english
-							? "Multiple Colors Available"
-							: "Varios Colores Disponibles"}
-						{hasMultipleColors && (
+					{hasMultipleColors && (
+						<span className="flex flex-col justify-between gap-1 bg-slate-900/80 backdrop-blur-md text-slate-100 text-[10px] font-black uppercase tracking-tighter px-2 pt-0.5 pb-2 rounded border border-slate-700/50">
+							{language === languageOptions.english
+								? "Multiple Colors Available"
+								: "Varios Colores Disponibles"}
 							<div className="flex justify-end-safe gap-1">
 								<span className="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
 								<span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
 								<span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
 								<span className="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
 							</div>
-						)}
-					</span>
+						</span>
+					)}
 				</div>
 			</div>
 

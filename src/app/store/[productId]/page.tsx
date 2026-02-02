@@ -1,6 +1,5 @@
-import Image from "next/image";
-import { getStoreSingleProduct } from "@/helpers/server";
 import StoreItemDetailsPage from "@/components/pages-content/StoreItemDetailsPage";
+import { getStoreSingleProduct } from "@/helpers/server";
 
 export default async function ProductDetailsPage({
 	params

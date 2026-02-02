@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import MainNavigation from "@/components/layout/MainNavigation";
 import Footer from "@/components/layout/Footer";
 import { AuthContextProvider } from "@/context/authContext";
+import { CartContextProvider } from "@/context/cartContext";
 import { usePathname } from "next/navigation"; // Import usePathname
 
 const geistSans = Geist({
@@ -64,19 +65,21 @@ export default function RootLayout({
 					<ToastContainer />
 					<AuthContextProvider>
 						<LanguageContextProvider>
-							{isAdminPage ? (
-								// If it's an admin page, just render the children (your React Admin page)
-								// without the main navigation and footer
-								children
-							) : (
-								// Otherwise, render the main navigation, children, and footer
-								<>
-									<MainNavigation />
-									{/* It's good practice to wrap your main content */}
-									{children}
-									<Footer />
-								</>
-							)}
+							<CartContextProvider>
+								{isAdminPage ? (
+									// If it's an admin page, just render the children (your React Admin page)
+									// without the main navigation and footer
+									children
+								) : (
+									// Otherwise, render the main navigation, children, and footer
+									<>
+										<MainNavigation />
+										{/* It's good practice to wrap your main content */}
+										{children}
+										<Footer />
+									</>
+								)}
+							</CartContextProvider>
 						</LanguageContextProvider>
 					</AuthContextProvider>
 					<script src="/js/flowbite.js"></script>

@@ -1,18 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import gsap from "gsap";
+import Link from "next/link";
 import LanguageHandler from "@/components/forms/LanguageHandler";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
 import { useEffect, useState, useRef } from "react";
 import { useAuthContext } from "@/context/authContext";
+import { useCartContext } from "@/context/cartContext";
 import { usePathname } from "next/navigation";
 import { useGSAP } from "@gsap/react";
 import { MenuIcon } from "@/components/svg/Icons";
 import { GaryMackLogo } from "@/components/logo";
 
 export default function MainNavigation() {
+  const { cartItems } = useCartContext();
 	const [showMenu, setShowMenu] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 	const menuRef = useRef<HTMLUListElement>(null);
