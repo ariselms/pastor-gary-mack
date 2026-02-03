@@ -16,7 +16,7 @@ export interface AuthContextType {
 
 export interface CartContextType {
 	// Adds a product variant to the cart or increments quantity if it exists
-	addToCart: (productId: string, variant: any) => void;
+	addToCart: (productName: string,productId: string, variant: any) => void;
 
 	// Removes an item entirely based on the variant ID
 	removeFromCart: (variantId: number) => void;

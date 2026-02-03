@@ -13,20 +13,18 @@ import { formatPrice } from "@/helpers/client";
 import { languageOptions } from "@/static";
 import { Container7xl } from "@/components/containers";
 import { ModalToPromptUserToLogin } from "@/components/modals";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 export default function ProductClientView({
 	ProductData
 }: {
 	ProductData: any;
 }) {
-
-  // --- HOOKS --- //
-	const { language } = useLanguageContext();
+	// --- HOOKS --- //
 	const { user } = useAuthContext();
-  const { addToCart, cartItems, setShowCartCheckout } = useCartContext();
+	const { addToCart, cartItems, setShowCartCheckout } = useCartContext();
+	const { language } = useLanguageContext();
 	const pathname = usePathname();
-
 
 	// --- STATE --- //
 	const [isModalToPromptUserToLoginOpen, setIsModalToPromptUserToLoginOpen] =
@@ -35,7 +33,6 @@ export default function ProductClientView({
 	const [selectedSizeId, setSelectedSizeId] = useState<number | null>(null);
 	const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 	const [isInitialStateSet, setIsInitialStateSet] = useState(false);
-
 
 	// --- MEMOS --- //
 	// 1. Only enabled and in-stock variants
@@ -157,7 +154,7 @@ export default function ProductClientView({
 	]);
 
 	// --- HANDLERS --- //
-  // color selection change
+	// color selection change
 	const handleColorChange = (colorId: number) => {
 		setCurrentImageIndex(0);
 		setSelectedColorId(colorId);
@@ -172,44 +169,33 @@ export default function ProductClientView({
 			);
 			if (firstSizeForNewColor) setSelectedSizeId(firstSizeForNewColor.id);
 		}
-	};;
+	};
 
-  // add to cart
+	// add to cart
 	const handleAddToCart = async () => {
-
 		if (!user) {
 			setIsModalToPromptUserToLoginOpen(true);
 			return;
 		}
 
-    // check if the item already exists in the cart
-
-    let alreadyAdded:boolean = false;
-
-    cartItems.forEach((item: any) => {
-      if(item.productId === ProductData.id && item.variant.id === currentVariant.id) {
-        alreadyAdded = true;
-        const alreadyAddedMessage = language === languageOptions.english
-          ? "Product already in cart. Update quantity."
-          : "El producto ya en el carrito de compras. Actualiza la cantidad."
-        toast.warn(alreadyAddedMessage)
-        setShowCartCheckout(true)
-        return true
-      }
-    })
-
-    if(!alreadyAdded) {
-      addToCart(ProductData.id, currentVariant);
-      toast.success("Product added to cart")
-    }
-
-
+		// Since button is disabled, this code only runs if the item is NEW
+		addToCart(ProductData.title, ProductData.id, currentVariant);
+		toast.success(
+			language === languageOptions.english
+				? "Added to cart!"
+				: "¡Agregado al carrito!"
+		);
 	};
 
-	if (!currentVariant)
-		return (
-			<Spinner/>
-		);
+	// 3. Add this Derived State Memo:
+	const isCurrentVariantInCart = useMemo(() => {
+		if (!currentVariant) return false;
+
+		// .some() returns true as soon as it finds a match
+		return cartItems.some((item: any) => item.variant.id === currentVariant.id);
+	}, [cartItems, currentVariant]);
+
+	if (!currentVariant) return <Spinner />;
 
 	return (
 		<Container7xl>
@@ -217,7 +203,7 @@ export default function ProductClientView({
 				<Link
 					className="inline-block underline underline-offset-4 mb-4"
 					href="/store">
-					&larr; Todos los productos
+					&larr; {language === languageOptions.english ? "Back" : "Atrás"}
 				</Link>
 				<h1 className="text-3xl font-bold mb-4">{ProductData?.title}</h1>
 				<span className="block text-2xl font-bold text-yellow-400 mb-4">
@@ -332,17 +318,32 @@ export default function ProductClientView({
 							</div>
 						)}
 
+						<small className="inline-block mb-1">
+							{isCurrentVariantInCart &&
+								(language === languageOptions.english
+									? "This product is already in the cart. To define the quantity, go to the cart and update it."
+									: "Este producto ya está en el carrito. Para definir la cantidad, vaya al carrito y actualizela.")}
+						</small>
+						<button
+							className="w-full rounded-lg text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 cursor-pointer transition-all text-center"
+							onClick={() => {
+								isCurrentVariantInCart
+									? setShowCartCheckout(true)
+									: handleAddToCart();
+							}}>
+							{isCurrentVariantInCart
+								? language === languageOptions.english
+									? "Product added"
+									: "Producto agregado"
+								: language === languageOptions.english
+									? `Add to cart - ${formatPrice(currentVariant.price)}`
+									: `Añadir al carrito - ${formatPrice(currentVariant.price)}`}
+						</button>
+
 						<div
 							className="prose prose-invert text-slate-200 text-lg max-w-[80ch]"
 							dangerouslySetInnerHTML={{ __html: ProductData.description }}
 						/>
-
-            <button
-              className="w-full rounded-lg text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 cursor-pointer mt-4 md:mt-0 transition-all text-center"
-              onClick={handleAddToCart}>
-              Add to Cart -{" "}
-              {formatPrice(currentVariant.price)}
-            </button>
 					</div>
 				</div>
 			</section>

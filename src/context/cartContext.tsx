@@ -40,9 +40,11 @@ export const CartContextProvider = ({
 		localStorage.setItem("cartItems", JSON.stringify(cartItems));
 	}, [cartItems]);
 
-	const addToCart = (productId: string, variant: any) => {
+	const addToCart = (productName: string, productId: string, variant: any) => {
+
 		setCartItems((prevItems) => {
-			// Check if this specific variant is already in the cart
+
+      // Check if this specific variant is already in the cart
 			const existingItemIndex = prevItems.findIndex(
 				(item) => item.variant.id === variant.id
 			);
@@ -55,7 +57,7 @@ export const CartContextProvider = ({
 			}
 
 			// Add as a new item with quantity 1
-			return [...prevItems, { productId, variant, quantity: 1 }];
+			return [...prevItems, { productName, productId, variant, quantity: 1 }];
 		});
 	};
 
@@ -63,7 +65,7 @@ export const CartContextProvider = ({
 		setCartItems((prev) =>
 			prev.filter((item) => item.variant.id !== variantId)
 		);
-    toast.success("Product removed from cart")
+    toast.success("Product removed")
 	};
 
 	const updateQuantity = (variantId: number, newQuantity: number) => {

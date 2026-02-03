@@ -62,9 +62,20 @@ export default function RootLayout({
 				</head>
 				<body
 					className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-					<ToastContainer />
-					<AuthContextProvider>
-						<LanguageContextProvider>
+					<ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+					<LanguageContextProvider>
+						<AuthContextProvider>
 							<CartContextProvider>
 								{isAdminPage ? (
 									// If it's an admin page, just render the children (your React Admin page)
@@ -80,8 +91,8 @@ export default function RootLayout({
 									</>
 								)}
 							</CartContextProvider>
-						</LanguageContextProvider>
-					</AuthContextProvider>
+						</AuthContextProvider>
+					</LanguageContextProvider>
 					<script src="/js/flowbite.js"></script>
 				</body>
 			</html>

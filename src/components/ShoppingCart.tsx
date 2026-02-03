@@ -1,21 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react"; // Added useEffect
 import { useCartContext } from "@/context/cartContext";
+import { useLanguageContext } from "@/context/languageContext";
+import { languageOptions } from "@/static";
 import { formatPrice } from "@/helpers/client";
 import { DrawerTheme } from "@/theme";
 import { ShoppingCartIcon, Minus, Plus, Trash } from "lucide-react";
 import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
-import { Container7xl } from "@/components/containers";
 
-export default function CartContextRootLayout({
-	children
-}: {
-	children: React.ReactNode;
-}) {
-	const { cartItems, removeFromCart, updateQuantity, cartTotal, showCartCheckout, setShowCartCheckout } =
-		useCartContext();
+export default function ShoppingCart() {
+  const { language } = useLanguageContext();
+	const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    cartTotal,
+    showCartCheckout,
+    setShowCartCheckout
+  } = useCartContext();
 
 	// FIX: Hydration Guard
 	const [mounted, setMounted] = useState(false);
@@ -25,28 +30,17 @@ export default function CartContextRootLayout({
 	}, []);
 
 	return (
-		<>
-			<Container7xl>
-				<div className="relative text-white">
-					<span className="absolute left-0 top-4">
-						<ShoppingCartIcon
-							className="w-8 h-8 cursor-pointer relative"
-							onClick={() => setShowCartCheckout(true)}
-						/>
-					</span>
-					{cartItems.length > 0 && (
-						<span className="absolute left-4 top-2 bg-white w-6 h-6 rounded-full text-slate-800 font-bold font-xl flex items-center justify-center border-2 border-yellow-300">
-							{cartItems.length}
-						</span>
-					)}
-				</div>
-			</Container7xl>
+		<div className="relative">
+			<ShoppingCartIcon
+				className="w-8 h-8 cursor-pointer text-white"
+				onClick={() => setShowCartCheckout(true)}
+			/>
+			{cartItems.length > 0 && (
+				<span className="absolute -left-2 -top-2 bg-white w-4 h-4 rounded-full text-slate-800 font-bold text-sm flex items-center justify-center border-2 border-yellow-300">
+					{cartItems.length}
+				</span>
+			)}
 
-			{children}
-
-			{/* FIX: Only render the Drawer if mounted is true.
-         This prevents the server from generating a different ID than the client.
-      */}
 			{mounted && (
 				<Drawer
 					theme={DrawerTheme}
@@ -58,10 +52,30 @@ export default function CartContextRootLayout({
 					<DrawerItems>
 						<ul className="flex flex-col gap-4">
 							{cartItems.length === 0 ? (
-								<p className="text-slate-500">
-									Your cart is empty. Please add products to be able to
-									checkout.
-								</p>
+								<div>
+									<div className="py-16 flex flex-col items-center">
+										<Image
+											src="/images/shopping-cart.svg"
+											alt="shopping cart"
+											width={200}
+											height={200}
+											className="mx-auto"
+										/>
+										<p className="text-slate-500 mb-4">
+											{language === languageOptions.english
+												? "Your cart is empty. Please add products to be able to checkout."
+												: "Tu carrito de compras está vacío. Por favor, agregue productos para poder realizar el checkout."}
+										</p>
+										<Link
+											onClick={() => setShowCartCheckout(false)}
+											href="/store"
+											className="rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
+											{language === languageOptions.english
+												? `Go to the store`
+												: `Ir a la tienda`}
+										</Link>
+									</div>
+								</div>
 							) : (
 								cartItems.map((item: any) => (
 									<li key={item?.variant?.id} className="w-full">
@@ -70,15 +84,17 @@ export default function CartContextRootLayout({
 												<Image
 													src={item?.variant?.images[0]}
 													alt={item?.variant?.title}
-													fill
+													width={200}
+													height={200}
 													className="object-cover"
 												/>
 											</div>
 											<div className="w-full">
 												<span className="block font-bold text-slate-800 dark:text-white">
-													{item?.variant?.title}
+													{item?.productName}
 												</span>
 												<span className="block mb-2 text-slate-600 dark:text-slate-400">
+													{item?.variant?.title}{" - "}
 													{formatPrice(item?.variant?.price)}
 												</span>
 												<div className="flex items-center gap-4">
@@ -121,19 +137,21 @@ export default function CartContextRootLayout({
 							)}
 						</ul>
 						<hr className="my-6 border-slate-200 dark:border-slate-700" />
-						<div className="flex justify-between items-center text-xl font-black text-slate-900 dark:text-white">
-							<span>Total:</span>
-							<span>{formatPrice(cartTotal)}</span>
-						</div>
 
 						{cartItems.length > 0 && (
-							<button className="w-full mt-6 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-black py-4 rounded-xl uppercase tracking-wider transition-all">
-								Proceed to Checkout
-							</button>
+							<>
+								<div className="flex justify-between items-center text-xl font-black text-slate-900 dark:text-white">
+									<span>Total:</span>
+									<span>{formatPrice(cartTotal)}</span>
+								</div>
+								<button className="w-full mt-6 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-black py-4 rounded-xl uppercase tracking-wider transition-all">
+									Proceed to Checkout
+								</button>
+							</>
 						)}
 					</DrawerItems>
 				</Drawer>
 			)}
-		</>
+		</div>
 	);
 }

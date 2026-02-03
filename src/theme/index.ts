@@ -2,8 +2,8 @@ import { createTheme } from "flowbite-react";
 
 export const DrawerTheme = createTheme({
 	root: {
-		base: "fixed z-40 overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800",
-		backdrop: "fixed inset-0 z-30 bg-gray-900/50 dark:bg-gray-900/80",
+		base: "fixed z-40 overflow-y-auto bg-white p-4 transition-transform",
+		backdrop: "fixed inset-0 z-30 bg-gray-900/50",
 		edge: "bottom-16",
 		position: {
 			top: {
@@ -32,7 +32,7 @@ export const DrawerTheme = createTheme({
 			titleCloseIcon: "sr-only",
 			titleIcon: "me-2.5 h-4 w-4",
 			titleText:
-				"mb-4 inline-flex items-center text-base font-semibold text-gray-500 dark:text-gray-400"
+				"mb-4 inline-flex items-center text-base font-semibold text-gray-500"
 		},
 		collapsed: {
 			on: "hidden",

@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import Link from "next/link";
+import ShoppingCart from "@/components/ShoppingCart";
 import LanguageHandler from "@/components/forms/LanguageHandler";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static";
@@ -155,7 +156,8 @@ export default function MainNavigation() {
 				</Link>
 
 				<div className="flex items-center order-3">
-					<div className="flex items-center">
+					<div className="flex items-center gap-2">
+            <ShoppingCart />
 						<LanguageHandler
 							handleLanguageChange={handleLanguageChange}
 							languageContext={languageContext}
