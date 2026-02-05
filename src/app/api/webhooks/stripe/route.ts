@@ -31,24 +31,22 @@ export async function POST(request: Request) {
 		);
 	}
 
-	// Handle successful checkout
+	// --- Handle successful checkout --- //
 	if (event.type === "checkout.session.completed") {
-		// 1. This session object is "light" (missing line_items)
+
+		// 1. Initialize Stripe session object
 		const sessionData: any = event.data.object as Stripe.Checkout.Session;
 
 		try {
-			// 2. 👇 FETCH FULL DETAILS: We must ask Stripe for the line items explicitly
+			// 2. Fetch session details, ask Stripe for the line items explicitly, up to 4 levels allowed
 			const session = await stripe.checkout.sessions.retrieve(sessionData.id, {
 				expand: ["line_items.data.price.product"]
 			});
 
-			// Now we can safely access line_items
-			// for books and donations since it is only 1 item
+			// 3. Assisgn data for books and donations since it is only 1 item
 			const productInfo: any = session?.line_items?.data[0];
-			// console.log("Product Info: ", productInfo?.price?.product);
 
-			// for store products which can be more than one and they will be send to printify api
-			// console.log("Line Items: ", session?.line_items?.data[0]);
+			// 4. for store products which can be more than one and they will be send to printify api POST request
 			const printifyStoreProductsApi = session?.line_items?.data.map(
 				(item, index) => {
 					const productId =
@@ -70,7 +68,7 @@ export async function POST(request: Request) {
 				}
 			);
 
-			// This array will be stored in your 'line_items' column in Neon
+			// 5. Create the array that will be stored in the 'line_items' column in NeonDB
 			const dbLineItems = session?.line_items?.data.map((item) => {
 				// Check if the product was expanded correctly
 				const productObject =
@@ -78,25 +76,20 @@ export async function POST(request: Request) {
 					"metadata" in item.price.product
 						? item.price.product
 						: null;
-
 				const productMetadata = productObject?.metadata || {};
-
-				// Stripe images are stored in an array
+				// Stripe images are stored in an array, select the first one
 				const productImage = productObject?.images?.[0] || "";
-
+        // Return the structured line_items array for the DB
 				return {
 					product_id: productMetadata?.productId,
 					variant_id: productMetadata?.variantId,
-					product_image: productImage, // Added this line
+					product_image: productImage,
 					quantity: item.quantity,
-					// amount_total is in cents from Stripe
 					product_total: item.amount_total
 				};
 			});
 
-      console.log("DB Line Items: ", dbLineItems);
-
-			// Calculate order total from the session
+			// 6. Calculate order total from the session
 			const orderTotal = session.amount_total;
 
 			// Process book orders
@@ -217,14 +210,15 @@ export async function POST(request: Request) {
 				}
 			}
 
-			// Process store purchases next...
+			// Process store purchases
 			if (session.metadata?.itemCategory === saleCategories?.store) {
-				// 1. Extract Shipping Details from Stripe Session
+
+        // 1. Extract Shipping Details from Stripe Session
 				const shipping = sessionData.customer_details?.address;
 				const name = sessionData.customer_details?.name;
 				const email = sessionData.customer_details?.email;
 
-				// 1. Prepare data for DB
+				// 2. Structure data for Post Request to Printify
 				const printifyStoreOrder = {
 					external_id: session.id,
 					label: "gm_store",
@@ -247,9 +241,7 @@ export async function POST(request: Request) {
 					}
 				};
 
-				console.log("Printify Store Order: ", printifyStoreOrder);
-
-				// 2. Check if the order is a donation
+				// 3. Check if the order is a store order
 				if (!printifyStoreOrder.external_id) {
 					return NextResponse.json(
 						{
@@ -261,7 +253,7 @@ export async function POST(request: Request) {
 					);
 				}
 
-				// 3. Insert into Neon DB (Fixed table name to match your previous schema)
+				// 4. Send the order to printify
 				try {
 					const sendOrderRequest = await fetch(
 						`${printifyBaseUrl}/shops/${shopId}/orders.json`,
@@ -287,21 +279,28 @@ export async function POST(request: Request) {
 					}
 
 					const sendOrderResponse = await sendOrderRequest.json();
+
+          // 5. Save the response id coming from the POST request to printify
 					const orderId = sendOrderResponse.id;
 
+          // 6. Save the order user order details to NeonDB
 					if (orderId) {
 						const { rows: newStoreOrderCreated } = await sql`
               INSERT INTO store_orders (
                 order_id,
                 printify_id,
+                by_user_id,
                 order_total,
                 line_items,
+                created_at
               )
               VALUES (
                 ${session.id},
                 ${orderId},
+                ${session.metadata?.userId},
                 ${orderTotal},
-                ${JSON.stringify(dbLineItems)}
+                ${JSON.stringify(dbLineItems)},
+                NOW()
               ) RETURNING *`;
 
 						if (newStoreOrderCreated) {
@@ -309,22 +308,21 @@ export async function POST(request: Request) {
 						}
 					}
 				} catch (error) {
+
 					console.error("Failed to send order:", error);
 
-					return NextResponse.json(
-						{
-							success: false,
-							message: "Failed to send order",
-							data: null
-						},
-						{ status: 500 }
-					);
 				}
 			}
 		} catch (error) {
+
 			console.error("Failed to process order:", error);
-			return NextResponse.json(
-				{ error: "Webhook handler failed" },
+
+      return NextResponse.json(
+				{
+          success: false,
+          message: "Failed to process order",
+          data: null
+        },
 				{ status: 500 }
 			);
 		}
