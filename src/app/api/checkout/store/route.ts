@@ -1,50 +1,109 @@
-// app/api/checkout/route.ts
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { serverBaseUrl, saleCategories } from "@/static";
+import { cookies } from "next/headers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function POST(request: Request) {
-	const { variantId, price } = await request.json();
-
-	// the stripe from Printful will come as 25.00, so I need to remember to remove the .replace method
-	const stripe_price = Math.round(Number(price.replace("$", "") * 100));
-
 	try {
-		const session = await stripe.checkout.sessions.create({
-			line_items: [
-				{
-					price_data: {
-						currency: "usd",
-						product_data: {
-							name: "T-Shirt - Nation of Faith", // From Printful data
-							images: ["https://printful-image-url.com..."]
-						},
-						unit_amount: stripe_price // $30.00 (You define this, not Printful)
-					},
-					quantity: 1
-				}
-			],
-			payment_method_types: ["card"],
-			// ADD THIS BLOCK 👇
-			shipping_address_collection: {
-				allowed_countries: ["US", "CA"] // Add other country codes as needed (e.g., 'GB', 'AU')
-			},
-			// ----------------
-			metadata: {
-				printfulVariantId: variantId
-			},
-			mode: "payment",
-			success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
-			cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`
+		// 1. Receive the cart items and user object
+		const { cartItems, user } = await request.json();
+
+		// 2. Get the current language for the Stripe UI
+		const cookieStore = await cookies();
+		const languageCookie = cookieStore.get("language");
+		const currentLanguage: string | undefined = languageCookie?.value;
+
+		// 3. Basic validation
+		if (!cartItems || cartItems.length === 0 || !user) {
+			return NextResponse.json(
+				{ error: "Cart is empty or user info is missing." },
+				{ status: 400 }
+			);
+		}
+
+		// 4. Map Cart Items to Stripe Line Items
+		const line_items = cartItems.map((item: any) => {
+
+			return {
+				price_data: {
+          currency: "usd",
+					// Printify prices are in cents (e.g., 1796), Stripe also expects cents
+					unit_amount: item.variant.price,
+					product_data: {
+						name: item.productName,
+						description: `Variant: ${item.variant.title}`,
+						images: [item.variant.images[0]],
+						metadata: {
+							productId: item.productId,
+							variantId: item.variant.id,
+						}
+					}
+				},
+				quantity: item.quantity
+			};
 		});
 
-		console.log("Session URL: ", session.url);
+		// 5. Find or create Stripe Customer
+		let customerId: string;
+		const existingCustomers = await stripe.customers.list({
+			email: user.contact_email,
+			limit: 1
+		});
 
-		return NextResponse.json({ url: session.url });
+		if (existingCustomers.data.length > 0) {
+			customerId = existingCustomers.data[0].id;
+		} else {
+			const newCustomer = await stripe.customers.create({
+				email: user.contact_email,
+				name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+				metadata: { userId: user.id }
+			});
+
+			customerId = newCustomer.id;
+		}
+
+		// 6. Create the Stripe Session
+		const stripeSession = await stripe.checkout.sessions.create({
+			locale: currentLanguage === "en" ? "en" : "es",
+			customer: customerId,
+			client_reference_id: user.id,
+			invoice_creation: { enabled: true },
+			payment_method_types: ["card"],
+			success_url: `${serverBaseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${serverBaseUrl}/store`,
+			mode: "payment",
+			line_items: line_items,
+      shipping_address_collection: { allowed_countries: ["US"] },
+			// Session-level metadata for your Webhook
+			metadata: {
+        itemId: "store",
+				orderType: "store_purchase",
+				userId: user.id,
+				itemCategory: saleCategories.store
+			}
+		});
+
+		return NextResponse.json(
+			{
+				success: true,
+				message: "Session created successfully",
+				data: stripeSession.url
+			},
+			{ status: 200 }
+		);
+
 	} catch (err: any) {
-		console.log("Error creating checkout session: ", err.message);
 
-		return NextResponse.json({ error: err.message }, { status: 500 });
+		console.error("Error creating Stripe checkout session: ", err.message);
+
+		return NextResponse.json(
+			{
+        success: false,
+        message: err.message,
+        data: null },
+			{ status: 500 }
+		);
 	}
 }

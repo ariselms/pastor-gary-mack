@@ -12,7 +12,7 @@ export default function AboutPastorGaryMack() {
 		<section className="bg-black border-y border-slate-900">
 			<Container7xl>
 				<div className="py-16 px-4 lg:px-6">
-					<div className="max-w-screen-lg text-slate-200 sm:text-lg ">
+					<div className="max-w-5xl text-slate-200 sm:text-lg ">
 						<h2 className="mb-4 text-4xl tracking-tight font-bold">
 							{language === languageOptions.english
 								? "Who is Pastor Gary Mack?"

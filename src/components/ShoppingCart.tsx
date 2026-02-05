@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react"; // Added useEffect
 import { useCartContext } from "@/context/cartContext";
 import { useLanguageContext } from "@/context/languageContext";
+import { useAuthContext } from "@/context/authContext";
 import { languageOptions } from "@/static";
 import { formatPrice } from "@/helpers/client";
 import { DrawerTheme } from "@/theme";
@@ -12,6 +14,9 @@ import { ShoppingCartIcon, Minus, Plus, Trash } from "lucide-react";
 import { Drawer, DrawerHeader, DrawerItems } from "flowbite-react";
 
 export default function ShoppingCart() {
+  // Hooks
+  const router = useRouter();
+  const { user } = useAuthContext();
   const { language } = useLanguageContext();
 	const {
     cartItems,
@@ -22,12 +27,54 @@ export default function ShoppingCart() {
     setShowCartCheckout
   } = useCartContext();
 
-	// FIX: Hydration Guard
-	const [mounted, setMounted] = useState(false);
+  // State
+  const [loading, setLoading] = useState<boolean>(false);
 
+	// Effect: Hydration Guard - this will avoid a hydration error in the console
+	const [mounted, setMounted] = useState(false);
 	useEffect(() => {
-		setMounted(true);
+    setMounted(true);
 	}, []);
+
+  // Handlers
+  const handleStartCheckout = async () => {
+
+    try {
+
+      if(!user){
+        router.push(`/login?redirectUrl=${window.location.href}`)
+        return;
+      }
+
+      setLoading(true)
+
+      const productsRequest = await fetch("/api/checkout/store", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cartItems, user })
+      });
+
+      const productsResponse = await productsRequest.json();
+
+      if(productsResponse.success){
+
+        const { data } = productsResponse;
+
+        if (data) {
+          router.push(data);
+        }
+
+      }
+
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+
+  };
+
+
 
 	return (
 		<div className="relative">
@@ -144,8 +191,18 @@ export default function ShoppingCart() {
 									<span>Total:</span>
 									<span>{formatPrice(cartTotal)}</span>
 								</div>
-								<button className="w-full mt-6 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-black py-4 rounded-xl uppercase tracking-wider transition-all">
-									Proceed to Checkout
+
+								<button
+                  onClick={handleStartCheckout}
+                  className="w-full mt-6 bg-yellow-300 hover:bg-yellow-400 text-slate-900 font-black py-4 rounded-xl uppercase tracking-wider transition-all">
+                    {loading
+                      ? `${language === languageOptions.english
+                        ? "Processing..."
+                        : "Procesando..."}`
+                      : `${language === languageOptions.english
+                        ? "Proceed to Checkout"
+                        : "Proceder al Checkout"}`
+                    }
 								</button>
 							</>
 						)}

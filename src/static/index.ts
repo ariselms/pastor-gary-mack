@@ -71,9 +71,10 @@ export const donationFrequencyOptions = {
 };
 
 // Stripe Checkout Modes
-export const saleCagegories = {
+export const saleCategories = {
 	book: "book",
-	donation: "donation"
+	donation: "donation",
+  store: "store"
 };
 
 // -- Books related -- //

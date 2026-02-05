@@ -4,13 +4,15 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { sql } from "@vercel/postgres";
-import { saleCagegories } from "@/static";
+import { saleCategories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET!;
+const printifyBaseUrl = process.env.PRINTIFY_BASE_URL!;
+const printifyApiToken = process.env.PRINTIFY_API_KEY!;
+const shopId = process.env.PRINTIFY_SHOP_ID!;
 
 export async function POST(request: Request) {
-
 	const body = await request.text();
 	const stripeSignature = (await headers()).get("stripe-signature") as string;
 
@@ -32,19 +34,73 @@ export async function POST(request: Request) {
 	// Handle successful checkout
 	if (event.type === "checkout.session.completed") {
 		// 1. This session object is "light" (missing line_items)
-		const sessionLight = event.data.object as Stripe.Checkout.Session;
+		const sessionData: any = event.data.object as Stripe.Checkout.Session;
 
 		try {
 			// 2. 👇 FETCH FULL DETAILS: We must ask Stripe for the line items explicitly
-			const session = await stripe.checkout.sessions.retrieve(sessionLight.id, {
-				expand: ["line_items"]
+			const session = await stripe.checkout.sessions.retrieve(sessionData.id, {
+				expand: ["line_items.data.price.product"]
 			});
 
 			// Now we can safely access line_items
-			const productInfo = session.line_items?.data[0];
+			// for books and donations since it is only 1 item
+			const productInfo: any = session?.line_items?.data[0];
+			// console.log("Product Info: ", productInfo?.price?.product);
 
-      // Process book orders
-			if (session.metadata?.itemCategory === saleCagegories?.book) {
+			// for store products which can be more than one and they will be send to printify api
+			// console.log("Line Items: ", session?.line_items?.data[0]);
+			const printifyStoreProductsApi = session?.line_items?.data.map(
+				(item, index) => {
+					const productId =
+						typeof item?.price?.product === "object" &&
+						"metadata" in item.price.product
+							? item.price.product.metadata?.productId
+							: undefined;
+					const variantId =
+						typeof item?.price?.product === "object" &&
+						"metadata" in item.price.product
+							? item.price.product.metadata?.variantId
+							: undefined;
+					return {
+						product_id: productId,
+						variant_id: variantId,
+						quantity: item.quantity,
+						external_id: `line-item-${variantId}-${index}`
+					};
+				}
+			);
+
+			// This array will be stored in your 'line_items' column in Neon
+			const dbLineItems = session?.line_items?.data.map((item) => {
+				// Check if the product was expanded correctly
+				const productObject =
+					typeof item?.price?.product === "object" &&
+					"metadata" in item.price.product
+						? item.price.product
+						: null;
+
+				const productMetadata = productObject?.metadata || {};
+
+				// Stripe images are stored in an array
+				const productImage = productObject?.images?.[0] || "";
+
+				return {
+					product_id: productMetadata?.productId,
+					variant_id: productMetadata?.variantId,
+					product_image: productImage, // Added this line
+					quantity: item.quantity,
+					// amount_total is in cents from Stripe
+					product_total: item.amount_total
+				};
+			});
+
+      console.log("DB Line Items: ", dbLineItems);
+
+			// Calculate order total from the session
+			const orderTotal = session.amount_total;
+
+			// Process book orders
+			if (session.metadata?.itemCategory === saleCategories?.book) {
 				// Prepare data for DB
 				const bookOrder = {
 					stripe_session_id: session.id,
@@ -99,10 +155,9 @@ export async function POST(request: Request) {
 				}
 			}
 
-      // Process donations
-			if (session.metadata?.itemCategory === saleCagegories?.donation) {
-
-				// Prepare data for DB
+			// Process donations
+			if (session.metadata?.itemCategory === saleCategories?.donation) {
+				// 1. Prepare data for DB
 				const donationOrder = {
 					by_user_id: session.client_reference_id, // Ensure this was sent from client
 					stripe_product_id: session.metadata?.itemId || "", // Metadata is safer/easier here
@@ -113,18 +168,18 @@ export async function POST(request: Request) {
 					created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
 					image_url: session.metadata?.itemImage || "",
 					is_active:
-						session.metadata?.itemName === "Donar Mensual"
-            || session.metadata?.itemName === "Donate Monthly"
-            ? true
-            : false
+						session.metadata?.itemName === "Donar Mensual" ||
+						session.metadata?.itemName === "Donate Monthly"
+							? true
+							: false
 				};
 
+				// 2. Check if the order is a donation
 				if (!donationOrder.by_user_id) {
-
 					return NextResponse.json(
 						{
 							success: true,
-							message: "This is not a digital donationOrder.",
+							message: "This is not a digital donation order.",
 							data: null
 						},
 						{ status: 200 }
@@ -162,8 +217,110 @@ export async function POST(request: Request) {
 				}
 			}
 
-      // Process store purchases next...
+			// Process store purchases next...
+			if (session.metadata?.itemCategory === saleCategories?.store) {
+				// 1. Extract Shipping Details from Stripe Session
+				const shipping = sessionData.customer_details?.address;
+				const name = sessionData.customer_details?.name;
+				const email = sessionData.customer_details?.email;
 
+				// 1. Prepare data for DB
+				const printifyStoreOrder = {
+					external_id: session.id,
+					label: "gm_store",
+					line_items: printifyStoreProductsApi,
+					shipping_method: 1,
+					is_printify_express: false,
+					is_economy_shipping: false,
+					send_shipping_notification: true,
+					address_to: {
+						first_name: name.split(" ")[0].trim(),
+						last_name: name.split(" ")[1].trim() || "",
+						email: email,
+						phone: "",
+						country: shipping?.country,
+						region: shipping?.state,
+						address1: shipping?.line1!,
+						address2: "",
+						city: shipping?.city!,
+						zip: shipping?.postal_code
+					}
+				};
+
+				console.log("Printify Store Order: ", printifyStoreOrder);
+
+				// 2. Check if the order is a donation
+				if (!printifyStoreOrder.external_id) {
+					return NextResponse.json(
+						{
+							success: true,
+							message: "This is not a digital store order.",
+							data: null
+						},
+						{ status: 200 }
+					);
+				}
+
+				// 3. Insert into Neon DB (Fixed table name to match your previous schema)
+				try {
+					const sendOrderRequest = await fetch(
+						`${printifyBaseUrl}/shops/${shopId}/orders.json`,
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+								Authorization: `Bearer ${printifyApiToken}`
+							},
+							body: JSON.stringify(printifyStoreOrder)
+						}
+					);
+
+					if (!sendOrderRequest.ok) {
+						return NextResponse.json(
+							{
+								success: false,
+								message: "Failed to send order",
+								data: null
+							},
+							{ status: 500 }
+						);
+					}
+
+					const sendOrderResponse = await sendOrderRequest.json();
+					const orderId = sendOrderResponse.id;
+
+					if (orderId) {
+						const { rows: newStoreOrderCreated } = await sql`
+              INSERT INTO store_orders (
+                order_id,
+                printify_id,
+                order_total,
+                line_items,
+              )
+              VALUES (
+                ${session.id},
+                ${orderId},
+                ${orderTotal},
+                ${JSON.stringify(dbLineItems)}
+              ) RETURNING *`;
+
+						if (newStoreOrderCreated) {
+							console.log("New Store Order Created: ", newStoreOrderCreated);
+						}
+					}
+				} catch (error) {
+					console.error("Failed to send order:", error);
+
+					return NextResponse.json(
+						{
+							success: false,
+							message: "Failed to send order",
+							data: null
+						},
+						{ status: 500 }
+					);
+				}
+			}
 		} catch (error) {
 			console.error("Failed to process order:", error);
 			return NextResponse.json(

@@ -20,6 +20,7 @@ export default function ProductClientView({
 }: {
 	ProductData: any;
 }) {
+  console.log(ProductData);
 	// --- HOOKS --- //
 	const { user } = useAuthContext();
 	const { addToCart, cartItems, setShowCartCheckout } = useCartContext();

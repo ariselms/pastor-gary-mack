@@ -5,7 +5,7 @@ import { languageOptions, serverBaseUrl } from "@/static";
 import { cookies } from "next/headers";
 import { donationFrequencyOptions } from "@/static";
 import { DonationProductData } from "@/types/donationTypes";
-import { saleCagegories } from "@/static";
+import { saleCategories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
@@ -166,7 +166,7 @@ export async function POST(request: Request) {
 				itemId: "donation",
 				itemName: productData.name,
 				itemImage: imageUrl,
-				itemCategory: saleCagegories.donation
+				itemCategory: saleCategories.donation
 			}
 		});
 

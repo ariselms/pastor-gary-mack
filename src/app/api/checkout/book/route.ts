@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { serverBaseUrl } from "@/static";
 import { cookies } from "next/headers";
-import { saleCagegories } from "@/static";
+import { saleCategories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
 				itemId: book.id, // Useful for webhooks/fulfillment later
 				itemName: book.name,
 				itemImage: book.images[0],
-				itemCategory: saleCagegories.book
+				itemCategory: saleCategories.book
 			},
 		});
 

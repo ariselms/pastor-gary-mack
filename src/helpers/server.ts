@@ -186,6 +186,7 @@ export const getStoreSingleProduct = async (productId: string) => {
 			`${PrintifyBaseUrl}/shops/${PrintifyShopId}/products/${productId}.json`,
 			{
 				method: "GET",
+        cache: "no-store",
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${PrintifyApiKey}` // Fixed typo here

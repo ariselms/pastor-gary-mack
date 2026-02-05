@@ -188,7 +188,7 @@ export function GivePageContent() {
 					<button
 						onClick={handleDonate}
 						disabled={loading}
-						className="w-full rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300  w-fit cursor-pointer inline-block mt-4 md:mt-0 transition-all">
+						className="w-full rounded-lg text-center text-lg font-medium focus:outline-none focus:ring-4 px-5 py-3 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 cursor-pointer inline-block mt-4 md:mt-0 transition-all">
 						{loading
 							? `${language === languageOptions.english ? "Processing" : "Procesando"}...`
 							: `${language === languageOptions.english ? "Donate" : "Donar"} $${amount || "0"} ${frequency === donationFrequencyOptions.subscription.value ? "/ mo" : ""}`}
