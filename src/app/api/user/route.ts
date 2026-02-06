@@ -2,6 +2,8 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 
+
+
 // update user
 export async function PUT(request: Request) {
 	try {
@@ -53,3 +55,5 @@ export async function PUT(request: Request) {
 
 	return NextResponse.json({ message: "GET leads" });
 }
+
+

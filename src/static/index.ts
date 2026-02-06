@@ -159,3 +159,10 @@ export const serverBaseUrl: string | undefined = baseUrl;
 export { stripeLinkOneTimeDonationSpanish };
 export { stripeLinkOneTimeDonationEnglish };
 export { stripeCustomerPortalLink };
+
+export const printifyOrderStatus = Object.freeze({
+	received: "received",
+	processing: "processing",
+	shipped: "shipped",
+	canceled: "canceled"
+});

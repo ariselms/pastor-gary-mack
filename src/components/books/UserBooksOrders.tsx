@@ -6,9 +6,8 @@ import Link from "next/link";
 import { useLanguageContext } from "@/context/languageContext";
 import { languageOptions } from "@/static/";
 
-export function UserOrders({ user }: { user: UserType }) {
-
-  const { language } = useLanguageContext();
+export function UserBooksOrders({ user }: { user: UserType }) {
+	const { language } = useLanguageContext();
 
 	const [userOrders, setUserOrders] = useState<any[] | null>(null);
 

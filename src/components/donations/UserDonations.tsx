@@ -15,7 +15,12 @@ export function UserDonationsTab({
 	return (
 		<section className="py-8">
 			<MaxTextWidth>
-        <h3>Correo Electrónico: {userEmail}</h3>
+				<h3>
+					{language === languageOptions.english
+						? "Email: "
+						: "Correo Electrónico: "}
+					{userEmail}
+				</h3>
 				{language === languageOptions.english
 					? "To view your donation history or manage subscriptions, please access your customer portal below. Be sure to sign in using the same email address associated with your donations. Once you access your customer portal, you can cancel the subscription in the top right button. If you need assistance, please contact us."
 					: "Para ver tu historial de donaciones o administrar tus suscripciones, visita tu portal de cliente. Asegúrate de ingresar con el mismo correo electrónico que usaste para donar. Una vez acceses tu portal de cliente, puedes cancelar la suscripción en el botón superior derecho. Si necesitas ayuda, no dudes en contactarnos."}

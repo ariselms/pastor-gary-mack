@@ -4,7 +4,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function GET(
-	request: Request,
+	req: Request,
 	{ params }: { params: Promise<{ sessionId: string }> }
 ) {
 	const { sessionId } = await params;
@@ -17,56 +17,48 @@ export async function GET(
 	}
 
 	try {
-		// Retrieve the session and expand line_items to see what was bought
 		const session = await stripe.checkout.sessions.retrieve(sessionId, {
 			expand: ["line_items.data.price.product", "payment_intent"]
 		});
 
-		const productObj = session.line_items?.data[0].price?.product;
-
-		const productImage =
-        typeof productObj === "object"
-        && productObj !== null
-        && "images" in productObj
-        ? (productObj as Stripe.Product).images[0]
-        : null;
-
-		// console.log("Stripe Session for Success Order Details: ", productImage);
-
 		// Extract useful data to send back to client
 		const orderDetails = {
 			id: session.id,
-			status: session.status, // "complete", "open", etc.
+			status: session.status,
 			customer_email: session.customer_details?.email,
 			amount_total: session.amount_total ? session.amount_total / 100 : 0,
-			products: session.line_items?.data.map((product: any) => ({
-				id: product.price.product.id,
-				name: product.name, // Now available!
-				description: product.description,
-				// 👇 Extract the image here
-				image: productImage || null,
-				quantity: product.quantity,
-				amount: product.amount_total / 100
-			})),
-			// This is the User ID you sent earlier
+			// Map through every item bought
+			products: session.line_items?.data.map((item: any) => {
+				const productObj = item.price?.product;
+
+				// Extract the image specific to THIS line item
+				const itemImage =
+					typeof productObj === "object" &&
+					productObj !== null &&
+					"images" in productObj
+						? productObj.images[0]
+						: null;
+
+				return {
+					id: productObj.id,
+					name: item.description, // Stripe puts the product name/variant here
+					description: item.description,
+					image: itemImage,
+					quantity: item.quantity,
+					amount: item.amount_total / 100
+				};
+			}),
 			userId: session.client_reference_id
 		};
 
-		return NextResponse.json(
-			{
-				success: true,
-				message: "Order successfully fetched.",
-				data: orderDetails
-			},
-			{ status: 200 }
-		);
+		return NextResponse.json({
+			success: true,
+			message: "Order successfully fetched.",
+			data: orderDetails
+		});
 	} catch (err: any) {
 		return NextResponse.json(
-			{
-				success: false,
-				message: err.message,
-				data: null
-			},
+			{ success: false, message: err.message },
 			{ status: 500 }
 		);
 	}

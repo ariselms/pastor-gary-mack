@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { sql } from "@vercel/postgres";
-import { saleCategories } from "@/static";
+import { printifyOrderStatus, saleCategories } from "@/static";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SIGNING_SECRET!;
@@ -292,6 +292,9 @@ export async function POST(request: Request) {
                 by_user_id,
                 order_total,
                 line_items,
+                status,
+                tracking_number,
+                tracking_url,
                 created_at
               )
               VALUES (
@@ -300,6 +303,9 @@ export async function POST(request: Request) {
                 ${session.metadata?.userId},
                 ${orderTotal},
                 ${JSON.stringify(dbLineItems)},
+                ${printifyOrderStatus.received},
+                ${null},
+                ${null},
                 NOW()
               ) RETURNING *`;
 
