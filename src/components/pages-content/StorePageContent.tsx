@@ -35,10 +35,13 @@ export default function StoreHomePageContent({
 	}, [products]);
 
 	const translateTags = async (tags: string[]) => {
+
 		try {
+
 			setIsLoadingSpanishTags(true);
 
 			const requestTranslateTags = await fetch("/api/store/translate", {
+        cache: "no-store",
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
