@@ -17,7 +17,6 @@ export default async function ProductDetailsPage({
 
 	// In a real app, you'd fetch this based on the ID params
 	const ProductData = ResponseObject.data;
-	console.log(ProductData);
 
 	if (!ProductData) return <div>Product not found</div>;
 

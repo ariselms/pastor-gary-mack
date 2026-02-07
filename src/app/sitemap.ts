@@ -104,6 +104,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Return just static routes if the API fails
 	}
 
-  console.log("Product Rutes: ", productRoutes);
 	return [...staticRoutes, ...productRoutes];
 }
