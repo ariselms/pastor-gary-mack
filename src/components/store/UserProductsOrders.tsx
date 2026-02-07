@@ -54,44 +54,44 @@ export function UserProductsOrders({
 						</h3>
 
 						{userOrders.map((order: any) => (
-							<div key={order.id} className="flex flex-col gap-2">
+							<div key={order.id} className="flex flex-col gap-2 mb-8">
 								{/* RESPONSIVE ORDER HEADER */}
 								<div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-									<div>
-										<p className="text-slate-500 uppercase text-xs font-bold tracking-wider">
+									<div className="flex flex-col items-center">
+										<span className="text-slate-500 uppercase text-xs font-bold tracking-wider">
 											Total
-										</p>
-										<p className="font-semibold">
+										</span>
+										<span className="font-semibold">
 											{formatPrice(order?.order_total)}
-										</p>
+										</span>
 									</div>
-									<div>
-										<p className="text-slate-500 uppercase text-xs font-bold tracking-wider">
+									<div className="flex flex-col items-center">
+										<span className="text-slate-500 uppercase text-xs font-bold tracking-wider">
 											{language === languageOptions.english ? "Date" : "Fecha"}
-										</p>
-										<p>
+										</span>
+										<span>
 											{new Date(order.created_at).toLocaleDateString(
 												language === languageOptions.english
 													? "en-US"
 													: "es-ES",
 												{ year: "numeric", month: "short", day: "numeric" }
 											)}
-										</p>
+										</span>
 									</div>
-									<div>
-										<p className="text-slate-500 uppercase text-xs font-bold tracking-wider">
+									<div className="flex flex-col items-center">
+										<span className="text-slate-500 uppercase text-xs font-bold tracking-wider">
 											{language === languageOptions.english
 												? "Status"
 												: "Estado"}
-										</p>
+										</span>
 										<span className="capitalize px-2 py-0.5 rounded bg-slate-800 text-yellow-400 border border-yellow-900/50 text-xs">
 											{order?.status}
 										</span>
 									</div>
-									<div>
-										<p className="text-slate-500 uppercase text-xs font-bold tracking-wider">
+									<div className="flex flex-col items-center">
+										<span className="text-slate-500 uppercase text-xs font-bold tracking-wider">
 											Tracking
-										</p>
+										</span>
 										{order?.tracking_number ? (
 											<a
 												href={order?.tracking_url}
@@ -100,7 +100,7 @@ export function UserProductsOrders({
 												{order?.tracking_number}
 											</a>
 										) : (
-											<p className="text-slate-400 italic">N/A</p>
+											<span className="text-slate-400 italic">N/A</span>
 										)}
 									</div>
 								</div>
@@ -110,9 +110,9 @@ export function UserProductsOrders({
 									{order?.line_items.map((item: any, index: number) => (
 										<div
 											key={index}
-											className="p-4 flex flex-col sm:flex-row gap-4 border border-slate-700 rounded-lg bg-slate-800/30 backdrop-blur-sm">
-											{/* Image - Centered on mobile, shrink-0 on desktop */}
-											<div className="relative h-32 w-32 mx-auto sm:mx-0 shrink-0 bg-neutral-800 rounded-lg overflow-hidden border border-slate-700">
+											className="p-4 flex flex-col sm:flex-row items-center sm:items-start gap-4 border border-slate-700 rounded-lg bg-slate-800/30 backdrop-blur-sm">
+											{/* Image Container - Already centers via mx-auto on mobile */}
+											<div className="relative h-32 w-32 shrink-0 bg-neutral-800 rounded-lg overflow-hidden border border-slate-700">
 												<Image
 													fill
 													src={item.product_image}
@@ -121,21 +121,19 @@ export function UserProductsOrders({
 												/>
 											</div>
 
-											{/* Content Area */}
-											<div className="flex flex-col flex-1">
-												<div className="flex justify-between items-start gap-2">
-													<div>
-														<h4 className="text-lg font-bold leading-tight">
-															{item?.product_name}
-														</h4>
-														<p className="text-sm text-slate-400">
-															{item?.variant_name}
-														</p>
-													</div>
+											{/* Content Area - Added text-center and sm:text-left */}
+											<div className="flex flex-col flex-1 text-center sm:text-left w-full">
+												<div className="space-y-1">
+													<h4 className="text-lg font-bold leading-tight">
+														{item?.product_name}
+													</h4>
+													<p className="text-sm text-slate-400">
+														{item?.variant_name}
+													</p>
 												</div>
 
-												{/* Bottom Row - Stacks on mobile */}
-												<div className="mt-auto pt-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+												{/* Bottom Row - Stacks on mobile, aligns center on mobile */}
+												<div className="mt-auto pt-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
 													<div className="text-sm space-y-1">
 														<p className="text-slate-300">
 															<span className="text-slate-500">
@@ -151,7 +149,7 @@ export function UserProductsOrders({
 													</div>
 
 													<Link
-														className="inline-flex items-center justify-center font-medium text-yellow-300 hover:text-yellow-200 transition-colors text-sm"
+														className="inline-flex items-center justify-center font-medium text-yellow-300 hover:text-yellow-200 transition-colors text-sm border-b border-transparent hover:border-yellow-200 pb-1 w-fit mx-auto sm:mx-0"
 														href={`/store/${item?.product_id}`}>
 														{language === languageOptions.english
 															? "View Product"

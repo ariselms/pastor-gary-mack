@@ -75,7 +75,7 @@ export default function ProfilePage() {
 						</TabItem>
 						<TabItem
 							title={
-								language === languageOptions.english ? "Products" : "Productos"
+								language === languageOptions.english ? "Store" : "Tienda"
 							}>
 							<UserProductsOrders
 								userId={user?.id}
