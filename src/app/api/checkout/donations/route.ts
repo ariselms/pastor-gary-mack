@@ -1,16 +1,16 @@
 // TODO: Handle Creating and Looking up customers to avoid duplicated data
-import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { NextResponse } from "next/server";
 import { languageOptions, serverBaseUrl } from "@/static";
 import { cookies } from "next/headers";
 import { donationFrequencyOptions } from "@/static";
 import { DonationProductData } from "@/types/donationTypes";
 import { saleCategories } from "@/static";
+import { generateCheckoutIdempotencyKey } from "@/helpers/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function POST(request: Request) {
-
 	try {
 		// 1. Receive the single book and user objects directly
 		const { donationData, user } = await request.json();
@@ -44,7 +44,8 @@ export async function POST(request: Request) {
 
 		// 6. Set languge and define product information, including donation recurrence
 		const isSpanish = currentLanguage === languageOptions.spanish;
-		const isSubscription = frequency === donationFrequencyOptions.subscription.value;
+		const isSubscription =
+			frequency === donationFrequencyOptions.subscription.value;
 
 		let productDataName = "";
 		let productDataDescription = "";
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
 				: "One-Time Donation committed to pastor Gary Mack";
 		}
 
-    // product info
+		// product info
 		const productData: DonationProductData = {
 			name: productDataName,
 			description: productDataDescription,
@@ -85,93 +86,93 @@ export async function POST(request: Request) {
 			};
 		}
 
-    // 7. Find or create Stripe Customer
-    let customerId: string;
+		// 7. Find or create Stripe Customer
+		let customerId: string;
 
-    const existingCustomers = await stripe.customers.list({
-      email: user.contact_email,
-      limit: 1,
-    });
+		const existingCustomers = await stripe.customers.list({
+			email: user.contact_email,
+			limit: 1
+		});
 
-    if (existingCustomers.data.length > 0) {
+		if (existingCustomers.data.length > 0) {
+			customerId = existingCustomers.data[0].id;
+		} else {
+			const newCustomer = await stripe.customers.create({
+				email: user.contact_email,
+				name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
+				metadata: { userId: user.id }
+			});
 
-      customerId = existingCustomers.data[0].id;
+			customerId = newCustomer.id;
+		}
 
-    } else {
+		// 8. Check for existing subscription. If it exists, return a message.
+		if (frequency === donationFrequencyOptions.subscription.value) {
+			const activeSubscriptions = await stripe.subscriptions.list({
+				customer: customerId,
+				status: "active", // Only look for active ones
+				limit: 1
+			});
 
-      const newCustomer = await stripe.customers.create({
-        email: user.contact_email,
-        name: `${user.first_name || ''} ${user.last_name || ''}`.trim(),
-        metadata: { userId: user.id },
-      });
-
-      customerId = newCustomer.id;
-
-    }
-
-    // 8. Check for existing subscription. If it exists, return a message.
-    if (frequency === donationFrequencyOptions.subscription.value) {
-
-      const activeSubscriptions = await stripe.subscriptions.list({
-        customer: customerId,
-        status: "active", // Only look for active ones
-        limit: 1,
-      });
-
-
-      if (activeSubscriptions.data.length > 0) {
-        const alreadySubscribed = isSpanish
+			if (activeSubscriptions.data.length > 0) {
+				const alreadySubscribed = isSpanish
 					? "Ya tienes una subscripción activa. Debes cancelarla si quieres crear una nueva con una cantidad diferente. Visita tu perfil en la pestaña de donaciones, oprime el botón Portal del Cliente para cancelar. Si tienes problemas, contáctanos y con gusto te ayudaremos."
 					: "You already have an active subscription. You must cancel it if you want to create a new one with a different amount. Visit your profile in the donations tab, press the button Customer Portal to cancel. If you have problems, contact us and we'll be happy to help.";
 
-        // If they already have one, stop here.
-        return NextResponse.json(
-          {
-            success: false,
-            data: null,
-            message: alreadySubscribed
-          },
-          { status: 400 }
-        );
-      }
+				// If they already have one, stop here.
+				return NextResponse.json(
+					{
+						success: false,
+						data: null,
+						message: alreadySubscribed
+					},
+					{ status: 400 }
+				);
+			}
+		}
 
-    }
-
-    // 9. Create the Stripe Session
-    // this determines wether to enable invoice creation or not, because if the user is paying a subscriptipon, the invoice_creation should not exists, but if the user is paying a one time payment type, the object will be added for the creation of the invoice
-    const invoiceCreationConfig =
+		// 9. Create the Stripe Session
+		// this determines wether to enable invoice creation or not, because if the user is paying a subscriptipon, the invoice_creation should not exists, but if the user is paying a one time payment type, the object will be added for the creation of the invoice
+		const invoiceCreationConfig =
 			frequency === donationFrequencyOptions.subscription.value
 				? undefined
 				: { enabled: true };
 
-		const stripeSession = await stripe.checkout.sessions.create({
-			locale: currentLanguage === "en" ? "en" : "es",
-			client_reference_id: user.id,
-			customer: customerId,
-			invoice_creation: invoiceCreationConfig,
-			payment_method_types: ["card"],
-			success_url: `${serverBaseUrl}/give/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${serverBaseUrl}/give`,
-			mode:
-				frequency === donationFrequencyOptions.subscription.value
-					? "subscription"
-					: "payment",
-			line_items: [
-				{
-					price_data: priceData,
-					quantity: 1
+		const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
+		console.log("Store Checkout Idempotency Key: ", idempotencyKey);
+		const stripeSession = await stripe.checkout.sessions.create(
+			{
+				locale: currentLanguage === "en" ? "en" : "es",
+				client_reference_id: user.id,
+				customer: customerId,
+				invoice_creation: invoiceCreationConfig,
+				payment_method_types: ["card"],
+				success_url: `${serverBaseUrl}/give/success?session_id={CHECKOUT_SESSION_ID}`,
+				cancel_url: `${serverBaseUrl}/give`,
+				mode:
+					frequency === donationFrequencyOptions.subscription.value
+						? "subscription"
+						: "payment",
+				line_items: [
+					{
+						price_data: priceData,
+						quantity: 1
+					}
+				],
+				metadata: {
+					itemId: "donation",
+					itemName: productData.name,
+					itemImage: imageUrl,
+					itemCategory: saleCategories.donation
 				}
-			],
-			metadata: {
-				itemId: "donation",
-				itemName: productData.name,
-				itemImage: imageUrl,
-				itemCategory: saleCategories.donation
+			},
+			{
+				idempotencyKey: idempotencyKey
 			}
-		});
+		);
 
 		// 10. if everything is ok, return the URL to start the checkout session
-    // 11. to see the product creation, visit Stripe Webhook in --- /api/webhooks/stripe/route.ts
+		// 11. to see the product creation, visit Stripe Webhook in --- /api/webhooks/stripe/route.ts
 		return NextResponse.json({ url: stripeSession.url });
 	} catch (err: any) {
 		console.error("Error creating Stripe checkout session: ", err.message);

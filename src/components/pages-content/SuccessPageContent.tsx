@@ -41,6 +41,7 @@ export function StripeSuccessPageContent() {
 					const responseOrder = await requestOrder.json();
 
 					if (responseOrder.success) {
+            console.log(responseOrder);
 						setOrder(responseOrder.data);
 						setLoading(false);
 					} else {

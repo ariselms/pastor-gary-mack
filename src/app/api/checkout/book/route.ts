@@ -1,10 +1,11 @@
 // TODO: Handle Creating and Looking up customers to avoid duplicated data
 
-import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { NextResponse } from "next/server";
 import { serverBaseUrl } from "@/static";
 import { cookies } from "next/headers";
 import { saleCategories } from "@/static";
+import { generateCheckoutIdempotencyKey } from "@/helpers/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
@@ -51,30 +52,38 @@ export async function POST(request: Request) {
 		}
 
 		// 4. Create the Stripe Session
-		const stripeSession = await stripe.checkout.sessions.create({
-			locale: currentLanguage === "en" ? "en" : "es",
-			customer: customerId, // Use the ID we found above
-			client_reference_id: user.id,
-      mode: "payment",
-			success_url: `${serverBaseUrl}/books/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${serverBaseUrl}/books`,
-      payment_method_types: ["card"],
-      invoice_creation: {
-        enabled: true
-      },
-			line_items: [
-				{
-					price: book.default_price.id,
-					quantity: 1
+    const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
+    console.log("Book Checkout Idempotency Key: ", idempotencyKey);
+
+		const stripeSession = await stripe.checkout.sessions.create(
+			{
+				locale: currentLanguage === "en" ? "en" : "es",
+				customer: customerId, // Use the ID we found above
+				client_reference_id: user.id,
+				mode: "payment",
+				success_url: `${serverBaseUrl}/books/success?session_id={CHECKOUT_SESSION_ID}`,
+				cancel_url: `${serverBaseUrl}/books`,
+				payment_method_types: ["card"],
+				invoice_creation: {
+					enabled: true
+				},
+				line_items: [
+					{
+						price: book.default_price.id,
+						quantity: 1
+					}
+				],
+				metadata: {
+					itemId: book.id, // Useful for webhooks/fulfillment later
+					itemName: book.name,
+					itemImage: book.images[0],
+					itemCategory: saleCategories.book
 				}
-			],
-			metadata: {
-				itemId: book.id, // Useful for webhooks/fulfillment later
-				itemName: book.name,
-				itemImage: book.images[0],
-				itemCategory: saleCategories.book
 			},
-		});
+			{
+				idempotencyKey: idempotencyKey
+			}
+		);
 
     // 5. if everything is ok, return the URL to start the checkout session
 		return NextResponse.json({ url: stripeSession.url });

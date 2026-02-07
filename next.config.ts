@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "https",
 				hostname: "images-api.printify.com"
+			},
+			{
+				protocol: "https",
+				hostname: "files.stripe.com"
+			},
+			{
+				protocol: "https",
+				hostname: "pastorgarymack.com"
 			}
 		]
 	}

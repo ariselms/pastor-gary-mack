@@ -236,3 +236,14 @@ export const getStoreSingleProduct = async (productId: string) => {
 
 	}
 };
+
+export const generateCheckoutIdempotencyKey = async (userId: string) => {
+
+  if (userId) {
+    const uuid = crypto.randomUUID();
+    return `user-${userId}-${uuid}`;
+  }
+
+  return undefined
+
+}

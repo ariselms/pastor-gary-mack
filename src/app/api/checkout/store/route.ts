@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { NextResponse } from "next/server";
 import { serverBaseUrl, saleCategories } from "@/static";
 import { cookies } from "next/headers";
+import { generateCheckoutIdempotencyKey } from "@/helpers/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
@@ -67,6 +68,8 @@ export async function POST(request: Request) {
 		}
 
 		// 6. Create the Stripe Session
+    const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
+    console.log("Donation Checkout Idempotency Key: ", idempotencyKey);
 		const stripeSession = await stripe.checkout.sessions.create({
 			locale: currentLanguage === "en" ? "en" : "es",
 			customer: customerId,
@@ -85,6 +88,9 @@ export async function POST(request: Request) {
 				userId: user.id,
 				itemCategory: saleCategories.store
 			}
+		},
+		{
+			idempotencyKey: idempotencyKey
 		});
 
 		return NextResponse.json(

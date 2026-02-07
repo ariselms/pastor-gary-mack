@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Spinner from "@/components/Spinner";
+import { Container7xl } from "@/components/containers";
+import { ModalToPromptUserToLogin } from "@/components/modals";
 import { useState, useEffect, useMemo } from "react";
 import { useLanguageContext } from "@/context/languageContext";
 import { useAuthContext } from "@/context/authContext";
@@ -11,9 +13,9 @@ import { usePathname } from "next/navigation";
 import { serverBaseUrl } from "@/static";
 import { formatPrice } from "@/helpers/client";
 import { languageOptions } from "@/static";
-import { Container7xl } from "@/components/containers";
-import { ModalToPromptUserToLogin } from "@/components/modals";
 import { toast } from "react-toastify";
+import { StoreIcon } from "lucide-react";
+
 
 export default function ProductClientView({
 	ProductData
@@ -202,9 +204,10 @@ export default function ProductClientView({
 		<Container7xl>
 			<section className="text-slate-100 py-16 ">
 				<Link
-					className="inline-block underline underline-offset-4 mb-4"
+					className="w-fit flex gap-1 rounded-lg text-lg font-medium focus:outline-none focus:ring-4 px-3 py-1 bg-yellow-300 text-slate-800 hover:bg-yellow-400 focus:ring-yellow-300 cursor-pointer transition-all text-center mb-4"
 					href="/store">
-					&larr; {language === languageOptions.english ? "Back" : "Atrás"}
+					&larr; <StoreIcon className="w-6 h-6" />{" "}
+					{language === languageOptions.english ? "Store" : "Tienda"}
 				</Link>
 				<h1 className="text-3xl font-bold mb-4">{ProductData?.title}</h1>
 				<span className="block text-2xl font-bold text-yellow-400 mb-4">
@@ -279,7 +282,6 @@ export default function ProductClientView({
 									))}
 								</div>
 								<p className="mt-4 text-sm font-medium">
-									Selected Color:{" "}
 									<span className="text-yellow-400">
 										{currentVariant.displayTitle}
 									</span>
