@@ -88,7 +88,6 @@ export function StripeSuccessPageContent() {
 						{/* LIST OF PRODUCTS */}
 						<div className="flex flex-col gap-8">
 							{order.products.map((product: any, idx: number) => {
-								console.log(product);
 								return (
 									<section
 										key={product.id + idx}

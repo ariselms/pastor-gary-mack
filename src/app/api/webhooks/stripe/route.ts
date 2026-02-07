@@ -287,8 +287,6 @@ export async function POST(request: Request) {
           // 5. Save the response id coming from the POST request to printify
 					const orderId = sendOrderResponse.id;
 
-          console.log("Session Metadata User ID: ", session?.metadata?.userId);
-
           // 6. Save the order user order details to NeonDB
 					if (orderId) {
 
@@ -316,8 +314,6 @@ export async function POST(request: Request) {
                 ${null},
                 NOW()
               ) RETURNING *`;
-
-              console.log("New Store Order Created: ", newStoreOrderCreated);
 
 						if (newStoreOrderCreated) {
 							console.log("New Store Order Created: ", newStoreOrderCreated);
