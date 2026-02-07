@@ -287,18 +287,18 @@ const ProductCard = ({ product }: any) => {
 					{product.tags.slice(0, 1).map((tag: string) => (
 						<span
 							key={tag}
-							className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+							className="text-[11px] text-slate-400 uppercase tracking-widest font-bold">
 							{tag}
 						</span>
 					))}
 				</div>
 
-				<h3 className="font-bold text-slate-100 leading-tight mb-2 group-hover:text-slate-300 transition-colors line-clamp-2">
+				<h3 style={{fontSize: "20px"}} className="font-bold text-slate-100 leading-tight mb-2 group-hover:text-slate-300 transition-colors line-clamp-3">
 					{product.title}
 				</h3>
 
 				<div className="mt-auto flex items-center justify-between">
-					<span className="inline-block text-yellow-300 font-bold text-2xl">
+					<span className="inline-block text-yellow-300 font-bold text-xl">
 						{minPrice === maxPrice
 							? formatPrice(minPrice)
 							: `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`}
