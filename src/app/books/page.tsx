@@ -20,8 +20,8 @@ export async function generateMetadata(): Promise<any> {
 	// 3. Return the metadata object dynamically
 	return {
 		title: isEnglish
-			? "Books | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
-			: "Libros | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
+			? "Books | Pastor Gary Mack - Los Rescatados Rescatando Ministry"
+			: "Libros | Pastor Gary Mack - Ministerio Los Rescatados Rescatando",
 		description: isEnglish
 			? "Discover Pastor Gary Mack's Christian books, grow in faith and support our ministry."
 			: "Descubre los libros del Pastor Gary Mack, crece en la fe y apoya nuestro ministerio.",

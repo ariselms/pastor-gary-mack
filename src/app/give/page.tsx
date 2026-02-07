@@ -20,16 +20,16 @@ export async function generateMetadata(): Promise<any> {
 	// 3. Return the metadata object dynamically
 	return {
 		title: isEnglish
-			? "Donate | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
-			: "Donar | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
+			? "Donate | Pastor Gary Mack - Los Rescatados Rescatando Ministry"
+			: "Donar | Pastor Gary Mack - Ministerio Los Rescatados Rescatando",
 		description: isEnglish
 			? "Support our ministry with any amount. We appreciate your support. May the Father God bless you!"
 			: "Apoya nuestro ministerio con cualquier cantidad. Apreciamos tu apoyo. El Padre te bendiga!",
 		keywords: [
-			"donate to pastor gary mack",
+			"pastor gary mack",
 			isEnglish
-				? "donate to los rescatados rescatando ministry, mongoose mentality, the prayer that God wants"
-				: "donate to ministerio los rescatados rescatando, mentalidad de mangosta, la oración que Dios quiere"
+				? "donate to pastor gary mack, donate to los rescatados rescatando ministry, mongoose mentality, the prayer that God wants"
+				: "donar al pastor gary mack, donar to ministerio los rescatados rescatando, mentalidad de mangosta, la oración que Dios quiere"
 		],
 		robots: {
 			index: true,
@@ -37,8 +37,8 @@ export async function generateMetadata(): Promise<any> {
 		},
 		openGraph: {
 			title: isEnglish
-				? "Donate | Pastor Gary Mack - Ministerio Los Rescatados Rescatando"
-				: "Donar | Pastor Gary Mack - Los Rescatados Rescatando Ministry",
+				? "Donate | Pastor Gary Mack - Los Rescatados Rescatando Ministry"
+				: "Donar | Pastor Gary Mack - Ministerio Los Rescatados Rescatando",
 			description: isEnglish
 				? "Support our ministry with any amount. We appreciate your support. May the Father God bless you!"
 				: "Apoya nuestro ministerio con cualquier cantidad. Apreciamos tu apoyo. El Padre te bendiga!",

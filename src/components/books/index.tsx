@@ -16,11 +16,12 @@ import { usePathname } from "next/navigation";
 import { serverBaseUrl } from "@/static";
 
 export function BookPageContent() {
-  // hooks
+  // -- HOOKS -- //
 	const { language } = useLanguageContext();
 	const { user } = useAuthContext();
   const pathname = usePathname();
-  // state
+
+  // -- STATE -- //
 	const [loading, setLoading] = useState(true);
 	const [book, setBook] = useState<StripeProduct | null>(null);
 	const [userOwned, setUserOwned] = useState(false);
@@ -31,14 +32,16 @@ export function BookPageContent() {
 	const bookValues = mentalidadDeMangostaValues(isEnglish)
 
 	useEffect(() => {
-		let isMounted = true; // 1. Prevents updates if user leaves page quickly
+
+    // 1. Prevents updates if user leaves page quickly
+		let isMounted = true;
 
 		const initPageData = async () => {
 			setLoading(true);
 			setUserOwned(false); // Reset to ensure no stale state
 
 			try {
-				// --- STEP 1: Fetch the Book ---
+				// 1: Fetch the Book
 				const bookId =
 					language === languageOptions.english
 						? process.env.NEXT_PUBLIC_MENTALIDAD_DE_MANGOSTA_EN
@@ -54,10 +57,10 @@ export function BookPageContent() {
 				}
 
 				const currentBook = bookRes.data;
+
 				if (isMounted) setBook(currentBook);
 
-				// --- STEP 2: Check Ownership (Only if User is Logged In) ---
-				// We do this BEFORE setting loading to false
+				// 2: Check Ownership (Only if User is Logged In)
 				if (user && currentBook.id) {
 					const ordersReq = await fetch(
 						`/api/user/orders/books/${currentBook.id}?userId=${user.id}`
@@ -65,17 +68,18 @@ export function BookPageContent() {
 					const ordersRes = await ordersReq.json();
 
 					if (ordersRes.success && isMounted) {
-						// If the API returns any orders, the user owns it
+						// If the API returns any orders, the user owns it, set it to true
 						if (ordersRes.data.length > 0) {
-							console.log("Ownership confirmed for:", currentBook.id);
 							setUserOwned(true);
 						}
 					}
 				}
 			} catch (error) {
+
 				console.error("Error initializing book page:", error);
+
 			} finally {
-				// --- STEP 3: Finally Reveal the UI ---
+				// 3: Finally Reveal the UI
 				if (isMounted) setLoading(false);
 			}
 		};
@@ -87,7 +91,8 @@ export function BookPageContent() {
 		return () => {
 			isMounted = false;
 		};
-	}, [language, user]); // Re-runs if language switches or user logs in
+      // Re-runs if language switches or user logs in
+	}, [language, user]);
 
 	return (
 		<>
