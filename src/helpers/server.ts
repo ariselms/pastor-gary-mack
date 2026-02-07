@@ -116,6 +116,7 @@ export const getAllStoreProducts = async (): Promise<ResponseObject> => {
 		const requestStoreItem = await fetch(
 			`${PrintifyBaseUrl}/shops/${PrintifyShopId}/products.json`,
 			{
+        cache: "no-store",
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
