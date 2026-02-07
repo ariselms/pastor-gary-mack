@@ -35,13 +35,11 @@ export default function StoreHomePageContent({
 	}, [products]);
 
 	const translateTags = async (tags: string[]) => {
-
 		try {
-
 			setIsLoadingSpanishTags(true);
 
 			const requestTranslateTags = await fetch("/api/store/translate", {
-        cache: "no-store",
+				cache: "no-store",
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -190,7 +188,9 @@ export default function StoreHomePageContent({
 									{language === languageOptions.spanish &&
 									isLoadingSpanishTags ? (
 										<div className="flex flex-col items-center justify-center">
-                      <small className="inline-block text-center">Traduciendo Etiquetas...</small>
+											<small className="inline-block text-center">
+												Traduciendo Etiquetas...
+											</small>
 											<Spinner />
 										</div>
 									) : (
@@ -276,18 +276,33 @@ export default function StoreHomePageContent({
 								</h3>
 
 								<div className="grid grid-cols-1 gap-2">
-									{allTags.map((tag) => (
-										<button
-											key={tag}
-											onClick={() => handleUpdateQuery("tag", tag)}
-											className={`text-left p-4 rounded-2xl font-bold border-2 transition-all ${
-												activeTag === tag
-													? "bg-yellow-300 border-yellow-300 text-black"
-													: "border-slate-100 text-slate-600"
-											}`}>
-											{tag}
-										</button>
-									))}
+									{language === languageOptions.english &&
+										allTags.map((tag) => (
+											<button
+												key={tag}
+												onClick={() => handleUpdateQuery("tag", tag)}
+												className={`text-left p-4 rounded-2xl font-bold border-2 transition-all ${
+													activeTag === tag
+														? "bg-yellow-300 border-yellow-300 text-black"
+														: "border-slate-100 text-slate-600"
+												}`}>
+												{tag}
+											</button>
+										))}
+									{language === languageOptions.spanish &&
+										allTagsSpanish.map((tag: any) => (
+											<button
+												key={tag.id}
+												data-tag-value={tag.english}
+												onClick={() => handleUpdateQuery("tag", tag.english)}
+												className={`text-left p-4 rounded-2xl font-bold border-2 transition-all ${
+													activeTag === tag.english
+														? "bg-yellow-300 border-yellow-300 text-black"
+														: "border-slate-100 text-slate-600"
+												}`}>
+												{tag.spanish}
+											</button>
+										))}
 								</div>
 							</div>
 						</div>
@@ -348,18 +363,17 @@ const ProductCard = ({ product }: any) => {
 			</div>
 
 			<div className="pt-5 flex-1 flex flex-col">
-
-        {language === languageOptions.english && (
-          <div className="flex items-center justify-between mb-2">
-            {product.tags.slice(0, 1).map((tag: string) => (
-              <span
-                key={tag}
-                className="text-[11px] text-slate-400 uppercase tracking-widest font-bold">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+				{language === languageOptions.english && (
+					<div className="flex items-center justify-between mb-2">
+						{product.tags.slice(0, 1).map((tag: string) => (
+							<span
+								key={tag}
+								className="text-[11px] text-slate-400 uppercase tracking-widest font-bold">
+								{tag}
+							</span>
+						))}
+					</div>
+				)}
 
 				<h3
 					style={{ fontSize: "20px" }}
