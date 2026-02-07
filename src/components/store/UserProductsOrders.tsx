@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { Container7xl } from "@/components/containers";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { formatPrice } from "@/helpers/client";
-import Link from "next/link";
 
 export function UserProductsOrders({
 	userId,
