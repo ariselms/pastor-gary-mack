@@ -11,6 +11,7 @@ import { generateCheckoutIdempotencyKey } from "@/helpers/server";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function POST(request: Request) {
+
 	try {
 		// 1. Receive the single book and user objects directly
 		const { donationData, user } = await request.json();
@@ -23,7 +24,7 @@ export async function POST(request: Request) {
 		const languageCookie = (await cookieStore).get("language");
 		const currentLanguage: string | undefined = languageCookie?.value;
 
-		// 4. This route is for donations, so if there is no donationData present, return
+		// 4. This route is for donations, so if there is no donationData or user present, return
 		if (!donationData || !user) {
 			return NextResponse.json(
 				{ error: "Something is missing, please try again or read the docs..." },
@@ -34,7 +35,6 @@ export async function POST(request: Request) {
 		// 5. Validate the amount (Stripe expects cents)
 		// We assume 'amount' is passed in dollars (e.g., 50 for $50.00)
 		const amountInCents: number = Math.round(parseFloat(amount) * 100);
-
 		if (amountInCents < 50) {
 			return NextResponse.json(
 				{ error: "Minimum donation amount is $0.50" },
@@ -47,9 +47,10 @@ export async function POST(request: Request) {
 		const isSubscription =
 			frequency === donationFrequencyOptions.subscription.value;
 
+    // initialize product name and description variables
 		let productDataName = "";
 		let productDataDescription = "";
-
+    // set if it is a subscription or a one time payment
 		if (isSubscription) {
 			// Handle Monthly
 			productDataName = isSpanish ? "Donar Mensual" : "Monthly Donation";
@@ -63,14 +64,12 @@ export async function POST(request: Request) {
 				? "Donación única a pastor Gary Mack"
 				: "One-Time Donation committed to pastor Gary Mack";
 		}
-
 		// product info
 		const productData: DonationProductData = {
 			name: productDataName,
 			description: productDataDescription,
 			images: [imageUrl] // Optional
 		};
-
 		// product price
 		const priceData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData = {
 			currency: "usd",
@@ -78,7 +77,6 @@ export async function POST(request: Request) {
 			product_data: productData,
 			tax_behavior: "inclusive"
 		};
-
 		// you can use the following to add recurring logic if needed
 		if (frequency === donationFrequencyOptions.subscription.value) {
 			priceData.recurring = {
@@ -95,8 +93,11 @@ export async function POST(request: Request) {
 		});
 
 		if (existingCustomers.data.length > 0) {
+
 			customerId = existingCustomers.data[0].id;
+
 		} else {
+
 			const newCustomer = await stripe.customers.create({
 				email: user.contact_email,
 				name: `${user.first_name || ""} ${user.last_name || ""}`.trim(),
@@ -104,6 +105,7 @@ export async function POST(request: Request) {
 			});
 
 			customerId = newCustomer.id;
+
 		}
 
 		// 8. Check for existing subscription. If it exists, return a message.
@@ -139,7 +141,6 @@ export async function POST(request: Request) {
 				: { enabled: true };
 
 		const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
-		console.log("Store Checkout Idempotency Key: ", idempotencyKey);
 		const stripeSession = await stripe.checkout.sessions.create(
 			{
 				locale: currentLanguage === "en" ? "en" : "es",
@@ -172,11 +173,19 @@ export async function POST(request: Request) {
 		);
 
 		// 10. if everything is ok, return the URL to start the checkout session
-		// 11. to see the product creation, visit Stripe Webhook in --- /api/webhooks/stripe/route.ts
 		return NextResponse.json({ url: stripeSession.url });
+
 	} catch (err: any) {
+
 		console.error("Error creating Stripe checkout session: ", err.message);
 
-		return NextResponse.json({ error: err.message }, { status: 500 });
+		return NextResponse.json(
+			{
+				success: false,
+				message: err.message,
+				data: null
+			},
+			{ status: 500 }
+		);
 	}
 }

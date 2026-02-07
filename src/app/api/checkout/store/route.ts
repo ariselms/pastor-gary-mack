@@ -7,6 +7,7 @@ import { generateCheckoutIdempotencyKey } from "@/helpers/server";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function POST(request: Request) {
+
 	try {
 		// 1. Receive the cart items and user object
 		const { cartItems, user } = await request.json();
@@ -24,31 +25,7 @@ export async function POST(request: Request) {
 			);
 		}
 
-		// 4. Map Cart Items to Stripe Line Items
-		const line_items = cartItems.map((item: any) => {
-
-			return {
-				price_data: {
-          currency: "usd",
-					// Printify prices are in cents (e.g., 1796), Stripe also expects cents
-					unit_amount: item.variant.price,
-					product_data: {
-						name: item.productName,
-						description: `Variant: ${item.variant.title}`,
-						images: [item.variant.images[0]],
-						metadata: {
-              productName: item.productName,
-              variantName: item.variant.title,
-							productId: item.productId,
-							variantId: item.variant.id,
-						}
-					}
-				},
-				quantity: item.quantity
-			};
-		});
-
-		// 5. Find or create Stripe Customer
+		// 4. Find or create Stripe Customer
 		let customerId: string;
 		const existingCustomers = await stripe.customers.list({
 			email: user.contact_email,
@@ -67,31 +44,55 @@ export async function POST(request: Request) {
 			customerId = newCustomer.id;
 		}
 
-		// 6. Create the Stripe Session
-    const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
-    console.log("Donation Checkout Idempotency Key: ", idempotencyKey);
-		const stripeSession = await stripe.checkout.sessions.create({
-			locale: currentLanguage === "en" ? "en" : "es",
-			customer: customerId,
-			client_reference_id: user.id,
-			invoice_creation: { enabled: true },
-			payment_method_types: ["card"],
-			success_url: `${serverBaseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}`,
-			cancel_url: `${serverBaseUrl}/store`,
-			mode: "payment",
-			line_items: line_items,
-      shipping_address_collection: { allowed_countries: ["US"] },
-			// Session-level metadata for your Webhook
-			metadata: {
-        itemId: "store",
-				orderType: "store_purchase",
-				userId: user.id,
-				itemCategory: saleCategories.store
-			}
-		},
-		{
-			idempotencyKey: idempotencyKey
+		// 5. Map Cart Items to Stripe Line Items
+		const line_items = cartItems.map((item: any) => {
+			return {
+				price_data: {
+					currency: "usd",
+					// Printify prices are in cents (e.g., 1796), Stripe also expects cents
+					unit_amount: item.variant.price,
+					product_data: {
+						name: item.productName,
+						description: `Variant: ${item.variant.title}`,
+						images: [item.variant.images[0]],
+						metadata: {
+							productName: item.productName,
+							variantName: item.variant.title,
+							productId: item.productId,
+							variantId: item.variant.id
+						}
+					}
+				},
+				quantity: item.quantity
+			};
 		});
+
+		// 6. Create the Stripe Session
+		const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
+		const stripeSession = await stripe.checkout.sessions.create(
+			{
+				locale: currentLanguage === "en" ? "en" : "es",
+				customer: customerId,
+				client_reference_id: user.id,
+				invoice_creation: { enabled: true },
+				payment_method_types: ["card"],
+				success_url: `${serverBaseUrl}/store/success?session_id={CHECKOUT_SESSION_ID}`,
+				cancel_url: `${serverBaseUrl}/store`,
+				mode: "payment",
+				line_items: line_items,
+				shipping_address_collection: { allowed_countries: ["US"] },
+				// Session-level metadata for your Webhook
+				metadata: {
+					itemId: "store",
+					orderType: "store_purchase",
+					userId: user.id,
+					itemCategory: saleCategories.store
+				}
+			},
+			{
+				idempotencyKey: idempotencyKey
+			}
+		);
 
 		return NextResponse.json(
 			{

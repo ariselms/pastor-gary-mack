@@ -10,6 +10,7 @@ import { generateCheckoutIdempotencyKey } from "@/helpers/server";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_GARY_MACK!);
 
 export async function POST(request: Request) {
+
 	try {
 		// 1. Receive the single book and user objects directly
 		const { book, user } = await request.json();
@@ -51,10 +52,8 @@ export async function POST(request: Request) {
 
 		}
 
-		// 4. Create the Stripe Session
+		// 5. Create the Stripe Session
     const idempotencyKey = await generateCheckoutIdempotencyKey(user.id);
-    console.log("Book Checkout Idempotency Key: ", idempotencyKey);
-
 		const stripeSession = await stripe.checkout.sessions.create(
 			{
 				locale: currentLanguage === "en" ? "en" : "es",
@@ -92,6 +91,13 @@ export async function POST(request: Request) {
 
 		console.error("Error creating Stripe checkout session: ", err.message);
 
-		return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json(
+      {
+        success: false,
+        message: err.message,
+        data: null
+      },
+      { status: 500 }
+    );
 	}
 }
