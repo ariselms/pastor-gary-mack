@@ -116,7 +116,7 @@ export const getAllStoreProducts = async (): Promise<ResponseObject> => {
 		const requestStoreItem = await fetch(
 			`${PrintifyBaseUrl}/shops/${PrintifyShopId}/products.json`,
 			{
-				next: { revalidate: 3600 }, // Cache for 1 hour
+				next: { revalidate: 86400 }, // Cache for 1 hour
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -187,7 +187,7 @@ export const getStoreSingleProduct = async (productId: string) => {
 			`${PrintifyBaseUrl}/shops/${PrintifyShopId}/products/${productId}.json`,
 			{
 				method: "GET",
-				next: { revalidate: 3600 },
+				next: { revalidate: 86400 },
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${PrintifyApiKey}` // Fixed typo here

@@ -78,7 +78,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 						"Content-Type": "application/json",
 						Authorization: `Bearer ${PrintifyApiKey}`
 					},
-					next: { revalidate: 3600 } // Cache for 1 hour
+					next: { revalidate: 86400 } // Cache for 1 hour
 				}
 			);
 
