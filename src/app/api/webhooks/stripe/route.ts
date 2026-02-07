@@ -81,8 +81,10 @@ export async function POST(request: Request) {
 				const productImage = productObject?.images?.[0] || "";
         // Return the structured line_items array for the DB
 				return {
+          product_name: productMetadata?.productName,
 					product_id: productMetadata?.productId,
 					variant_id: productMetadata?.variantId,
+					variant_name: productMetadata?.variantName,
 					product_image: productImage,
 					quantity: item.quantity,
 					product_total: item.amount_total
@@ -268,6 +270,7 @@ export async function POST(request: Request) {
 					);
 
 					if (!sendOrderRequest.ok) {
+
 						return NextResponse.json(
 							{
 								success: false,
@@ -276,6 +279,7 @@ export async function POST(request: Request) {
 							},
 							{ status: 500 }
 						);
+
 					}
 
 					const sendOrderResponse = await sendOrderRequest.json();
@@ -285,7 +289,9 @@ export async function POST(request: Request) {
 
           // 6. Save the order user order details to NeonDB
 					if (orderId) {
+
 						const { rows: newStoreOrderCreated } = await sql`
+
               INSERT INTO store_orders (
                 order_id,
                 printify_id,
@@ -308,6 +314,8 @@ export async function POST(request: Request) {
                 ${null},
                 NOW()
               ) RETURNING *`;
+
+              console.log("New Store Order Created: ", newStoreOrderCreated);
 
 						if (newStoreOrderCreated) {
 							console.log("New Store Order Created: ", newStoreOrderCreated);

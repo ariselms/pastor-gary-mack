@@ -11,6 +11,7 @@ import { UserBooksOrders } from "@/components/books/UserBooksOrders";
 import { userRoles } from "@/static";
 import { UserDonationsTab } from "@/components/donations/UserDonations";
 import { UserProductsOrders } from "@/components/store/UserProductsOrders";
+import { TabsTheme } from "@/theme";
 
 export default function ProfilePage() {
 	const { language } = useLanguageContext();
@@ -44,6 +45,7 @@ export default function ProfilePage() {
 			<div className="bg-black text-white py-8">
 				<Container7xl>
 					<Tabs
+            theme={TabsTheme}
 						aria-label="Default tabs"
 						variant="default"
 						className="text-white">

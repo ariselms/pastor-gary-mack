@@ -36,6 +36,8 @@ export async function POST(request: Request) {
 						description: `Variant: ${item.variant.title}`,
 						images: [item.variant.images[0]],
 						metadata: {
+              productName: item.productName,
+              variantName: item.variant.title,
 							productId: item.productId,
 							variantId: item.variant.id,
 						}

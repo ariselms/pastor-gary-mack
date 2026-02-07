@@ -55,7 +55,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}
 	];
 
-  console.log(staticRoutes)
-
 	return [...staticRoutes];
 }

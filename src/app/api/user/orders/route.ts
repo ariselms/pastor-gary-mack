@@ -9,17 +9,12 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const userId = searchParams.get("userId");
 
-  console.log(userId)
-
   try {
 
     const {rows: userStoreOrders} = await sql`
       SELECT * FROM store_orders
       WHERE by_user_id = ${userId}
     `
-
-    console.log(userStoreOrders);
-
     return NextResponse.json({
       success: true,
       message: "User orders fetched successfully",
@@ -27,6 +22,8 @@ export async function GET(request: Request) {
     })
 
   } catch (error) {
+
     console.error(error);
+
   }
 }
