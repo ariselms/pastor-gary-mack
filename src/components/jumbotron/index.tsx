@@ -71,7 +71,7 @@ export function JumbotronWithCenteredLetters({
 		<section
 			ref={containerRef}
 			className="h-[calc(100vh-88px)] w-full snap-start flex flex-col justify-center items-center relative bg-slate-900 p-4 overflow-hidden">
-			<div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-slate-900 to-black pointer-events-none"></div>
+			<div className="absolute inset-0 bg-linear-to-br from-blue-900 via-slate-900 to-black pointer-events-none"></div>
 
 			{/* CHANGES HERE:
          1. Removed 'transform -translate-x-1/2 -translate-y-1/2' (GSAP handles this now).
@@ -142,7 +142,7 @@ export function JumbotronShared({
 	return (
 		<div
 			ref={containerRef}
-			className="px-6 py-18 sm:py-24 lg:px-8 bg-gradient-to-tr from-black via-slate-900 to-blue-900 pointer-events-none">
+			className="px-6 py-18 sm:py-24 lg:px-8 bg-linear-to-tr from-black via-slate-900 to-blue-900 pointer-events-none">
 			<div className="mx-auto max-w-2xl text-center">
 				{/* Added 'invisible' to prevent FOUC */}
 				<p
