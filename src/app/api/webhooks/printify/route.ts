@@ -50,12 +50,15 @@ export async function POST(req: Request) {
 				break;
 
 			case "order:canceled":
-				console.log(`❌ Order ${printifyOrderId} was canceled.`);
-				const { rows: updatedCanceledStatusOrder } = await sql`
+
+      console.log(`❌ Order ${printifyOrderId} was canceled.`);
+
+        const { rows: updatedCanceledStatusOrder } = await sql`
           UPDATE store_orders
           SET status = ${printifyOrderStatus.canceled}
           WHERE printify_id = ${printifyOrderId}
         `;
+
 				break;
 
 			default:

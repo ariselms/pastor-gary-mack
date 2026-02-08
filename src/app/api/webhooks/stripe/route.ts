@@ -35,11 +35,11 @@ export async function POST(request: Request) {
 	if (event.type === "checkout.session.completed") {
 
 		// 1. Initialize Stripe session object
-		const sessionData: any = event.data.object as Stripe.Checkout.Session;
+		const sessionData: any = event?.data?.object as Stripe.Checkout.Session;
 
 		try {
 			// 2. Fetch session details, ask Stripe for the line items explicitly, up to 4 levels allowed
-			const session = await stripe.checkout.sessions.retrieve(sessionData.id, {
+			const session = await stripe?.checkout?.sessions?.retrieve(sessionData.id, {
 				expand: ["line_items.data.price.product"]
 			});
 
@@ -51,13 +51,13 @@ export async function POST(request: Request) {
 				(item, index) => {
 					const productId =
 						typeof item?.price?.product === "object" &&
-						"metadata" in item.price.product
-							? item.price.product.metadata?.productId
+						"metadata" in item?.price?.product
+							? item?.price?.product?.metadata?.productId
 							: undefined;
 					const variantId =
 						typeof item?.price?.product === "object" &&
-						"metadata" in item.price.product
-							? item.price.product.metadata?.variantId
+						"metadata" in item?.price?.product
+							? item?.price?.product?.metadata?.variantId
 							: undefined;
 					return {
 						product_id: productId,
@@ -73,8 +73,8 @@ export async function POST(request: Request) {
 				// Check if the product was expanded correctly
 				const productObject =
 					typeof item?.price?.product === "object" &&
-					"metadata" in item.price.product
-						? item.price.product
+					"metadata" in item?.price?.product
+						? item?.price?.product
 						: null;
 				const productMetadata = productObject?.metadata || {};
 				// Stripe images are stored in an array, select the first one
@@ -86,26 +86,26 @@ export async function POST(request: Request) {
 					variant_id: productMetadata?.variantId,
 					variant_name: productMetadata?.variantName,
 					product_image: productImage,
-					quantity: item.quantity,
-					product_total: item.amount_total
+					quantity: item?.quantity,
+					product_total: item?.amount_total
 				};
 			});
 
 			// 6. Calculate order total from the session
-			const orderTotal = session.amount_total;
+			const orderTotal = session?.amount_total;
 
 			// Process book orders
 			if (session.metadata?.itemCategory === saleCategories?.book) {
 				// Prepare data for DB
 				const bookOrder = {
-					stripe_session_id: session.id,
-					by_user_id: session.client_reference_id, // Ensure this was sent from client
-					stripe_product_id: session.metadata?.itemId || "", // Metadata is safer/easier here
-					stripe_product_name: session.metadata?.itemName || "",
+					stripe_session_id: session?.id,
+					by_user_id: session?.client_reference_id, // Ensure this was sent from client
+					stripe_product_id: session?.metadata?.itemId || "", // Metadata is safer/easier here
+					stripe_product_name: session?.metadata?.itemName || "",
 					stripe_price_id: productInfo?.price?.id,
 					stripe_unit_amount: productInfo?.price?.unit_amount,
-					created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
-					image_url: session.metadata?.itemImage || ""
+					created_at: new Date(session?.created * 1000).toISOString(), // Convert Unix timestamp to Date
+					image_url: session?.metadata?.itemImage || ""
 				};
 
 				if (!bookOrder.by_user_id) {
@@ -134,14 +134,14 @@ export async function POST(request: Request) {
             metodo_entrega
           )
           VALUES (
-            ${bookOrder.by_user_id},
-            ${bookOrder.stripe_product_id},
-            ${bookOrder.stripe_product_name},
-            ${bookOrder.stripe_session_id},
-            ${bookOrder.stripe_price_id},
-            ${bookOrder.stripe_unit_amount},
-            ${bookOrder.created_at},
-            ${bookOrder.image_url},
+            ${bookOrder?.by_user_id},
+            ${bookOrder?.stripe_product_id},
+            ${bookOrder?.stripe_product_name},
+            ${bookOrder?.stripe_session_id},
+            ${bookOrder?.stripe_price_id},
+            ${bookOrder?.stripe_unit_amount},
+            ${bookOrder?.created_at},
+            ${bookOrder?.image_url},
             'digital'
           ) RETURNING *`;
 
@@ -154,17 +154,17 @@ export async function POST(request: Request) {
 			if (session.metadata?.itemCategory === saleCategories?.donation) {
 				// 1. Prepare data for DB
 				const donationOrder = {
-					by_user_id: session.client_reference_id, // Ensure this was sent from client
-					stripe_product_id: session.metadata?.itemId || "", // Metadata is safer/easier here
-					stripe_product_name: session.metadata?.itemName || "",
-					stripe_session_id: session.id,
+					by_user_id: session?.client_reference_id, // Ensure this was sent from client
+					stripe_product_id: session?.metadata?.itemId || "", // Metadata is safer/easier here
+					stripe_product_name: session?.metadata?.itemName || "",
+					stripe_session_id: session?.id,
 					stripe_price_id: productInfo?.price?.id,
 					stripe_unit_amount: productInfo?.price?.unit_amount,
-					created_at: new Date(session.created * 1000).toISOString(), // Convert Unix timestamp to Date
-					image_url: session.metadata?.itemImage || "",
+					created_at: new Date(session?.created * 1000).toISOString(), // Convert Unix timestamp to Date
+					image_url: session?.metadata?.itemImage || "",
 					is_active:
-						session.metadata?.itemName === "Donar Mensual" ||
-						session.metadata?.itemName === "Donate Monthly"
+						session?.metadata?.itemName === "Donar Mensual" ||
+						session?.metadata?.itemName === "Donate Monthly"
 							? true
 							: false
 				};
@@ -196,14 +196,14 @@ export async function POST(request: Request) {
             metodo_entrega
           )
           VALUES (
-            ${donationOrder.by_user_id},
-            ${donationOrder.stripe_product_id},
-            ${donationOrder.stripe_product_name},
-            ${donationOrder.stripe_session_id},
-            ${donationOrder.stripe_price_id},
-            ${donationOrder.stripe_unit_amount},
-            ${donationOrder.created_at},
-            ${donationOrder.image_url},
+            ${donationOrder?.by_user_id},
+            ${donationOrder?.stripe_product_id},
+            ${donationOrder?.stripe_product_name},
+            ${donationOrder?.stripe_session_id},
+            ${donationOrder?.stripe_price_id},
+            ${donationOrder?.stripe_unit_amount},
+            ${donationOrder?.created_at},
+            ${donationOrder?.image_url},
             'digital'
           ) RETURNING *`;
 
@@ -213,16 +213,16 @@ export async function POST(request: Request) {
 			}
 
 			// Process store purchases
-			if (session.metadata?.itemCategory === saleCategories?.store) {
+			if (session?.metadata?.itemCategory === saleCategories?.store) {
 
         // 1. Extract Shipping Details from Stripe Session
-				const shipping = sessionData.customer_details?.address;
-				const name = sessionData.customer_details?.name;
-				const email = sessionData.customer_details?.email;
+				const shipping = sessionData?.customer_details?.address;
+				const name = sessionData?.customer_details?.name;
+				const email = sessionData?.customer_details?.email;
 
 				// 2. Structure data for Post Request to Printify
 				const printifyStoreOrder = {
-					external_id: session.id,
+					external_id: session?.id,
 					label: "gm_store",
 					line_items: printifyStoreProductsApi,
 					shipping_method: 1,
@@ -230,8 +230,8 @@ export async function POST(request: Request) {
 					is_economy_shipping: false,
 					send_shipping_notification: true,
 					address_to: {
-						first_name: name.split(" ")[0].trim(),
-						last_name: name.split(" ")[1].trim() || "",
+						first_name: name?.split(" ")[0].trim(),
+						last_name: name?.split(" ")[1].trim() || "",
 						email: email,
 						phone: "",
 						country: shipping?.country,
@@ -285,7 +285,7 @@ export async function POST(request: Request) {
 					const sendOrderResponse = await sendOrderRequest.json();
 
           // 5. Save the response id coming from the POST request to printify
-					const orderId = sendOrderResponse.id;
+					const orderId = sendOrderResponse?.id;
 
           // 6. Save the order user order details to NeonDB
 					if (orderId) {
