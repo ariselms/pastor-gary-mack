@@ -9,6 +9,22 @@ import { languageOptions } from "@/static";
 import { formatPrice } from "@/helpers/client";
 import { ArrowUpDown, Filter, X } from "lucide-react";
 
+// 1. Define the labels outside the component or in a config file
+const sortLabels = {
+  en: {
+    newest: "Newest",
+    "price-low": "Price: Low to High",
+    "price-high": "Price: High to Low",
+    az: "A-Z",
+  },
+  es: {
+    newest: "Lo más nuevo",
+    "price-low": "Precio: Menor a Mayor",
+    "price-high": "Precio: Mayor a Menor",
+    az: "A-Z",
+  },
+};
+
 export default function StoreHomePageContent({
 	ProductsData
 }: {
@@ -70,6 +86,10 @@ export default function StoreHomePageContent({
 
 		fetchTranslatedTags();
 	}, [allTags]);
+
+	// 2. Inside your component
+	// Assuming 'currentLanguage' is 'en' or 'es'
+	const labels = sortLabels[language as keyof typeof sortLabels];
 
 	const filteredProducts = useMemo(() => {
 		let list = [...products];
@@ -256,12 +276,16 @@ export default function StoreHomePageContent({
 							</h3>
 
 							<div className="grid grid-cols-2 gap-2">
-								{["newest", "price-low", "price-high", "az"].map((opt) => (
+								{Object.keys(labels).map((opt) => (
 									<button
 										key={opt}
 										onClick={() => handleUpdateQuery("sort", opt)}
-										className={`px-4 py-3 rounded-xl text-xs font-bold border ${sortBy === opt ? "text-center p-4 rounded-2xl font-bold border-2 transition-all bg-yellow-300 border-yellow-300 text-black" : "text-center p-4 rounded-2xl font-bold border-2 transition-all border-slate-100 text-slate-600"}`}>
-										{opt.replace("-", " ").toUpperCase()}
+										className={`px-4 py-3 rounded-xl text-xs font-bold border transition-all ${
+											sortBy === opt
+												? "bg-yellow-300 border-yellow-300 text-black"
+												: "border-slate-100 text-slate-600 hover:border-yellow-300"
+										}`}>
+										{labels[opt as keyof typeof labels]}
 									</button>
 								))}
 							</div>
@@ -270,9 +294,7 @@ export default function StoreHomePageContent({
 						<div className="flex-1 overflow-y-auto space-y-8">
 							<div>
 								<h3 className="text-base font-black uppercase text-slate-700 tracking-widest mb-4">
-									{language === languageOptions.english
-										? "Tags"
-										: "Etiquetas"}
+									{language === languageOptions.english ? "Tags" : "Etiquetas"}
 								</h3>
 
 								<div className="grid grid-cols-1 gap-2">

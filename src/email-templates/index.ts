@@ -51,31 +51,77 @@ export const emailCodeConfirmationTemplate = (
 };
 
 export const loginConfirmationEmailTemplate = (
-  language: string,
-  languageOptions: any
+	language: string,
+	languageOptions: any
 ) => {
-  return `
+	return `
         <h1>
           ${
-            language === languageOptions.english
-              ? "Login Registered - Welcome to Pastor Gary Mack"
-              : "Ingreso registrado - Bienvenido a Pastor Gary Mack"
-          }
+						language === languageOptions.english
+							? "Login Registered - Welcome to Pastor Gary Mack"
+							: "Ingreso registrado - Bienvenido a Pastor Gary Mack"
+					}
         </h1>
 
         <p>
           ${
-            language === languageOptions.english
-              ? "You have successfully logged in to Pastor Gary Mack. If this was not you, please verify your email password. Your account may be compromised."
-              : "Has iniciado sesión en Pastor Gary Mack. Si no es usted, por favor verifique su contraseña de correo. Su cuenta puede estar comprometida."
-          }
+						language === languageOptions.english
+							? "You have successfully logged in to Pastor Gary Mack. If this was not you, please verify your email password. Your account may be compromised."
+							: "Has iniciado sesión en Pastor Gary Mack. Si no es usted, por favor verifique su contraseña de correo. Su cuenta puede estar comprometida."
+					}
         </p>
 
         <p>
           ${
-            language === languageOptions.english
-              ? "Thank you for using Pastor Gary Mack."
-              : "Gracias por usar Pastor Gary Mack."
-          }
+						language === languageOptions.english
+							? "Thank you for using Pastor Gary Mack."
+							: "Gracias por usar Pastor Gary Mack."
+					}
         </p>`;
+};
+
+// TODO: Create Order Email for Books, Donations and Store Purchases
+// TODO: Create Order Email for Store Purchases when the product is shipped and any other event from the prontify webhook
+export const orderConfirmationEmailTemplate = (
+	language: string,
+	languageOptions: any,
+	products: any[]
+) => {
+	return `
+        <h1>
+          ${
+						language === languageOptions.english
+							? "Order Confirmation - Pastor Gary Mack"
+							: "Confirmación de pedido - Pastor Gary Mack"
+					}
+        </h1>
+
+        <p>
+          ${
+						language === languageOptions.english
+							? "Thank you for your order! Here are the details of your purchase:"
+							: "¡Gracias por su pedido! Aquí están los detalles de su compra:"
+					}
+        </p>
+
+        <ul>
+          ${products
+						.map(
+							(product) => `
+            <li><
+              ${product.name} - ${product.quantity} x $${product.price}
+            </li>
+          `
+						)
+						.join("")}
+        </ul>
+
+        <p>
+          ${
+						language === languageOptions.english
+							? "We appreciate your support!"
+							: "¡Agradecemos su apoyo!"
+					}
+        </p>
+  `;
 };
