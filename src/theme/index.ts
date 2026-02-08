@@ -49,16 +49,16 @@ export const TabsTheme = createTheme({
 	tablist: {
 		base: "flex text-center",
 		variant: {
-			default: "flex-wrap border-b border-slate-800 dark:border-gray-700",
+			default: "flex-wrap border-b border-slate-800",
 			underline:
-				"-mb-px flex-wrap border-b border-gray-200 dark:border-gray-700",
+				"-mb-px flex-wrap border-b border-gray-200",
 			pills:
-				"flex-wrap space-x-2 text-sm font-medium text-gray-500 dark:text-gray-400",
+				"flex-wrap space-x-2 text-sm font-medium text-gray-500",
 			fullWidth:
-				"grid w-full grid-flow-col divide-x divide-gray-200 rounded-none text-sm font-medium shadow dark:divide-gray-700 dark:text-gray-400"
+				"grid w-full grid-flow-col divide-x divide-gray-200 rounded-none text-sm font-medium shadow"
 		},
 		tabitem: {
-			base: "flex items-center justify-center rounded-t-lg p-4 text-sm font-medium first:ml-0 focus:outline-none disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500",
+			base: "flex items-center justify-center rounded-t-lg p-4 text-sm font-medium first:ml-0 focus:outline-none disabled:cursor-not-allowed disabled:text-gray-400",
 			variant: {
 				default: {
 					base: "rounded-t-lg",
@@ -70,22 +70,22 @@ export const TabsTheme = createTheme({
 				underline: {
 					base: "rounded-t-lg",
 					active: {
-						on: "rounded-t-lg border-b-2 border-primary-600 text-primary-600 dark:border-primary-500 dark:text-primary-500",
-						off: "border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+						on: "rounded-t-lg border-b-2 border-primary-600 text-primary-600",
+						off: "border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-600"
 					}
 				},
 				pills: {
 					base: "",
 					active: {
 						on: "rounded-lg bg-primary-600 text-white",
-						off: "rounded-lg hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+						off: "rounded-lg hover:bg-gray-100 hover:text-gray-900"
 					}
 				},
 				fullWidth: {
 					base: "ml-0 flex w-full rounded-none first:ml-0",
 					active: {
-						on: "rounded-none bg-gray-100 p-4 text-gray-900 dark:bg-gray-700 dark:text-white",
-						off: "rounded-none bg-white hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+						on: "rounded-none bg-gray-100 p-4 text-gray-900",
+						off: "rounded-none bg-white hover:bg-gray-50 hover:text-gray-700"
 					}
 				}
 			},
