@@ -271,8 +271,8 @@ export default function StoreHomePageContent({
 							<div>
 								<h3 className="text-base font-black uppercase text-slate-700 tracking-widest mb-4">
 									{language === languageOptions.english
-										? "Categories"
-										: "Categorías"}
+										? "Tags"
+										: "Etiquetas"}
 								</h3>
 
 								<div className="grid grid-cols-1 gap-2">

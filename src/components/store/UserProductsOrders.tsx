@@ -22,7 +22,10 @@ export function UserProductsOrders({
 			const fetchOrders = async () => {
 				try {
 					const requestOrders = await fetch(
-						`/api/user/orders?userId=${userId}`
+						`/api/user/orders?userId=${userId}`,
+						{
+							cache: "no-store"
+						}
 					);
 					const responseOrders = await requestOrders.json();
 					if (responseOrders.success) {
