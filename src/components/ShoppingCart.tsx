@@ -94,7 +94,7 @@ export default function ShoppingCart() {
 					open={showCartCheckout}
 					onClose={() => setShowCartCheckout(false)}
 					position="right"
-					className="w-full lg:w-6/12">
+					className="bg-white w-full lg:w-6/12">
 					<DrawerHeader title="Checkout" titleIcon={() => <></>} />
 					<DrawerItems>
 						<ul className="flex flex-col gap-4">
