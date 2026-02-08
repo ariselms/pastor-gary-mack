@@ -137,10 +137,10 @@ export default function ShoppingCart() {
 												/>
 											</div>
 											<div className="w-full">
-												<span className="block font-bold text-slate-800 dark:text-white">
+												<span className="block font-bold text-slate-800 ">
 													{item?.productName}
 												</span>
-												<span className="block mb-2 text-slate-600 dark:text-slate-400">
+												<span className="block mb-2 text-slate-600 ">
 													{item?.variant?.title}{" - "}
 													{formatPrice(item?.variant?.price)}
 												</span>
@@ -153,7 +153,7 @@ export default function ShoppingCart() {
 														</button>
 													) : (
 														<button
-															className="p-1 border rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+															className="p-1 border rounded hover:bg-slate-100 "
 															onClick={() =>
 																updateQuantity(
 																	item?.variant?.id,
@@ -163,11 +163,11 @@ export default function ShoppingCart() {
 															<Minus size={16} />
 														</button>
 													)}
-													<span className="font-mono font-bold text-slate-900 dark:text-white">
+													<span className="font-mono font-bold text-slate-900 ">
 														{item?.quantity}
 													</span>
 													<button
-														className="p-1 border rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+														className="p-1 border rounded hover:bg-slate-100 "
 														onClick={() =>
 															updateQuantity(
 																item?.variant?.id,
@@ -183,11 +183,11 @@ export default function ShoppingCart() {
 								))
 							)}
 						</ul>
-						<hr className="my-6 border-slate-200 dark:border-slate-700" />
+						<hr className="my-6 border-slate-200 " />
 
 						{cartItems.length > 0 && (
 							<>
-								<div className="flex justify-between items-center text-xl font-black text-slate-900 dark:text-white">
+								<div className="flex justify-between items-center text-xl font-black text-slate-900 ">
 									<span>Total:</span>
 									<span>{formatPrice(cartTotal)}</span>
 								</div>

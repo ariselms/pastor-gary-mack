@@ -109,12 +109,12 @@ const LoginFlow = () => {
 			<div className="w-full flex flex-col items-center justify-center py-16">
 				{!codeSent ? (
 					<>
-						<h3 className="text-2xl/9 font-bold tracking-tight text-slate-100 dark:text-white mb-4">
+						<h3 className="text-2xl/9 font-bold tracking-tight text-slate-100 mb-4">
 							{language === languageOptions.english
 								? "Sign in to your account"
 								: "Inicia sesión en tu cuenta"}
 						</h3>
-						<p className="leading-7 font-normal text-slate-300 dark:text-slate-400 mb-8">
+						<p className="leading-7 font-normal text-slate-300 mb-8">
 							{language === languageOptions.english
 								? "Submit your email and we will send you a code to be able to access your account."
 								: "Ingresa tu correo y te enviaremos un codigo para poder acceder a tu cuenta."}
@@ -127,12 +127,12 @@ const LoginFlow = () => {
 					</>
 				) : (
 					<>
-						<h3 className="text-2xl/9 font-bold tracking-tight text-slate-100 dark:text-white mb-4">
+						<h3 className="text-2xl/9 font-bold tracking-tight text-slate-100 mb-4">
 							{language === languageOptions.english
 								? "Verify your email"
 								: "Verifica tu correo electrónico"}
 						</h3>
-						<p className="leading-7 font-normal text-slate-300 dark:text-slate-400 mb-8">
+						<p className="leading-7 font-normal text-slate-300 mb-8">
 							{language === languageOptions.english
 								? "We have sent you an email with a code to verify your account and login."
 								: "Te hemos enviado un correo con un codigo para verificar tu cuenta e iniciar sesión."}

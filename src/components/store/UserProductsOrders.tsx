@@ -109,11 +109,11 @@ export function UserProductsOrders({
 								</div>
 
 								{/* LINE ITEMS */}
-								<div className="space-y-4">
+								<div className="space-y-2">
 									{order?.line_items.map((item: any, index: number) => (
 										<div
 											key={index}
-											className="p-4 flex flex-col sm:flex-row items-center sm:items-start gap-4 border border-slate-700 rounded-lg bg-slate-800/30 backdrop-blur-sm">
+											className="p-2 flex flex-col sm:flex-row items-center sm:items-start gap-4 border border-slate-700 rounded-lg bg-slate-800/30 backdrop-blur-sm">
 											{/* Image Container - Already centers via mx-auto on mobile */}
 											<div className="relative h-32 w-32 shrink-0 bg-neutral-800 rounded-lg overflow-hidden border border-slate-700">
 												<Image

@@ -27,20 +27,20 @@ const EnglishCookies = () => {
 		<div className="p-6 sm:p-8 lg:p-10">
 
       <div className="mb-8">
-				<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
+				<h1 className="text-3xl md:text-4xl font-bold text-slate-200  mb-2">
 					Cookie Policy
 				</h1>
-				<p className="text-sm text-slate-300 dark:text-gray-300 mb-8">
+				<p className="text-sm text-slate-300  mb-8">
 					<strong>Effective Date:</strong> January 1st, 2025
 				</p>
 			</div>
 
-			<div className="space-y-6 text-slate-200 dark:text-white leading-relaxed">
+			<div className="space-y-6 text-slate-200  leading-relaxed">
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						1. Introduction
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						This Cookie Policy explains our current position on the use of
 						cookies on the Pastor Gary Mack website (the "Site"). We want to be
 						transparent about any technology we use.
@@ -48,10 +48,10 @@ const EnglishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						2. Our Current Use of Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Currently, we do not use cookies for tracking, analytics, or
 						advertising. Our use of cookies is strictly limited to those that
 						are essential for security purposes and to ensure the basic
@@ -61,10 +61,10 @@ const EnglishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						3. Future Use of Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						It is possible that in the future we may decide to use additional
 						cookies to improve the user experience, such as analytics or
 						personalization cookies. If this occurs, we will update this policy
@@ -74,10 +74,10 @@ const EnglishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						4. How to Manage Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Although we do not currently use tracking cookies, you can control
 						and manage cookies in your browser. Most web browsers allow you to
 						see what cookies you have, delete them, and block cookies from
@@ -86,10 +86,10 @@ const EnglishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						5. Changes to This Cookie Policy
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						We may update this Cookie Policy from time to time. The most current
 						version of the policy will govern our use of cookie technology and
 						will always be available on the Site. We encourage you to
@@ -98,10 +98,10 @@ const EnglishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						6. Contact Us
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Pastor Gary Mack welcomes your questions or comments regarding this
 						Cookie Policy.
 					</p>
@@ -117,20 +117,20 @@ const SpanishCookies = () => {
 		<div className="p-6 sm:p-8 lg:p-10">
 
       <div className="mb-8">
-				<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
+				<h1 className="text-3xl md:text-4xl font-bold text-slate-200  mb-2">
 					Política de Cookies
 				</h1>
-				<p className="text-sm text-slate-300 dark:text-gray-300 mb-8">
+				<p className="text-sm text-slate-300  mb-8">
 					<strong>Fecha de Entrada en Vigor:</strong> 19 de agosto de 2025
 				</p>
 			</div>
 
-			<div className="space-y-6 text-slate-200 dark:text-white leading-relaxed">
+			<div className="space-y-6 text-slate-200  leading-relaxed">
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						1. Introducción
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Esta Política de Cookies explica nuestra posición actual sobre el
 						uso de cookies en el sitio web de Pastor Gary Mack (el "Sitio").
 						Queremos ser transparentes sobre cualquier tecnología que
@@ -139,10 +139,10 @@ const SpanishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						2. Nuestro Uso Actual de Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Actualmente, no utilizamos cookies para seguimiento, análisis o
 						publicidad. Nuestro uso de cookies se limita estrictamente a
 						aquellas que son esenciales para propósitos de seguridad y para
@@ -152,10 +152,10 @@ const SpanishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						3. Uso Futuro de Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Es posible que en el futuro decidamos utilizar cookies adicionales
 						para mejorar la experiencia del usuario, como cookies analíticas o
 						de personalización. Si esto ocurre, actualizaremos esta política y
@@ -165,10 +165,10 @@ const SpanishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						4. Cómo Gestionar las Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Aunque actualmente no utilizamos cookies de seguimiento, usted puede
 						controlar y gestionar las cookies en su navegador. La mayoría de los
 						navegadores web le permiten ver qué cookies tiene, eliminarlas y
@@ -177,10 +177,10 @@ const SpanishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						5. Cambios a Esta Política de Cookies
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Podemos actualizar esta Política de Cookies de vez en cuando. La
 						versión más actual de la política regirá nuestro uso de la
 						tecnología de cookies y siempre estará disponible en el Sitio. Le
@@ -190,10 +190,10 @@ const SpanishCookies = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						6. Contáctenos
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Pastor Gary Mack agradece sus preguntas o comentarios sobre esta
 						Política de Cookies.
 					</p>

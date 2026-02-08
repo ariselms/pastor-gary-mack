@@ -58,12 +58,7 @@ export function UserBooksOrders({ user }: { user: UserType }) {
 								<Link
 									href={`/profile/orders/books/read/${order.stripe_product_id}`}>
 									<img
-										className="mx-auto h-full dark:hidden"
-										src="https://files.stripe.com/links/MDB8YWNjdF8xU2FmUnFJS2Z6cVlodU5nfGZsX3Rlc3Rfdmlud05TeHpBWk90dzBWV1BTREFvbEw500O6Oc60Ll"
-										alt=""
-									/>
-									<img
-										className="mx-auto hidden h-full dark:block"
+										className="mx-auto h-full"
 										src="https://files.stripe.com/links/MDB8YWNjdF8xU2FmUnFJS2Z6cVlodU5nfGZsX3Rlc3Rfdmlud05TeHpBWk90dzBWV1BTREFvbEw500O6Oc60Ll"
 										alt=""
 									/>

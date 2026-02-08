@@ -27,20 +27,20 @@ const PrivacySpanish = () => {
 		<div className="p-6 sm:p-8 lg:p-10">
 
 			<div className="mb-8">
-				<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
+				<h1 className="text-3xl md:text-4xl font-bold text-slate-200  mb-2">
 					Política de Privacidad
 				</h1>
-				<p className="text-sm text-slate-300 dark:text-gray-300 mb-8">
+				<p className="text-sm text-slate-300  mb-8">
 					<strong>Fecha de Entrada en Vigor:</strong> August 19, 2025
 				</p>
 			</div>
 
 			<div className="space-y-6 text-gray-700 leading-relaxed">
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						1. Introducción
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Bienvenido/a a Pastor Gary Mack. Estamos comprometidos a proteger su
 						privacidad. Esta Política de Privacidad explica cómo recopilamos,
 						usamos, divulgamos y protegemos su información cuando utiliza
@@ -51,10 +51,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						2. Información que Recopilamos
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Recopilamos la información que usted nos proporciona directamente
 						para fines laborales. Esto puede incluir información personal y
 						profesional como su nombre, datos de contacto, currículum, historial
@@ -63,10 +63,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						3. Cómo Utilizamos Su Información
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Utilizamos la información que recopilamos únicamente para nuestros
 						fines laborales. Esto incluye: conectarlo con posibles oportunidades
 						de trabajo, comunicarnos con usted sobre sus solicitudes, facilitar
@@ -76,10 +76,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						4. Intercambio y Divulgación de Información
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Su privacidad es importante para nosotros. Podemos compartir su
 						información profesional con posibles empleadores con el fin de
 						evaluar su candidatura para un puesto, pero solo con su
@@ -89,10 +89,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						5. Seguridad de los Datos
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Implementamos medidas de seguridad razonables para mantener la
 						seguridad de su información personal. Sin embargo, tenga en cuenta
 						que ninguna medida de seguridad es perfecta o impenetrable, y no
@@ -101,10 +101,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						6. Sus Derechos
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Usted tiene derecho a revisar, actualizar o solicitar la eliminación
 						de su información personal en cualquier momento poniéndose en
 						contacto con nosotros. Responderemos a su solicitud de manera
@@ -113,10 +113,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						7. Cambios a Esta Política de Privacidad
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Podemos actualizar esta Política de Privacidad de vez en cuando. La
 						versión más actual de la política regirá nuestro uso de su
 						información y siempre estará disponible en el Sitio. Le recomendamos
@@ -126,10 +126,10 @@ const PrivacySpanish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						8. Contáctenos
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Pastor Gary Mack agradece sus preguntas o comentarios sobre esta
 						Política de Privacidad.
 					</p>
@@ -145,20 +145,20 @@ const PrivacyEnglish = () => {
 		<div className="p-6 sm:p-8 lg:p-10">
 
       <div className="mb-8">
-				<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
+				<h1 className="text-3xl md:text-4xl font-bold text-slate-200  mb-2">
 					Privacy Policy
 				</h1>
-				<p className="text-sm text-slate-300 dark:text-gray-300 mb-8">
+				<p className="text-sm text-slate-300  mb-8">
 					<strong>Effective Date:</strong> August 19, 2025
 				</p>
 			</div>
 
 			<div className="space-y-6 text-gray-700 leading-relaxed">
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						1. Introduction
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Welcome to Pastor Gary Mack. We are committed to protecting your
 						privacy. This Privacy Policy explains how we collect, use, disclose,
 						and safeguard your information when you use our website (the "Site")
@@ -168,10 +168,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						2. Information We Collect
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						We collect information that you provide directly to us for job
 						purposes. This may include personal and professional information
 						such as your name, contact details, resume, employment history,
@@ -180,10 +180,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						3. How We Use Your Information
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						We use the information we collect solely for our job purposes. This
 						includes: matching you with potential job opportunities,
 						communicating with you about your applications, facilitating the
@@ -193,10 +193,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						4. Information Sharing and Disclosure
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Your privacy is important to us. We may share your professional
 						information with prospective employers for the purpose of evaluating
 						your candidacy for a position, but only with your consent. **We do
@@ -206,10 +206,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						5. Data Security
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						We implement reasonable security measures to maintain the safety of
 						your personal information. However, please be aware that no security
 						measures are perfect or impenetrable, and we cannot guarantee
@@ -218,10 +218,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						6. Your Rights
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						You have the right to review, update, or request the deletion of
 						your personal information at any time by contacting us. We will
 						respond to your request in a timely manner.
@@ -229,10 +229,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						7. Changes to This Privacy Policy
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						We may update this Privacy Policy from time to time. The most
 						current version of the policy will govern our use of your
 						information and will always be available on the Site. We encourage
@@ -242,10 +242,10 @@ const PrivacyEnglish = () => {
 				</div>
 
 				<div>
-					<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+					<h2 className="text-xl font-semibold text-slate-200  mb-2">
 						8. Contact Us
 					</h2>
-					<p className="text-base text-slate-200 dark:text-white">
+					<p className="text-base text-slate-200 ">
 						Pastor Gary Mack welcomes your questions or comments regarding this
 						Privacy Policy.
 					</p>

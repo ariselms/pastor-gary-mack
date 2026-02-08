@@ -55,7 +55,7 @@ export default function Footer() {
 							</ul>
 						</div>
 						<div>
-							<h3 className="text-sm/6 font-semibold text-white dark:text-white">
+							<h3 className="text-sm/6 font-semibold text-white">
 								{language === languageOptions.spanish ? "Soporte" : "Support"}
 							</h3>
 							<ul role="list" className="mt-6 space-y-4">

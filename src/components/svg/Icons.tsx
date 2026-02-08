@@ -407,7 +407,7 @@ export const MenuIcon: React.FC<ClickProps> = ({ onClick }) => {
 export const BannerIconTheme: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"
@@ -457,7 +457,7 @@ export const BannerIconTheme: React.FC = () => {
 export const DesignIcon: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"
@@ -500,7 +500,7 @@ export const DesignIcon: React.FC = () => {
 export const PrintIcon: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"
@@ -537,7 +537,7 @@ export const PrintIcon: React.FC = () => {
 export const WebsiteIcon: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"
@@ -577,7 +577,7 @@ export const WebsiteIcon: React.FC = () => {
 export const WallArtIcon: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"
@@ -607,7 +607,7 @@ export const WallArtIcon: React.FC = () => {
 export const CarWrapIcon: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"
@@ -653,7 +653,7 @@ export const CarWrapIcon: React.FC = () => {
 export const GlassArtIcon: React.FC = () => {
 	return (
 		<svg
-			className="dark:fill-slate-300 mb-8"
+			className="mb-8"
 			width="50px"
 			height="50px"
 			version="1.1"

@@ -27,20 +27,20 @@ const EnglishTerms = () => {
 		<>
 			<div className="p-6 sm:p-8 lg:p-10">
 				<div className="mb-8">
-					<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
+					<h1 className="text-3xl md:text-4xl font-bold text-slate-200 mb-2">
 						Terms and Conditions
 					</h1>
-					<p className="text-sm text-slate-300 dark:text-gray-300 mb-8">
+					<p className="text-sm text-slate-300 mb-8">
 						<strong>Effective Date:</strong> August 19, 2025
 					</p>
 				</div>
 
 				<div className="space-y-6 text-gray-700 leading-relaxed">
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							1. Introduction
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Welcome to Pastor Gary Mack. These Terms and Conditions ("Terms")
 							govern your access to and use of our website located at
 							https://www.pastorgarymack.com (the "Site") and the services
@@ -51,10 +51,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							2. Use of the Site and Services
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							You agree to use the Site and Services only for lawful purposes
 							and in accordance with these Terms. You are granted a
 							non-exclusive, non-transferable, and revocable license to access
@@ -63,10 +63,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							3. User Accounts
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							To access certain features of the Site, you may be required to
 							create an account. You are responsible for maintaining the
 							confidentiality of your account information, including your
@@ -77,10 +77,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							4. Intellectual Property Rights
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							All content included as part of the Service, such as text,
 							graphics, logos, images, as well as the compilation thereof, is
 							the property of Pastor Gary Mack or its suppliers and is protected
@@ -91,13 +91,13 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							5. Prohibited Activities
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							You are prohibited from using the site or its content:
 						</p>
-						<ul className="list-disc list-inside mt-2 pl-4 space-y-1 text-base text-slate-200 dark:text-white">
+						<ul className="list-disc list-inside mt-2 pl-4 space-y-1 text-base text-slate-200 ">
 							<li>For any unlawful purpose.</li>
 							<li>
 								To solicit others to perform or participate in any unlawful
@@ -121,10 +121,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							6. Disclaimer of Warranties
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							The Site and Services are provided "as is" and "as available".
 							Pastor Gary Mack Temp Services makes no representations or
 							warranties of any kind, express or implied, as to the operation of
@@ -135,10 +135,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							7. Limitation of Liability
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							In no event shall Pastor Gary Mack, nor its directors, employees,
 							partners, agents, suppliers, or affiliates, be liable for any
 							indirect, incidental, special, consequential, or punitive damages,
@@ -148,10 +148,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							8. Indemnification
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							You agree to indemnify, defend and hold harmless Pastor Gary Mack
 							and its officers, directors, employees, agents, and third parties,
 							for any losses, costs, liabilities, and expenses related to or
@@ -161,10 +161,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							9. Governing Law
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							These Terms shall be governed and construed in accordance with the
 							laws of Maryland, U.S.A. without regard to its conflict of law
 							provisions.
@@ -172,10 +172,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							10. Changes to Terms
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Pastor Gary Mack reserves the right, in its sole discretion, to
 							change the Terms under which the Site is offered. The most current
 							version of the Terms will supersede all previous versions. We
@@ -185,10 +185,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							11. Refund Policy
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							All digital orders, donations, and purchases made through the Site
 							are final. Since our products are digital and instantly
 							accessible, we do not offer refunds, returns, or exchanges once a
@@ -198,10 +198,10 @@ const EnglishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							12. Contact Us
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Pastor Gary Mack welcomes your questions or comments regarding the
 							Terms.
 						</p>
@@ -218,20 +218,20 @@ const SpanishTerms = () => {
 		<>
 			<div className="p-6 sm:p-8 lg:p-10">
 				<div className="mb-8">
-					<h1 className="text-3xl md:text-4xl font-bold text-slate-200 dark:text-white mb-2">
+					<h1 className="text-3xl md:text-4xl font-bold text-slate-200 mb-2">
 						Términos y Condiciones
 					</h1>
-					<p className="text-sm text-slate-300 dark:text-gray-300 mb-8">
+					<p className="text-sm text-slate-300 mb-8">
 						<strong>Fecha de Entrada en Vigor:</strong> 19 de agosto de 2025
 					</p>
 				</div>
 
 				<div className="space-y-6 text-gray-700 leading-relaxed">
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							1. Introducción
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Bienvenido/a a Pastor Gary Mack. Estos Términos y Condiciones
 							("Términos") rigen su acceso y uso de nuestro sitio web ubicado en
 							https://www.pastorgarymack.com (el "Sitio") y los servicios
@@ -243,10 +243,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							2. Uso del Sitio y de los Servicios
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Usted se compromete a utilizar el Sitio y los Servicios únicamente
 							para fines lícitos y de conformidad con estos Términos. Se le
 							concede una licencia no exclusiva, no transferible y revocable
@@ -256,10 +256,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							3. Cuentas de Usuario
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Para acceder a ciertas funciones del Sitio, es posible que deba
 							crear una cuenta. Usted es responsable de mantener la
 							confidencialidad de la información de su cuenta, incluida su
@@ -270,10 +270,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							4. Derechos de Propiedad Intelectual
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Todo el contenido incluido como parte del Servicio, como texto,
 							gráficos, logotipos, imágenes, así como la compilación de los
 							mismos, es propiedad de Pastor Gary Mack o sus proveedores y está
@@ -285,13 +285,13 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							5. Actividades Prohibidas
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Se le prohíbe usar el sitio o su contenido:
 						</p>
-						<ul className="list-disc list-inside mt-2 pl-4 space-y-1 text-base text-slate-200 dark:text-white">
+						<ul className="list-disc list-inside mt-2 pl-4 space-y-1 text-base text-slate-200 ">
 							<li>Para cualquier propósito ilegal.</li>
 							<li>
 								Para solicitar a otros que realicen o participen en actos
@@ -317,10 +317,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							6. Exclusión de Garantías
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							El Sitio y los Servicios se proporcionan "tal cual" y "según
 							disponibilidad". Pastor Gary Mack no hace representaciones ni
 							garantías de ningún tipo, expresas o implícitas, en cuanto al
@@ -331,10 +331,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							7. Limitación de Responsabilidad
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							En ningún caso Pastor Gary Mack, ni sus directores, empleados,
 							socios, agentes, proveedores o afiliados, serán responsables de
 							daños indirectos, incidentales, especiales, consecuentes o
@@ -344,10 +344,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							8. Indemnización
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Usted acepta indemnizar, defender y eximir de responsabilidad a
 							Pastor Gary Mack y a sus funcionarios, directores, empleados,
 							agentes y terceros, por cualquier pérdida, costo, responsabilidad
@@ -358,10 +358,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							9. Ley Aplicable
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Estos Términos se regirán e interpretarán de acuerdo con las leyes
 							de Maryland, U.S.A. sin tener en cuenta sus disposiciones sobre
 							conflictos de leyes.
@@ -369,10 +369,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							10. Cambios en los Términos
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Pastor Gary Mack se reserva el derecho, a su entera discreción, de
 							cambiar los Términos bajo los cuales se ofrece el Sitio. La
 							versión más actual de los Términos reemplazará todas las versiones
@@ -382,10 +382,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							11. Política de Reembolso
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Todas las órdenes digitales, donaciones y compras realizadas a
 							través del Sitio son definitivas. Dado que nuestros productos son
 							digitales y accesibles al instante, no ofrecemos reembolsos,
@@ -396,10 +396,10 @@ const SpanishTerms = () => {
 					</div>
 
 					<div>
-						<h2 className="text-xl font-semibold text-slate-200 dark:text-white mb-2">
+						<h2 className="text-xl font-semibold text-slate-200 mb-2">
 							12. Contáctenos
 						</h2>
-						<p className="text-base text-slate-200 dark:text-white">
+						<p className="text-base text-slate-200 ">
 							Pastor Gary Mack agradece sus preguntas o comentarios sobre los
 							Términos.
 						</p>

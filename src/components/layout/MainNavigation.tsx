@@ -173,7 +173,7 @@ export default function MainNavigation() {
 					className={`
             flex flex-col lg:flex-row lg:items-center
             absolute lg:static right-0 top-23 z-20 order-2
-            backdrop-blur-sm bg-black/80 lg:dark:bg-transparent lg:bg-transparent
+            backdrop-blur-sm bg-black/80 lg:bg-transparent
             w-full lg:w-auto gap-y-4 gap-x-4
             border-b border-slate-800 overflow-hidden
             h-0 opacity-0 invisible

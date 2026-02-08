@@ -14,7 +14,7 @@ export default function SubscribersForm() {
 			<div className="relative mb-4">
 				<div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
 					<svg
-						className="w-4 h-4 text-gray-500 dark:text-gray-400"
+						className="w-4 h-4 text-gray-500 "
 						aria-hidden="true"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
@@ -27,13 +27,13 @@ export default function SubscribersForm() {
 					required
 					type="text"
 					id="email-address-icon"
-					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-9 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-9 p-2.5"
 					placeholder="name@company.com"
 				/>
 			</div>
 			<button
 				type="submit"
-				className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800 text-center w-full">
+				className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none text-center w-full">
         {language === "en" ? "Subscribe" : "Suscribirme"}
 			</button>
 		</form>

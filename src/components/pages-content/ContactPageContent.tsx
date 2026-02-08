@@ -12,7 +12,7 @@ export function ContactPageContent() {
 	return (
 		<div className="bg-black py-16">
 			<Container7xl>
-				<h1 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-2">
+				<h1 className="text-3xl md:text-4xl font-bold text-black mb-2">
 					{language === languageOptions.english ? "Contact us" : "Contáctanos"}
 				</h1>
 				<ContactBlock />

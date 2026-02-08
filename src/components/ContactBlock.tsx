@@ -5,7 +5,7 @@ export default function ContactBlock() {
   const { language } = useLanguageContext();
 
 	return (
-		<div className="text-base p-4 rounded-md border border-slate-800 text-slate-200 dark:text-white mt-8">
+		<div className="text-base p-4 rounded-md border border-slate-800 text-slate-200 mt-8">
 			<h3 className="text-xl">Pastor Gary Mack</h3>
 			<br />
 			<p className="text-sm rounded py-1">
